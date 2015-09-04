@@ -1,0 +1,1 @@
+grep '#include \"' $1.c | awk '{print $2}' | sed 's/\"//g' | awk 'BEGIN{printf("%s", "'$1'.c")}{printf(" %s", $1)}END{print ""}'
