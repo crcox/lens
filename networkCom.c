@@ -13,7 +13,7 @@ int C_addNet(TCL_CMDARGS) {
   int arg, timeIntervals = 1, ticksPerInterval = 1, units, hiddenNum,
     inputNum, outputNum, biasNum, numTypes;
   unsigned int typeClass[MAX_TYPES], typeMode[MAX_TYPES], groupClass = GROUP,toggleType = TOGGLE_TYPE;
-  mask netType = 0, type[MAX_TYPES], linkType, baseType, elmanType = ELMAN;
+  mask netType = SRBPTT, type[MAX_TYPES], linkType, baseType, elmanType = ELMAN;
   flag isElman;
   Group last, this, context;
   char *typeName;
@@ -541,6 +541,7 @@ int C_resetUnitValues(TCL_CMDARGS) {
   Unit U;
   int offset;
   real value = 0.0;
+  double tempDbl;
   const char *usage = "resetUnitValues <group-list> [-<field> [<value>]]";
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   if (objc == 2 && !strcmp(Tcl_GetStringFromObj(objv[1], NULL), "-h"))
@@ -559,7 +560,8 @@ int C_resetUnitValues(TCL_CMDARGS) {
     offset = OFFSET(U, output);
     value = NaN;
   }
-  if (objc > 3) Tcl_GetDoubleFromObj(interp, objv[3], &value);
+  if (objc > 3) Tcl_GetDoubleFromObj(interp, objv[3], &tempDbl);
+  value = (real)tempDbl;
 
   FOR_EACH_GROUP_IN_LIST(Tcl_GetStringFromObj(objv[1], NULL), {
     if (isNaN(value)) {

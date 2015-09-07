@@ -22,6 +22,7 @@ int C_connectGroups(TCL_CMDARGS) {
   flag bidirectional = FALSE, typeSet = FALSE;
   flag (*connectProc)(Group, Group, mask, real, real, real) =
     fullConnectGroups;
+  double tempDbl;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "connectGroups <group-list1> (<group-list>)* [-projection "
     "<proj-type> |\n\t-strength <strength> | -mean <mean> | -range <range> |\n"
@@ -50,18 +51,21 @@ int C_connectGroups(TCL_CMDARGS) {
       break;
     case 's':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &strength);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      strength = (real)tempDbl;
       if (strength <= 0.0 || strength > 1.0)
 	return warning("%s: strength value (%f) must be in the range (0,1]",
 		       commandName, strength);
       break;
     case 'm':
       if (++arg >= objc) return usageError(commandName, usage);
-        Tcl_GetDoubleFromObj(interp, objv[arg], &mean);
+        Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+        mean = (real)tempDbl;
       break;
     case 'r':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &range);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      range = (real)tempDbl;
       if (range < 0.0) return warning("%s: range must be positive", commandName);
       break;
     case 't':
@@ -112,6 +116,7 @@ int C_connectGroupToUnits(TCL_CMDARGS) {
   char *curString, *typeName = NULL;
   real range = NaN, mean = NaN;
   flag typeSet = FALSE;
+  double tempDbl;
 
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "connectGroupToUnits <group-list> <unit-list> [-mean <mean> |\n"
@@ -131,11 +136,13 @@ int C_connectGroupToUnits(TCL_CMDARGS) {
     switch (curString[1]) {
     case 'm':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &mean);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      mean = (real)tempDbl;
       break;
     case 'r':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &range);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      range = (real)tempDbl;
       if (range < 0.0) return warning("%s: range must be positive", commandName);
       break;
     case 't':
@@ -167,6 +174,7 @@ int C_connectUnits(TCL_CMDARGS) {
   char *curString, *typeName = NULL;
   real range = NaN, mean = NaN;
   flag bidirectional = FALSE;
+  double tempDbl;
 
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "connectUnits <unit-list1> (<unit-list>)* [-mean <mean>\n"
@@ -186,11 +194,13 @@ int C_connectUnits(TCL_CMDARGS) {
     switch (curString[1]) {
     case 'm':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &mean);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      mean = (real)tempDbl;
       break;
     case 'r':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &range);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      range = (real)tempDbl;
       if (range < 0.0) return warning("%s: range must be positive", commandName);
       break;
     case 't':
@@ -225,6 +235,7 @@ int C_connectUnits(TCL_CMDARGS) {
 int C_elmanConnect(TCL_CMDARGS) {
   Group source, context;
   int arg, curInt;
+  double tempDbl;
   char *curString, *glab1, *glab2;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "elmanConnect <source-group> <context-group>\n"
@@ -256,7 +267,8 @@ int C_elmanConnect(TCL_CMDARGS) {
       break;
     case 'i':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &source->initOutput);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      source->initOutput = (real)tempDbl;
       break;
     default: return usageError(commandName, usage);
     }
@@ -409,17 +421,19 @@ int C_loadWeights(TCL_CMDARGS) {
   flag frozen = TRUE, thawed = TRUE;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "loadWeights <file-name> [-noFrozen | -onlyFrozen]";
+  const char *currentArgument;
 
   Tcl_Obj *fileNameObj = objv[1];
   const char *fileName = Tcl_GetStringFromObj(objv[1], NULL);
-  if (objc == 2 && !strcmp(Tcl_GetStringFromObj(objv[1], NULL), "-h"))
+  if (objc == 2 && !strcmp(fileName, "-h"))
     return commandHelp(commandName);
   if (objc != 2 && objc != 3) return usageError(commandName, usage);
   if (!Net) return warning("%s: no current network", commandName);
 
   /* Read the options. */
-  for (arg = 2; arg < objc && Tcl_GetStringFromObj(objv[arg], NULL)[0] == '-'; arg++) {
-    switch (Tcl_GetStringFromObj(objv[arg], NULL)[1]) {
+  for (arg = 2; arg < objc && Tcl_GetStringFromObj(objv[arg], NULL)[0]=='-'; arg++) {
+    currentArgument = Tcl_GetStringFromObj(objv[arg], NULL);
+    switch (currentArgument[1]) {
     case 'n':
       frozen = FALSE;
       break;
@@ -650,6 +664,7 @@ int C_randWeights(TCL_CMDARGS) {
   int arg;
   mask linkType = ALL_LINKS;
   real range = NaN, mean = NaN;
+  double tempDbl;
   char *groupList = NULL, *unitList = NULL;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "randWeights [-group <group-list> | -unit <unit-list> |\n"
@@ -671,11 +686,13 @@ int C_randWeights(TCL_CMDARGS) {
       break;
     case 'm':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &mean);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      mean = (real)tempDbl;
       break;
     case 'r':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &range);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      range = (real)tempDbl;
       if (range < 0.0) return warning("%s: range must be positive", commandName);
       break;
     case 't':
@@ -1260,6 +1277,7 @@ int C_lesionLinks(TCL_CMDARGS) {
   real proportion = 1.0, value = NaN, range = NaN;
   flag mult = FALSE, flat = FALSE, discard = FALSE;
   real (*proc)(real value, real range);
+  double tempDbl;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "lesionLinks <group-list> [-proportion <proportion> |\n"
     "\t-value <value> | -range <range> | -multiply | -flat | -discard\n"
@@ -1274,17 +1292,22 @@ int C_lesionLinks(TCL_CMDARGS) {
     switch (Tcl_GetStringFromObj(objv[arg], NULL)[1]) {
     case 'p':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &proportion);
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      proportion = (real)tempDbl;
       if (proportion <= 0.0 || proportion > 1.0)
 	return warning("%s: link proportion (%f) must be in the range (0,1]",
 		       commandName, proportion);
       break;
     case 'v':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &value); break;
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      value = (real)tempDbl;
+      break;
     case 'r':
       if (++arg >= objc) return usageError(commandName, usage);
-      Tcl_GetDoubleFromObj(interp, objv[arg], &range); break;
+      Tcl_GetDoubleFromObj(interp, objv[arg], &tempDbl);
+      range = (real)tempDbl;
+      break;
     case 'm':
       mult = TRUE; break;
     case 'f':
@@ -1330,6 +1353,7 @@ int C_lesionLinks(TCL_CMDARGS) {
 
 int C_lesionUnits(TCL_CMDARGS) {
   real proportion;
+  double tempDbl;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "lesionUnits (<group-list> <proportion> | <unit-list>)";
   if (objc == 2 && !strcmp(Tcl_GetStringFromObj(objv[1], NULL), "-h"))
@@ -1343,7 +1367,8 @@ int C_lesionUnits(TCL_CMDARGS) {
     return TCL_OK;
   }
 
-  Tcl_GetDoubleFromObj(interp, objv[2], &proportion);
+  Tcl_GetDoubleFromObj(interp, objv[2], &tempDbl);
+  proportion = (real)tempDbl;
   if (proportion <= 0.0 || proportion > 1.0)
     return warning("%s: proportion of units (%f) must be in the range (0,1]",
 		   commandName, proportion);
@@ -1356,6 +1381,7 @@ int C_lesionUnits(TCL_CMDARGS) {
 
 int C_healUnits(TCL_CMDARGS) {
   real proportion;
+  double tempDbl;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "healUnits [(<group-list> <proportion> | <unit-list>)]";
   if (objc == 2 && !strcmp(Tcl_GetStringFromObj(objv[1], NULL), "-h"))
@@ -1373,7 +1399,8 @@ int C_healUnits(TCL_CMDARGS) {
     return TCL_OK;
   }
 
-  Tcl_GetDoubleFromObj(interp, objv[2], &proportion);
+  Tcl_GetDoubleFromObj(interp, objv[2], &tempDbl);
+  proportion = (real)tempDbl;
   if (proportion <= 0.0 || proportion > 1.0)
     return warning("%s: proportion of units (%f) must be in the range (0,1]",
 		   commandName, proportion);
@@ -1387,6 +1414,7 @@ int C_noiseType(TCL_CMDARGS) {
   flag mult = FALSE, flat = FALSE, rangeSet = FALSE;
   real range = NaN, (*proc)(real value, real range);
   int arg;
+  double tempDbl;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   const char *usage = "noiseType <group-list> [-range <range> | -multiply | -flat]";
   if (objc == 2 && !strcmp(Tcl_GetStringFromObj(objv[1], NULL), "-h"))
@@ -1399,7 +1427,8 @@ int C_noiseType(TCL_CMDARGS) {
       return usageError(commandName, usage);
     switch (Tcl_GetStringFromObj(objv[arg], NULL)[1]) {
     case 'r':
-      Tcl_GetDoubleFromObj(interp, objv[++arg], &range);
+      Tcl_GetDoubleFromObj(interp, objv[++arg], &tempDbl);
+      range = (real)tempDbl;
       rangeSet = TRUE;
       break;
     case 'm':

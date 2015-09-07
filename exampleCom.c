@@ -12,6 +12,7 @@
 
 int C_loadExamples(TCL_CMDARGS) {
   ExampleSet S;
+  Tcl_Obj *fileNameObj;
   char *setName = NULL;
   int arg, mode = 0, numExamples = 0;
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
@@ -25,6 +26,7 @@ int C_loadExamples(TCL_CMDARGS) {
   if (unsafeToRun(commandName, LOADING_EXAMPLES | SAVING_EXAMPLES))
     return TCL_ERROR;
 
+  fileNameObj = objv[1];
   for (arg = 2; arg < objc && Tcl_GetStringFromObj(objv[arg], NULL)[0] == '-'; arg++) {
     switch (Tcl_GetStringFromObj(objv[arg], NULL)[1]) {
     case 's':
@@ -43,7 +45,7 @@ int C_loadExamples(TCL_CMDARGS) {
         warning("%s: invalid example mode: \"%s\"\n"
           "Try one of the following:\n", commandName, Tcl_GetStringFromObj(objv[arg], NULL));
         printTypes("Example Modes", EXAMPLE_MODE, ~0);
-	return TCL_ERROR;
+        return TCL_ERROR;
       }
       break;
     case 'm':
@@ -71,7 +73,7 @@ int C_loadExamples(TCL_CMDARGS) {
 
   startTask(LOADING_EXAMPLES);
   eval(".setPath _examples %s", Tcl_GetStringFromObj(objv[1], NULL));
-  code = loadExamples(setName, objv[1], mode, numExamples);
+  code = loadExamples(setName, fileNameObj, mode, numExamples);
   if ((S = lookupExampleSet(setName)) && S->mode != exmode)
     exampleSetMode(S, exmode);
   if (code == TCL_OK) result(setName);
@@ -176,6 +178,7 @@ int C_deleteExampleSets(TCL_CMDARGS) {
 int C_moveExamples(TCL_CMDARGS) {
   int first = 0, num = 0;
   real proportion = 1.0;
+  double tempDbl;
   flag copy = FALSE;
   ExampleSet S;
   const char *usage = "moveExamples <example-set1> <example-set2>\n"
@@ -203,7 +206,8 @@ int C_moveExamples(TCL_CMDARGS) {
     } else if (objc == 4) {
       if ((first == 0 && strcmp(Tcl_GetStringFromObj(objv[3], NULL), "0")) ||
         (first == 1 && strcmp(Tcl_GetStringFromObj(objv[3], NULL), "1"))) {
-        Tcl_GetDoubleFromObj(interp, objv[3], &proportion);
+        Tcl_GetDoubleFromObj(interp, objv[3], &tempDbl);
+        proportion = (real)tempDbl;
       } else num = 1;
     }
   }

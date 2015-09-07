@@ -78,17 +78,22 @@ static int C_getSeed(TCL_CMDARGS) {
 
 static int C_rand(TCL_CMDARGS) {
   real min = 0.0, max = 1.0, temp;
+  double tempDbl;
   const char *usage = "rand [[<min>] <max>]";
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   if (objc > 1 && !strcmp(Tcl_GetStringFromObj(objv[1], NULL), "-h"))
     return commandHelp(commandName);
   if (objc > 3)
     return usageError(commandName, usage);
-  if (objc == 2)
-    Tcl_GetDoubleFromObj(interp, objv[1], &max);
+  if (objc == 2) {
+    Tcl_GetDoubleFromObj(interp, objv[1], &tempDbl);
+    max = (real)tempDbl;
+  }
   else if (objc == 3) {
-    Tcl_GetDoubleFromObj(interp, objv[1], &min);
-    Tcl_GetDoubleFromObj(interp, objv[2], &max);
+    Tcl_GetDoubleFromObj(interp, objv[1], &tempDbl);
+    min = (real)tempDbl;
+    Tcl_GetDoubleFromObj(interp, objv[2], &tempDbl);
+    max = (real)tempDbl;
   }
   if (min > max) {
     temp = min;
@@ -268,13 +273,13 @@ static int C_source(TCL_CMDARGS) {
     SourceDepth--;
   }
   freeString(script);
-  free(olddir);
 
   /* now message is the return value of the script */
   message = Tcl_GetObjResult(interp);
   Tcl_IncrRefCount(message);
 
   eval("cd %s\n", olddir);
+  free(olddir);
 
   /* This was commented out because when Tcl sources something it can screw
      up the user's desired path. */

@@ -22,11 +22,14 @@ int C_train(TCL_CMDARGS) {
 
   if (!Net) return warning("%s: no current network", commandName);
 
-  if (objc > 1 && isInteger(numUpdatesStr)) {
+
+  if (objc > 1) {
     numUpdatesStr = Tcl_GetStringFromObj(objv[1], NULL);
     Tcl_GetIntFromObj(interp, objv[1], &numUpdatesInt);
-    Net->numUpdates = numUpdatesInt;
-    arg = 2;
+    if (isInteger(numUpdatesStr)) {
+      Net->numUpdates = numUpdatesInt;
+      arg = 2;
+    }
   }
 
   for (; arg < objc && Tcl_GetStringFromObj(objv[arg], NULL)[0] == '-'; arg++) {

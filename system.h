@@ -17,7 +17,7 @@
 typedef int mask; /* a type bit field or a mode specifier */
 typedef int flag; /* a boolean.  This is an int because I use
 			    Tcl_LinkVar and you can't link to a char */
-#define DOUBLE_REAL
+#undef DOUBLE_REAL
 #ifdef DOUBLE_REAL
   typedef double real;
 #else

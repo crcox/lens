@@ -194,12 +194,16 @@ int C_setGraphSize(TCL_CMDARGS) {
 
 int C_colorName(TCL_CMDARGS) {
   real H, S, B;
+  double tempDbl;
   char color[32];
   const char *commandName = Tcl_GetStringFromObj(objv[0], NULL);
   if (objc != 4) return warning("%s was called improperly", commandName);
-  Tcl_GetDoubleFromObj(interp, objv[1], &H);
-  Tcl_GetDoubleFromObj(interp, objv[2], &S);
-  Tcl_GetDoubleFromObj(interp, objv[3], &B);
+  Tcl_GetDoubleFromObj(interp, objv[1], &tempDbl);
+  H = (real)tempDbl;
+  Tcl_GetDoubleFromObj(interp, objv[2], &tempDbl);
+  S = (real)tempDbl;
+  Tcl_GetDoubleFromObj(interp, objv[3], &tempDbl);
+  B = (real)tempDbl;
   colorName(color, H, S, B);
   return result(color);
 }

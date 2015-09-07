@@ -340,7 +340,7 @@ void reacquireGraphObjects(void) {
 
 flag drawNow(ClientData data) {
   Graph G;
-  int g = (int) data;
+  int g = *(int *) data;
   if (!(G = lookupGraph(g))) return TCL_OK;
   return drawGraph(G);
 }
@@ -348,7 +348,7 @@ flag drawNow(ClientData data) {
 flag drawLater(Graph G) {
   if (!G->needsRedraw && !G->hidden) {
     G->needsRedraw = TRUE;
-    Tcl_DoWhenIdle((Tcl_IdleProc *) drawNow, (ClientData) G->num);
+    Tcl_DoWhenIdle((Tcl_IdleProc *) drawNow, (ClientData) &G->num);
   }
   return TCL_OK;
 }
@@ -498,7 +498,7 @@ flag refreshProps(Graph G) {
 
 flag refreshPropsNow(ClientData data) {
   Graph G;
-  int g = (int) data;
+  int g = *(int *) data;
   if (!(G = lookupGraph(g))) return TCL_OK;
   if (!G->needsPropRefresh || !G->propertiesUp) return TCL_OK;
   return refreshProps(G);
@@ -508,7 +508,7 @@ flag refreshPropsLater(Graph G) {
   if (G->hidden) return TCL_OK;
   if (G->propertiesUp && !G->needsPropRefresh) {
     G->needsPropRefresh = TRUE;
-    Tcl_DoWhenIdle((Tcl_IdleProc *) refreshPropsNow, (ClientData) G->num);
+    Tcl_DoWhenIdle((Tcl_IdleProc *) refreshPropsNow, (ClientData) &G->num);
   }
   return TCL_OK;
 }
