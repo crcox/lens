@@ -263,6 +263,7 @@ int main(int argc, char *argv[]) {
   int arg = 1;
 
   while (arg < argc) {
+    print(1, "%s\n", argv[arg]);
     if        (subString(argv[arg], "-nogui",   2)) {
       Gui = FALSE;
       Batch = FALSE;

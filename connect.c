@@ -7,6 +7,10 @@
 #include "network.h"
 #include "connect.h"
 
+#ifndef DOUBLE_REAL
+#define FLOAT_REAL
+#endif // DOUBLE_REAL
+
 char **LinkTypeName;
 #define MAX_NAME_LENGTH  128    /* Names for Xerion groups */
 
@@ -187,8 +191,10 @@ void setGroupBlockValues(Group G, flag ext, MemInfo M, char *value,
 }
 
 void setBlockValues(flag ext, MemInfo M, char *value, mask linkType) {
-  FOR_EACH_GROUP(setGroupBlockValues(Net->group[g], ext, M, value,
+  FOR_EACH_GROUP(setGroupBlockValues(G, ext, M, value,
 				     linkType));
+//   FOR_EACH_GROUP(setGroupBlockValues(Net->group[g], ext, M, value,
+//				     linkType));
 }
 
 static void initBlockValues(Block B, real mean, real range) {
@@ -952,17 +958,17 @@ flag standardSaveWeights(Tcl_Obj *fileNameObj, flag binary, int numValues,
 
 static flag readBinaryLinkData(Tcl_Channel channel, Link L, Link2 M,
 			       int numValues, ParseRec R) {
-  real v;
+  real v=0 ;
   if (readBinReal(channel, &L->weight))
   return warning("standardLoadWeights: channel \"%s\" ended prematurely",
-		 R->fileName);
+		 Tcl_GetStringFromObj(R->fileName, NULL));
   if (numValues > 1)
     readBinReal(channel, &M->lastWeightDelta);
   if (numValues > 2) {
     readBinReal(channel, &v);
 #ifdef ADVANCED
     M->lastValue = v;
-#endif /* ADVANCED */
+#endif // ADVANCED
   }
   return TCL_OK;
 }
@@ -992,6 +998,7 @@ flag standardLoadWeights(Tcl_Obj *fileNameObj, flag thawed, flag frozen) {
   ParseRec R = &rec;
   flag (*readLinkData)(Tcl_Channel, Link, Link2, int, ParseRec);
   rec.buf = NULL;
+  rec.fileName = fileNameObj;
 
   if (!(channel = readChannel(fileNameObj)))
     return warning("standardLoadWeights: couldn't open the file \"%s\"",
@@ -1007,6 +1014,7 @@ flag standardLoadWeights(Tcl_Obj *fileNameObj, flag thawed, flag frozen) {
 
   if (i == BINARY_WEIGHT_COOKIE) {
     binaryEncoding(channel);
+    print(1, "standardLoadWeights: binary\n");
     if (readBinInt(channel, &i)) {
       result = warning("standardLoadWeights: can't read numLinks");
       goto done;}
@@ -1107,20 +1115,29 @@ flag standardLoadWeights(Tcl_Obj *fileNameObj, flag thawed, flag frozen) {
     readLinkData = readTextLinkData;
   }
 
+  print(1, "standardReadWeights: numLinks  = %d\n", numLinks);
+  print(1, "standardReadWeights: numvalues = %d\n", numValues);
+  print(1, "standardReadWeights: numupdate = %d\n", totalUpdates);
+  print(1, "standardReadWeights: link num  =     ");
+  int jjj = 0;
   if (frozen || !(Net->type & FROZEN)) {
     FOR_EACH_GROUP({
       if (!frozen && (G->type & FROZEN)) continue;
       FOR_EVERY_UNIT(G, {
-	if (!frozen && (U->type & FROZEN)) continue;
-	i = 0;
-	FOR_EACH_BLOCK(U, {
-	  if ((!frozen && (B->type & FROZEN)) ||
-	      (!thawed && (!((Net->type | G->type | U->type | B->type)
-			     & FROZEN)))) i += B->numUnits;
-	  else for (si = i + B->numUnits; i < si; i++)
-	    readLinkData(channel, U->incoming + i, U->incoming2 + i,
-			 numValues, R);
+        if (!frozen && (U->type & FROZEN)) continue;
+        i = 0;
+        FOR_EACH_BLOCK(U, {
+          if ((!frozen && (B->type & FROZEN)) ||
+              (!thawed && (!((Net->type | G->type | U->type | B->type)
+                 & FROZEN)))) i += B->numUnits;
+          else for (si = i + B->numUnits; i < si; i++) {
+            readLinkData(channel, U->incoming + i, U->incoming2 + i,
+             numValues, R);
+            print(1, "\b\b\b\b% 4d", jjj++);
+          };
+
 	})})})}
+  print(1,"\n");
   if (totalUpdates >= 0 && thawed)
     Net->totalUpdates = totalUpdates;
 
@@ -1156,10 +1173,20 @@ flag loadXerionWeights(Tcl_Obj *fileNameObj) {
 	    goto done;
       }
       fromUnit = 0;
-      sscanf(s, "Bias -> %[^.].%d: %lf", toGroup, &toUnit, &weight);
+      #ifdef FLOAT_REAL
+        sscanf(s, "Bias -> %[^.].%d: %f", toGroup, &toUnit, &weight);
+      #else
+        sscanf(s, "Bias -> %[^.].%d: %lf", toGroup, &toUnit, &weight);
+      #endif
     } else {
-      sscanf(s, "%[^.].%d -> %[^.].%d: %lf", fromGroup, &fromUnit,
-	     toGroup, &toUnit, &weight);
+      #ifdef FLOAT_REAL
+        sscanf(s, "%[^.].%d -> %[^.].%d: %f", fromGroup, &fromUnit,
+	       toGroup, &toUnit, &weight);
+      #else
+         sscanf(s, "%[^.].%d -> %[^.].%d: %lf", fromGroup, &fromUnit,
+	       toGroup, &toUnit, &weight);
+      #endif // FLOAT_REAL
+
       if (!(F = lookupGroup(fromGroup))) {
 	    result = warning("loadXerionWeights: unknown group: %s", fromGroup);
 	    goto done;

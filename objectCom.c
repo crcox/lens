@@ -513,7 +513,8 @@ int C_saveParameters(TCL_CMDARGS) {
       return TCL_ERROR;
     }
     FOR_EACH_GROUP({
-      sprintf(groupName, "group(%d)", g);
+      // print(1, "g %d G->num %d\n", g, G->num); //should be the same...
+      sprintf(groupName, "group(%d)", G->num);
       if (writeParameters(channel, groupName)) {
         closeChannel(channel);
         return TCL_ERROR;

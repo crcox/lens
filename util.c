@@ -18,11 +18,13 @@
 #define MAX_BLOCK_DEPTH 32
 #define MAX_FILENAME    512
 
-#define ICHANNEL "console0"
-#define OCHANNEL "console1"
-#define ECHANNEL "console2"
+#ifndef DOUBLE_REAL
+#define FLOAT_REAL
+#endif // DOUBLE_REAL
 
-
+#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#define LITTLE_END
+#endif // __BYTE_ORDER__
 Tcl_Interp *Interp;
 char Buffer[BUFFER_SIZE];
 unsigned int lastSeed = 0;
@@ -930,23 +932,38 @@ flag readBinString(Tcl_Channel channel, String S) {
 }
 
 flag writeBinInt(Tcl_Channel channel, int x) {
+#ifdef LITTLE_END
   int y = HTONL(x);
-  if (Tcl_WriteChars(channel, (char *) &y, sizeof(int)) != sizeof(int))
+  if (Tcl_Write(channel, (char *) &y, sizeof(int)) != sizeof(int))
     return TCL_ERROR;
+#else
+  if (Tcl_Write(channel, (char *) &x, sizeof(int)) != sizeof(int))
+    return TCL_ERROR;
+#endif
   return TCL_OK;
 }
 
 /* This takes a real in host order and writes a float in network order. */
 flag writeBinReal(Tcl_Channel channel, real r) {
 #ifdef FLOAT_REAL
+#  ifdef LITTLE_END
   int y = HTONL(*((int *) &r));
-  if (Tcl_WriteChars(channel, (char *) &y, sizeof(int)) != sizeof(int))
+  if (Tcl_Write(channel, (char *) &y, sizeof(int)) != sizeof(int))
     return TCL_ERROR;
+#  else
+  if (Tcl_Write(channel, (char *) &r, sizeof(int)) != sizeof(int))
+    return TCL_ERROR;
+#  endif /* LITTLE_END */
 #else /* FLOAT_REAL */
   float x = (isNaN(r)) ? NaNf : (float) r;
+#  ifdef LITTLE_END
   int y = HTONL(*((int *) &x));
-  if (Tcl_WriteChars(channel, (char *) &y, sizeof(int)) != sizeof(int))
+  if (Tcl_Write(channel, (char *) &y, sizeof(int)) != sizeof(int))
     return TCL_ERROR;
+#  else
+  if (Tcl_Write(channel, (char *) &x, sizeof(int)) != sizeof(int))
+    return TCL_ERROR;
+#  endif /* LITTLE_END */
 #endif /* FLOAT_REAL */
   return TCL_OK;
 }
