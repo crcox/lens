@@ -273,13 +273,11 @@ char *copyString(const char *string) {
 flag subString(const char *a, const char *b, int minLength) {
   int i;
   for (i = 0; a[i] && a[i] == b[i]; i++) {
-    if (i >= minLength && !a[i]) {
+    if (i >= minLength) {
       return TRUE;
-    } else {
-      return FALSE;
     }
   }
-  return 0; // just to prevent compiler warning --- should never get here.
+  return FALSE;
 }
 
 /* 1 if string contains nothing but tabs and spaces */
