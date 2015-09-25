@@ -108,7 +108,9 @@ int Tcl_AppInit(Tcl_Interp *interp) {
   eval("set _script(path) [pwd]; set _script(file) {}");
 
   Tcl_Eval(Interp, "update");
-
+  /* The following fails because memory cannot be accessed.
+   * Perhaps the objects are already being freed? */
+  // Tcl_SetExitProc((Tcl_ExitProc *) freeAllObjects);
   /* Processing the command-line scripts and commands. */
   for (arg = FirstCommand; arg < Argc; arg++) {
     sprintf(Buffer, "[file readable {%s}]", Argv[arg]);
@@ -133,8 +135,9 @@ extern int TclObjCommandComplete(Tcl_Obj *cmdPtr);
 */
 void Tcl_Main2(int argc, char *argv[], Tcl_AppInitProc *appInitProc)
 {
-  Tcl_Obj *resultPtr;
+  Tcl_Obj *resultPtr = NULL;
   Tcl_Obj *commandPtr = NULL;
+  Tcl_Obj *promptCmdPtr = NULL;
   int code, gotPartial, tty, length;
   int exitCode = 0;
   Tcl_Channel inChannel, outChannel, errChannel;
@@ -176,8 +179,6 @@ void Tcl_Main2(int argc, char *argv[], Tcl_AppInitProc *appInitProc)
   gotPartial = 0;
   while (1) {
     if (tty) {
-      Tcl_Obj *promptCmdPtr;
-
       promptCmdPtr = Tcl_GetVar2Ex(interp, (gotPartial ? "tcl_prompt2" :
 					    "tcl_prompt1"),
 				   NULL, TCL_GLOBAL_ONLY);
@@ -251,9 +252,9 @@ void Tcl_Main2(int argc, char *argv[], Tcl_AppInitProc *appInitProc)
    */
 
  done:
-  if (commandPtr != NULL) {
-    Tcl_DecrRefCount(commandPtr);
-  }
+//  if (commandPtr != NULL) {
+//    Tcl_DecrRefCount(commandPtr);
+//  }
   sprintf(Buffer, "exit %d", exitCode);
   Tcl_Eval(interp, Buffer);
 }

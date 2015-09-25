@@ -105,13 +105,15 @@ int C_test(TCL_CMDARGS) {
   if (objc > 3) return usageError(commandName, usage);
 
   if (!Net) return warning("test: no current network");
-  numExamplesStr = Tcl_GetStringFromObj(objv[1], NULL);
-  Tcl_GetIntFromObj(interp, objv[1], &numExamplesInt);
-  if (objc > 1 && isInteger(numExamplesStr)) {
-    if (numExamplesInt < 0)
+  if (objc > 1) {
+    numExamplesStr = Tcl_GetStringFromObj(objv[1], NULL);
+    Tcl_GetIntFromObj(interp, objv[1], &numExamplesInt);
+    if (isInteger(numExamplesStr)) {
+      if (numExamplesInt < 0)
       return warning("%s: number of examples (%d) can't be negative",
 		     commandName, numExamplesInt);
-    arg = 2;
+      arg = 2;
+    }
   }
   for (; arg < objc; arg++) {
     if (subString(Tcl_GetStringFromObj(objv[arg], NULL), "-noreset", 2)) resetError = FALSE;
@@ -124,6 +126,7 @@ int C_test(TCL_CMDARGS) {
   res = copyString(Tcl_GetStringResult(Interp));
   stopTask(TESTING);
   result(res);
+  free(res);
   return retval;
 }
 

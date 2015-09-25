@@ -2,6 +2,16 @@
 #define OBJECT_H
 
 enum memberTypes{SPACER, OBJ, OBJP, OBJPP, OBJA, OBJPA, OBJAA, OBJPAA};
+/* Key
+ * -----
+ * OBJ    : Object
+ * OBJP   : Pointer to Object
+ * OBJPP  : Pointer to Pointer to Object
+ * OBJA   : Array of Objects
+ * OBJPA  : Pointer to Array of Objects
+ * OBJAA  : Array of Arrays or Objects
+ * OBJPAA : Pointer to Array of Arrays of Objects
+ */
 
 typedef struct objInfo *ObjInfo;
 typedef struct memInfo *MemInfo;
@@ -10,9 +20,9 @@ struct objInfo {
   char *name;        /* Name of this type of object, like "Network" */
   int size;          /* Only used for OBJAs (arrays of these objects) */
   int maxDepth;      /* For printing recursive object structures.  If -1,
-			object is terminal */
+			                  object is terminal */
   /* Function to produce name of instance */
-  void (*getName)(void *object, char *name); 
+  void (*getName)(void *object, char *name);
   void (*setValue)(void *object, char *value);
   void (*setStringValue)(void *object, char *value);
   MemInfo members;   /* List of members */
@@ -42,31 +52,33 @@ extern void *ObjPAA(char *array, int row, int col);
 extern void createObjects(void);
 extern void initObjects(void);
 /* Remove this */
-extern void addMember(ObjInfo O, char *name, int type, int offset, 
-		      flag writable, int (*rows)(void *), int (*cols)(void *), 
+extern void addMember(ObjInfo O, char *name, int type, int offset,
+		      flag writable, int (*rows)(void *), int (*cols)(void *),
 		      ObjInfo info);
-extern void addObj(ObjInfo O, char *name, int offset, flag writable, 
+extern void addObj(ObjInfo O, char *name, int offset, flag writable,
 		   ObjInfo info);
-extern void addObjP(ObjInfo O, char *name, int offset, flag writable, 
+extern void addObjP(ObjInfo O, char *name, int offset, flag writable,
 		    ObjInfo info);
-extern void addObjPA(ObjInfo O, char *name, int offset, flag writable, 
+extern void addObjPA(ObjInfo O, char *name, int offset, flag writable,
 		     int (*rows)(void *), ObjInfo info);
-extern void addObjAA(ObjInfo O, char *name, int offset, flag writable, 
+extern void addObjAA(ObjInfo O, char *name, int offset, flag writable,
 		     int (*rows)(void *), int (*cols)(void *), ObjInfo info);
-extern void addObjPAA(ObjInfo O, char *name, int offset, flag writable, 
+extern void addObjPAA(ObjInfo O, char *name, int offset, flag writable,
 		      int (*rows)(void *), int (*cols)(void *), ObjInfo info);
 extern void addSpacer(ObjInfo O);
+extern void freeObject(ObjInfo objectInfo);
+extern void freeAllObjects(void);
 
 extern MemInfo lookupMember(char *name, ObjInfo objectInfo);
 
 extern ObjInfo newObject(char *name, int size, int maxDepth,
-			 void (*nameProc)(void *, char *), 
+			 void (*nameProc)(void *, char *),
 			 void (*setProc)(void *, char *),
 			 void (*setStringProc)(void *, char *));
-extern void *getObject(char *path, ObjInfo *retObjInfo, int *retType, 
+extern void *getObject(char *path, ObjInfo *retObjInfo, int *retType,
 		       int *retRows, int *retCols, flag *retWrit);
 extern flag isObject(char *path);
-extern void printObject(char *object, ObjInfo O, int type, int rows, 
+extern void printObject(char *object, ObjInfo O, int type, int rows,
 			int cols, int depth, int initDepth, int maxDepth);
 extern flag writeParameters(Tcl_Channel channel, char *path);
 

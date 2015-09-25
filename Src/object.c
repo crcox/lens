@@ -50,17 +50,17 @@ int getRootNumGraphs(void *R) {
 
 static void initRootInfo(void) {
   RootRec R;
-  addMember(RootInfo, "numNetworks", OBJ, OFFSET(R, numNetworks), FALSE, 
+  addMember(RootInfo, "numNetworks", OBJ, OFFSET(R, numNetworks), FALSE,
 	    0, 0, IntInfo);
-  addMember(RootInfo, "net", OBJPA, OFFSET(R, net), FALSE, 
+  addMember(RootInfo, "net", OBJPA, OFFSET(R, net), FALSE,
 	    getRootNumNets, 0, NetInfo);
-  addMember(RootInfo, "numExampleSets", OBJ, OFFSET(R, numExampleSets), FALSE, 
+  addMember(RootInfo, "numExampleSets", OBJ, OFFSET(R, numExampleSets), FALSE,
 	    0, 0, IntInfo);
-  addMember(RootInfo, "set", OBJPA, OFFSET(R, set), FALSE, 
+  addMember(RootInfo, "set", OBJPA, OFFSET(R, set), FALSE,
 	    getRootNumSets, 0, ExampleSetInfo);
-  addMember(RootInfo, "numGraphs", OBJ, OFFSET(R, numGraphs), FALSE, 
+  addMember(RootInfo, "numGraphs", OBJ, OFFSET(R, numGraphs), FALSE,
 	    0, 0, IntInfo);
-  addMember(RootInfo, "graph", OBJPA, OFFSET(R, graph), FALSE, 
+  addMember(RootInfo, "graph", OBJPA, OFFSET(R, graph), FALSE,
 	    getRootNumGraphs, 0, GraphInfo);
   addMember(RootInfo, "root", OBJ, 0, FALSE,
 	    0, 0, RootInfo);
@@ -101,111 +101,111 @@ static void initNetInfo(void) {
 
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "numGroups", OBJ, OFFSET(N, numGroups), FALSE, 
+  addMember(NetInfo, "numGroups", OBJ, OFFSET(N, numGroups), FALSE,
 	    0, 0, IntInfo);
   addMember(NetInfo, "group", OBJPA, OFFSET(N, group), FALSE,
 	    getNetNumGroups, 0, GroupInfo);
-  addMember(NetInfo, "numUnits", OBJ, OFFSET(N, numUnits), FALSE, 
+  addMember(NetInfo, "numUnits", OBJ, OFFSET(N, numUnits), FALSE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "numInputs", OBJ, OFFSET(N, numInputs), FALSE, 
+  addMember(NetInfo, "numInputs", OBJ, OFFSET(N, numInputs), FALSE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "input", OBJPA, OFFSET(N, input), FALSE, 
+  addMember(NetInfo, "input", OBJPA, OFFSET(N, input), FALSE,
 	    getNetNumInputs, 0, UnitInfo);
-  addMember(NetInfo, "numOutputs", OBJ, OFFSET(N, numOutputs), FALSE, 
+  addMember(NetInfo, "numOutputs", OBJ, OFFSET(N, numOutputs), FALSE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "output", OBJPA, OFFSET(N, output), FALSE, 
+  addMember(NetInfo, "output", OBJPA, OFFSET(N, output), FALSE,
 	    getNetNumOutputs, 0, UnitInfo);
-  addMember(NetInfo, "numLinks", OBJ, OFFSET(N, numLinks), FALSE, 
+  addMember(NetInfo, "numLinks", OBJ, OFFSET(N, numLinks), FALSE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "ext", OBJP, OFFSET(N, ext), FALSE, 
+  addMember(NetInfo, "ext", OBJP, OFFSET(N, ext), FALSE,
 	    0, 0, NetExtInfo);
-  addMember(NetInfo, "root", OBJP, OFFSET(N, root), FALSE, 
+  addMember(NetInfo, "root", OBJP, OFFSET(N, root), FALSE,
 	    0, 0, RootInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "trainingSet", OBJP, OFFSET(N, trainingSet), FALSE, 
+  addMember(NetInfo, "trainingSet", OBJP, OFFSET(N, trainingSet), FALSE,
 	    0, 0, ExampleSetInfo);
-  addMember(NetInfo, "testingSet", OBJP, OFFSET(N, testingSet), FALSE, 
+  addMember(NetInfo, "testingSet", OBJP, OFFSET(N, testingSet), FALSE,
 	    0, 0, ExampleSetInfo);
   addMember(NetInfo, "currentExample", OBJP, OFFSET(N, currentExample), FALSE,
 	    0, 0, ExampleInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "timeIntervals", OBJ, OFFSET(N, timeIntervals), 
+  addMember(NetInfo, "timeIntervals", OBJ, OFFSET(N, timeIntervals),
 	    FALSE, 0, 0, IntInfo);
-  addMember(NetInfo, "ticksPerInterval", OBJ, 
+  addMember(NetInfo, "ticksPerInterval", OBJ,
 	    OFFSET(N, ticksPerInterval), FALSE, 0, 0, IntInfo);
-  addMember(NetInfo, "maxTicks", OBJ, OFFSET(N, maxTicks), FALSE, 
+  addMember(NetInfo, "maxTicks", OBJ, OFFSET(N, maxTicks), FALSE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "historyLength", OBJ, OFFSET(N, historyLength), FALSE, 
+  addMember(NetInfo, "historyLength", OBJ, OFFSET(N, historyLength), FALSE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "backpropTicks", OBJ, OFFSET(N, backpropTicks), TRUE, 
+  addMember(NetInfo, "backpropTicks", OBJ, OFFSET(N, backpropTicks), TRUE,
 	    0, 0, IntInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "totalUpdates", OBJ, OFFSET(N, totalUpdates), TRUE, 
+  addMember(NetInfo, "totalUpdates", OBJ, OFFSET(N, totalUpdates), TRUE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "error", OBJ, OFFSET(N, error), TRUE, 
+  addMember(NetInfo, "error", OBJ, OFFSET(N, error), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "weightCost", OBJ, OFFSET(N, weightCost), TRUE, 
+  addMember(NetInfo, "weightCost", OBJ, OFFSET(N, weightCost), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "outputCost", OBJ, OFFSET(N, outputCost), TRUE, 
+  addMember(NetInfo, "outputCost", OBJ, OFFSET(N, outputCost), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "gradientLinearity", OBJ, OFFSET(N, gradientLinearity), 
+  addMember(NetInfo, "gradientLinearity", OBJ, OFFSET(N, gradientLinearity),
 	    TRUE, 0, 0, RealInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "exampleHistoryStart", OBJ, 
+  addMember(NetInfo, "exampleHistoryStart", OBJ,
 	    OFFSET(N, exampleHistoryStart), FALSE, 0, 0, IntInfo);
-  addMember(NetInfo, "ticksOnExample", OBJ, OFFSET(N, ticksOnExample), FALSE, 
+  addMember(NetInfo, "ticksOnExample", OBJ, OFFSET(N, ticksOnExample), FALSE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "currentTick", OBJ, OFFSET(N, currentTick), FALSE, 
+  addMember(NetInfo, "currentTick", OBJ, OFFSET(N, currentTick), FALSE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "eventHistory", OBJA, OFFSET(N, eventHistory), FALSE, 
+  addMember(NetInfo, "eventHistory", OBJA, OFFSET(N, eventHistory), FALSE,
 	    getNetMaxTicks, 0, IntInfo);
-  addMember(NetInfo, "resetHistory", OBJA, OFFSET(N, resetHistory), FALSE, 
+  addMember(NetInfo, "resetHistory", OBJA, OFFSET(N, resetHistory), FALSE,
 	    getNetHistoryLength, 0, FlagInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "numUpdates", OBJ, OFFSET(N, numUpdates), TRUE, 
+  addMember(NetInfo, "numUpdates", OBJ, OFFSET(N, numUpdates), TRUE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "batchSize", OBJ, OFFSET(N, batchSize), TRUE, 
+  addMember(NetInfo, "batchSize", OBJ, OFFSET(N, batchSize), TRUE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "reportInterval", OBJ, OFFSET(N, reportInterval), TRUE, 
+  addMember(NetInfo, "reportInterval", OBJ, OFFSET(N, reportInterval), TRUE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "criterion", OBJ, OFFSET(N, criterion), TRUE, 
+  addMember(NetInfo, "criterion", OBJ, OFFSET(N, criterion), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "trainGroupCrit", OBJ, OFFSET(N, trainGroupCrit), TRUE, 
+  addMember(NetInfo, "trainGroupCrit", OBJ, OFFSET(N, trainGroupCrit), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "testGroupCrit", OBJ, OFFSET(N, testGroupCrit), TRUE, 
+  addMember(NetInfo, "testGroupCrit", OBJ, OFFSET(N, testGroupCrit), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "groupCritRequired", OBJ, OFFSET(N, groupCritRequired), 
+  addMember(NetInfo, "groupCritRequired", OBJ, OFFSET(N, groupCritRequired),
 	    TRUE, 0, 0, FlagInfo);
-  addMember(NetInfo, "minCritBatches", OBJ, OFFSET(N, minCritBatches), TRUE, 
+  addMember(NetInfo, "minCritBatches", OBJ, OFFSET(N, minCritBatches), TRUE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "pseudoExampleFreq", OBJ, OFFSET(N, pseudoExampleFreq), 
+  addMember(NetInfo, "pseudoExampleFreq", OBJ, OFFSET(N, pseudoExampleFreq),
 	    TRUE, 0, 0, FlagInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "learningRate", OBJ, OFFSET(N, learningRate), TRUE, 
+  addMember(NetInfo, "learningRate", OBJ, OFFSET(N, learningRate), TRUE,
 	    0, 0, RealInfo);
 #ifdef ADVANCED
-  addMember(NetInfo, "rateIncrement", OBJ, OFFSET(N, rateIncrement), TRUE, 
+  addMember(NetInfo, "rateIncrement", OBJ, OFFSET(N, rateIncrement), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "rateDecrement", OBJ, OFFSET(N, rateDecrement), TRUE, 
+  addMember(NetInfo, "rateDecrement", OBJ, OFFSET(N, rateDecrement), TRUE,
 	    0, 0, RealInfo);
 #endif /* ADVANCED */
-  addMember(NetInfo, "momentum", OBJ, OFFSET(N, momentum), TRUE, 
+  addMember(NetInfo, "momentum", OBJ, OFFSET(N, momentum), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "adaptiveGainRate", OBJ, OFFSET(N, adaptiveGainRate), 
+  addMember(NetInfo, "adaptiveGainRate", OBJ, OFFSET(N, adaptiveGainRate),
 	    TRUE, 0, 0, RealInfo);
-  addMember(NetInfo, "weightDecay", OBJ, OFFSET(N, weightDecay), TRUE, 
+  addMember(NetInfo, "weightDecay", OBJ, OFFSET(N, weightDecay), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "gainDecay", OBJ, OFFSET(N, gainDecay), TRUE, 
+  addMember(NetInfo, "gainDecay", OBJ, OFFSET(N, gainDecay), TRUE,
 	    0, 0, RealInfo);
   addMember(NetInfo, "outputCostStrength", OBJ, OFFSET(N, outputCostStrength),
 	    TRUE, 0, 0, RealInfo);
-  addMember(NetInfo, "outputCostPeak", OBJ, OFFSET(N, outputCostPeak), TRUE, 
+  addMember(NetInfo, "outputCostPeak", OBJ, OFFSET(N, outputCostPeak), TRUE,
 	    0, 0, RealInfo);
   addMember(NetInfo, "targetRadius", OBJ, OFFSET(N, targetRadius), TRUE,
 	    0, 0, RealInfo);
@@ -213,7 +213,7 @@ static void initNetInfo(void) {
 	    0, 0, RealInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "dt", OBJ, OFFSET(N, dt), TRUE, 
+  addMember(NetInfo, "dt", OBJ, OFFSET(N, dt), TRUE,
 	    0, 0, RealInfo);
   addMember(NetInfo, "gain", OBJ, OFFSET(N, gain), TRUE,
 	    0, 0, RealInfo);
@@ -221,9 +221,9 @@ static void initNetInfo(void) {
 	    0, 0, RealInfo);
   addMember(NetInfo, "clampStrength", OBJ, OFFSET(N, clampStrength), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "initOutput", OBJ, OFFSET(N, initOutput), TRUE, 
+  addMember(NetInfo, "initOutput", OBJ, OFFSET(N, initOutput), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "initInput", OBJ, OFFSET(N, initInput), TRUE, 
+  addMember(NetInfo, "initInput", OBJ, OFFSET(N, initInput), TRUE,
 	    0, 0, RealInfo);
   addMember(NetInfo, "initGain", OBJ, OFFSET(N, initGain), TRUE,
 	    0, 0, RealInfo);
@@ -233,25 +233,25 @@ static void initNetInfo(void) {
 	    0, 0, RealInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "randMean", OBJ, OFFSET(N, randMean), TRUE, 
+  addMember(NetInfo, "randMean", OBJ, OFFSET(N, randMean), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "randRange", OBJ, OFFSET(N, randRange), TRUE, 
+  addMember(NetInfo, "randRange", OBJ, OFFSET(N, randRange), TRUE,
 	    0, 0, RealInfo);
-  addMember(NetInfo, "noiseRange", OBJ, OFFSET(N, noiseRange), TRUE, 
+  addMember(NetInfo, "noiseRange", OBJ, OFFSET(N, noiseRange), TRUE,
 	    0, 0, RealInfo);
   addSpacer(NetInfo);
 
-  addMember(NetInfo, "autoPlot", OBJ, OFFSET(N, autoPlot), TRUE, 
+  addMember(NetInfo, "autoPlot", OBJ, OFFSET(N, autoPlot), TRUE,
 	    0, 0, FlagInfo);
-  addMember(NetInfo, "plotCols", OBJ, OFFSET(N, plotCols), TRUE, 
+  addMember(NetInfo, "plotCols", OBJ, OFFSET(N, plotCols), TRUE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "plotRows", OBJ, OFFSET(N, plotRows), TRUE, 
+  addMember(NetInfo, "plotRows", OBJ, OFFSET(N, plotRows), TRUE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "unitCellSize", OBJ, OFFSET(N, unitCellSize), TRUE, 
+  addMember(NetInfo, "unitCellSize", OBJ, OFFSET(N, unitCellSize), TRUE,
 	    0, 0, IntInfo);
   addMember(NetInfo, "unitCellSpacing", OBJ, OFFSET(N, unitCellSpacing), TRUE,
 	    0, 0, IntInfo);
-  addMember(NetInfo, "linkCellSize", OBJ, OFFSET(N, linkCellSize), TRUE, 
+  addMember(NetInfo, "linkCellSize", OBJ, OFFSET(N, linkCellSize), TRUE,
 	    0, 0, IntInfo);
   addMember(NetInfo, "linkCellSpacing", OBJ, OFFSET(N, linkCellSpacing), TRUE,
 	    0, 0, IntInfo);
@@ -286,7 +286,7 @@ static void initNetInfo(void) {
   addSpacer(NetInfo);
   addMember(NetInfo, "outputFileName", OBJ, OFFSET(N, outputFileName), FALSE,
 	    0, 0, StringInfo);
-  addMember(NetInfo, "binaryOutputFile", OBJ, OFFSET(N, binaryOutputFile), 
+  addMember(NetInfo, "binaryOutputFile", OBJ, OFFSET(N, binaryOutputFile),
 	    FALSE, 0, 0, FlagInfo);
 }
 
@@ -304,79 +304,79 @@ int getGroupNumUnits(void *G) {
 
 static void initGroupInfo(void) {
   Group G;
-  addMember(GroupInfo, "name", OBJ, OFFSET(G, name), TRUE, 
+  addMember(GroupInfo, "name", OBJ, OFFSET(G, name), TRUE,
 	    0, 0, StringInfo);
-  addMember(GroupInfo, "num", OBJ, OFFSET(G, num), FALSE, 
+  addMember(GroupInfo, "num", OBJ, OFFSET(G, num), FALSE,
 	    0, 0, IntInfo);
-  addMember(GroupInfo, "type", OBJ, OFFSET(G, type), FALSE, 
+  addMember(GroupInfo, "type", OBJ, OFFSET(G, type), FALSE,
 	    0, 0, MaskInfo);
-  addMember(GroupInfo, "inputType", OBJ, OFFSET(G, inputType), FALSE, 
+  addMember(GroupInfo, "inputType", OBJ, OFFSET(G, inputType), FALSE,
 	    0, 0, MaskInfo);
   addMember(GroupInfo, "inputProcs", OBJP, OFFSET(G, inputProcs), FALSE,
 	    0, 0, GroupProcInfo);
-  addMember(GroupInfo, "outputType", OBJ, OFFSET(G, outputType), FALSE, 
+  addMember(GroupInfo, "outputType", OBJ, OFFSET(G, outputType), FALSE,
 	    0, 0, MaskInfo);
   addMember(GroupInfo, "outputProcs", OBJP, OFFSET(G, outputProcs), FALSE,
 	    0, 0, GroupProcInfo);
-  addMember(GroupInfo, "costType", OBJ, OFFSET(G, costType), FALSE, 
+  addMember(GroupInfo, "costType", OBJ, OFFSET(G, costType), FALSE,
 	    0, 0, MaskInfo);
   addMember(GroupInfo, "costProcs", OBJP, OFFSET(G, costProcs), FALSE,
 	    0, 0, GroupProcInfo);
   addSpacer(GroupInfo);
 
-  addMember(GroupInfo, "net", OBJP, OFFSET(G, net), FALSE, 
+  addMember(GroupInfo, "net", OBJP, OFFSET(G, net), FALSE,
 	    0, 0, NetInfo);
-  addMember(GroupInfo, "numUnits", OBJ, OFFSET(G, numUnits), FALSE, 
+  addMember(GroupInfo, "numUnits", OBJ, OFFSET(G, numUnits), FALSE,
 	    0, 0, IntInfo);
-  addMember(GroupInfo, "unit", OBJA, OFFSET(G, unit), FALSE, 
+  addMember(GroupInfo, "unit", OBJA, OFFSET(G, unit), FALSE,
 	    getGroupNumUnits, 0, UnitInfo);
-  addMember(GroupInfo, "output", OBJA, OFFSET(G, output), TRUE, 
+  addMember(GroupInfo, "output", OBJA, OFFSET(G, output), TRUE,
 	    getGroupNumUnits, 0, RealInfo);
-  addMember(GroupInfo, "outputDeriv", OBJA, OFFSET(G, outputDeriv), TRUE, 
+  addMember(GroupInfo, "outputDeriv", OBJA, OFFSET(G, outputDeriv), TRUE,
 	    getGroupNumUnits, 0, RealInfo);
-  addMember(GroupInfo, "numIncoming", OBJ, OFFSET(G, numIncoming), FALSE, 
+  addMember(GroupInfo, "numIncoming", OBJ, OFFSET(G, numIncoming), FALSE,
 	    0, 0, IntInfo);
-  addMember(GroupInfo, "numOutgoing", OBJ, OFFSET(G, numOutgoing), FALSE, 
+  addMember(GroupInfo, "numOutgoing", OBJ, OFFSET(G, numOutgoing), FALSE,
 	    0, 0, IntInfo);
-  addMember(GroupInfo, "ext", OBJP, OFFSET(G, ext), FALSE, 
+  addMember(GroupInfo, "ext", OBJP, OFFSET(G, ext), FALSE,
 	    0, 0, GroupExtInfo);
   addSpacer(GroupInfo);
-  
-  addMember(GroupInfo, "trainGroupCrit", OBJ, OFFSET(G, trainGroupCrit), TRUE, 
+
+  addMember(GroupInfo, "trainGroupCrit", OBJ, OFFSET(G, trainGroupCrit), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "testGroupCrit", OBJ, OFFSET(G, testGroupCrit), TRUE, 
+  addMember(GroupInfo, "testGroupCrit", OBJ, OFFSET(G, testGroupCrit), TRUE,
 	    0, 0, RealInfo);
   addSpacer(GroupInfo);
 
-  addMember(GroupInfo, "learningRate", OBJ, OFFSET(G, learningRate), TRUE, 
+  addMember(GroupInfo, "learningRate", OBJ, OFFSET(G, learningRate), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "momentum", OBJ, OFFSET(G, momentum), TRUE, 
+  addMember(GroupInfo, "momentum", OBJ, OFFSET(G, momentum), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "weightDecay", OBJ, OFFSET(G, weightDecay), TRUE, 
+  addMember(GroupInfo, "weightDecay", OBJ, OFFSET(G, weightDecay), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "gainDecay", OBJ, OFFSET(G, gainDecay), TRUE, 
+  addMember(GroupInfo, "gainDecay", OBJ, OFFSET(G, gainDecay), TRUE,
 	    0, 0, RealInfo);
   addMember(GroupInfo, "targetRadius", OBJ, OFFSET(G, targetRadius), TRUE,
 	    0, 0, RealInfo);
   addMember(GroupInfo, "zeroErrorRadius", OBJ, OFFSET(G, zeroErrorRadius),
 	    TRUE, 0, 0, RealInfo);
-  addMember(GroupInfo, "outputCostScale", OBJ, 
+  addMember(GroupInfo, "outputCostScale", OBJ,
 	    OFFSET(G, outputCostScale), TRUE, 0, 0, RealInfo);
-  addMember(GroupInfo, "outputCostPeak", OBJ, OFFSET(G, outputCostPeak), TRUE, 
+  addMember(GroupInfo, "outputCostPeak", OBJ, OFFSET(G, outputCostPeak), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "outputCost", OBJ, OFFSET(G, outputCost), TRUE, 
+  addMember(GroupInfo, "outputCost", OBJ, OFFSET(G, outputCost), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "errorScale", OBJ, OFFSET(G, errorScale), TRUE, 
+  addMember(GroupInfo, "errorScale", OBJ, OFFSET(G, errorScale), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "error", OBJ, OFFSET(G, error), TRUE, 
+  addMember(GroupInfo, "error", OBJ, OFFSET(G, error), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "polaritySum", OBJ, OFFSET(G, polaritySum), TRUE, 
+  addMember(GroupInfo, "polaritySum", OBJ, OFFSET(G, polaritySum), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "polarityNum", OBJ, OFFSET(G, polarityNum), TRUE, 
+  addMember(GroupInfo, "polarityNum", OBJ, OFFSET(G, polarityNum), TRUE,
 	    0, 0, IntInfo);
   addSpacer(GroupInfo);
 
-  addMember(GroupInfo, "dtScale", OBJ, OFFSET(G, dtScale), TRUE, 
+  addMember(GroupInfo, "dtScale", OBJ, OFFSET(G, dtScale), TRUE,
 	    0, 0, RealInfo);
   addMember(GroupInfo, "gain", OBJ, OFFSET(G, gain), TRUE,
 	    0, 0, RealInfo);
@@ -384,21 +384,21 @@ static void initGroupInfo(void) {
 	    0, 0, RealInfo);
   addMember(GroupInfo, "clampStrength", OBJ, OFFSET(G, clampStrength),
 	    TRUE, 0, 0, RealInfo);
-  addMember(GroupInfo, "minOutput", OBJ, OFFSET(G, minOutput), TRUE, 
+  addMember(GroupInfo, "minOutput", OBJ, OFFSET(G, minOutput), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "maxOutput", OBJ, OFFSET(G, maxOutput), TRUE, 
+  addMember(GroupInfo, "maxOutput", OBJ, OFFSET(G, maxOutput), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "initOutput", OBJ, OFFSET(G, initOutput), TRUE, 
+  addMember(GroupInfo, "initOutput", OBJ, OFFSET(G, initOutput), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "initInput", OBJ, OFFSET(G, initInput), TRUE, 
+  addMember(GroupInfo, "initInput", OBJ, OFFSET(G, initInput), TRUE,
 	    0, 0, RealInfo);
   addSpacer(GroupInfo);
 
-  addMember(GroupInfo, "randMean", OBJ, OFFSET(G, randMean), TRUE, 
+  addMember(GroupInfo, "randMean", OBJ, OFFSET(G, randMean), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "randRange", OBJ, OFFSET(G, randRange), TRUE, 
+  addMember(GroupInfo, "randRange", OBJ, OFFSET(G, randRange), TRUE,
 	    0, 0, RealInfo);
-  addMember(GroupInfo, "noiseRange", OBJ, OFFSET(G, noiseRange), TRUE, 
+  addMember(GroupInfo, "noiseRange", OBJ, OFFSET(G, noiseRange), TRUE,
 	    0, 0, RealInfo);
   addSpacer(GroupInfo);
 
@@ -436,21 +436,21 @@ static void initGroupProcInfo(void) {
   GroupProc P;
   addMember(GroupProcInfo, "type", OBJ, OFFSET(P, type),
 	    FALSE, 0, 0, MaskInfo);
-  addMember(GroupProcInfo, "group", OBJP, OFFSET(P, group), 
+  addMember(GroupProcInfo, "group", OBJP, OFFSET(P, group),
 	    FALSE, 0, 0, GroupInfo);
-  addMember(GroupProcInfo, "groupHistoryData", OBJA, 
-	    OFFSET(P, groupHistoryData), TRUE, getProcHistoryLength, 0, 
+  addMember(GroupProcInfo, "groupHistoryData", OBJA,
+	    OFFSET(P, groupHistoryData), TRUE, getProcHistoryLength, 0,
 	    RealInfo);
   addMember(GroupProcInfo, "unitData", OBJA, OFFSET(P, unitData),
 	    TRUE, getProcNumUnits, 0, RealInfo);
-  addMember(GroupProcInfo, "unitHistoryData", OBJAA, 
-	    OFFSET(P, unitHistoryData), TRUE, getProcHistoryLength, 
+  addMember(GroupProcInfo, "unitHistoryData", OBJAA,
+	    OFFSET(P, unitHistoryData), TRUE, getProcHistoryLength,
 	    getProcNumUnits, RealInfo);
   addSpacer(GroupProcInfo);
 
-  addMember(GroupProcInfo, "next", OBJP, OFFSET(P, next), 
+  addMember(GroupProcInfo, "next", OBJP, OFFSET(P, next),
 	    FALSE, 0, 0, GroupProcInfo);
-  addMember(GroupProcInfo, "prev", OBJP, OFFSET(P, prev), 
+  addMember(GroupProcInfo, "prev", OBJP, OFFSET(P, prev),
 	    FALSE, 0, 0, GroupProcInfo);
 }
 
@@ -477,69 +477,69 @@ int getUnitHistoryLength(void *u) {
 
 static void initUnitInfo(void) {
   Unit U;
-  addMember(UnitInfo, "name", OBJ, OFFSET(U, name), TRUE, 
+  addMember(UnitInfo, "name", OBJ, OFFSET(U, name), TRUE,
 	    0, 0, StringInfo);
-  addMember(UnitInfo, "num", OBJ, OFFSET(U, num), FALSE, 
+  addMember(UnitInfo, "num", OBJ, OFFSET(U, num), FALSE,
 	    0, 0, IntInfo);
-  addMember(UnitInfo, "type", OBJ, OFFSET(U, type), FALSE, 
+  addMember(UnitInfo, "type", OBJ, OFFSET(U, type), FALSE,
 	    0, 0, MaskInfo);
   addSpacer(UnitInfo);
 
-  addMember(UnitInfo, "group", OBJP, OFFSET(U, group), FALSE, 
+  addMember(UnitInfo, "group", OBJP, OFFSET(U, group), FALSE,
 	    0, 0, GroupInfo);
-  addMember(UnitInfo, "numBlocks", OBJ, OFFSET(U, numBlocks), FALSE, 
+  addMember(UnitInfo, "numBlocks", OBJ, OFFSET(U, numBlocks), FALSE,
 	    0, 0, IntInfo);
-  addMember(UnitInfo, "block", OBJA, OFFSET(U, block), FALSE, 
+  addMember(UnitInfo, "block", OBJA, OFFSET(U, block), FALSE,
 	    getUnitNumBlocks, 0, BlockInfo);
-  addMember(UnitInfo, "numIncoming", OBJ, OFFSET(U, numIncoming), FALSE, 
+  addMember(UnitInfo, "numIncoming", OBJ, OFFSET(U, numIncoming), FALSE,
 	    0, 0, IntInfo);
-  addMember(UnitInfo, "incoming", OBJA, OFFSET(U, incoming), FALSE, 
+  addMember(UnitInfo, "incoming", OBJA, OFFSET(U, incoming), FALSE,
 	    getUnitNumIncoming, 0, LinkInfo);
-  addMember(UnitInfo, "incoming2", OBJA, OFFSET(U, incoming2), FALSE, 
+  addMember(UnitInfo, "incoming2", OBJA, OFFSET(U, incoming2), FALSE,
 	    getUnitNumIncoming, 0, Link2Info);
-  addMember(UnitInfo, "numOutgoing", OBJ, OFFSET(U, numOutgoing), FALSE, 
+  addMember(UnitInfo, "numOutgoing", OBJ, OFFSET(U, numOutgoing), FALSE,
 	    0, 0, IntInfo);
-  addMember(UnitInfo, "ext", OBJP, OFFSET(U, ext), FALSE, 
+  addMember(UnitInfo, "ext", OBJP, OFFSET(U, ext), FALSE,
 	    0, 0, UnitExtInfo);
   addSpacer(UnitInfo);
 
-  addMember(UnitInfo, "input", OBJ, OFFSET(U, input), TRUE, 
+  addMember(UnitInfo, "input", OBJ, OFFSET(U, input), TRUE,
 	    0, 0, RealInfo);
-  addMember(UnitInfo, "output", OBJ, OFFSET(U, output), TRUE, 
+  addMember(UnitInfo, "output", OBJ, OFFSET(U, output), TRUE,
 	    0, 0, RealInfo);
-  addMember(UnitInfo, "target", OBJ, OFFSET(U, target), TRUE, 
+  addMember(UnitInfo, "target", OBJ, OFFSET(U, target), TRUE,
 	    0, 0, RealInfo);
-  addMember(UnitInfo, "externalInput", OBJ, OFFSET(U, externalInput), TRUE, 
+  addMember(UnitInfo, "externalInput", OBJ, OFFSET(U, externalInput), TRUE,
 	    0, 0, RealInfo);
-  addMember(UnitInfo, "adjustedTarget", OBJ, OFFSET(U, adjustedTarget), TRUE, 
+  addMember(UnitInfo, "adjustedTarget", OBJ, OFFSET(U, adjustedTarget), TRUE,
 	    0, 0, RealInfo);
-  addMember(UnitInfo, "inputDeriv", OBJ, OFFSET(U, inputDeriv), TRUE, 
-	    0, 0, RealInfo); 
-  addMember(UnitInfo, "outputDeriv", OBJ, OFFSET(U, outputDeriv), TRUE, 
+  addMember(UnitInfo, "inputDeriv", OBJ, OFFSET(U, inputDeriv), TRUE,
+	    0, 0, RealInfo);
+  addMember(UnitInfo, "outputDeriv", OBJ, OFFSET(U, outputDeriv), TRUE,
 	    0, 0, RealInfo);
   addSpacer(UnitInfo);
 
-  addMember(UnitInfo, "inputHistory", OBJA, OFFSET(U, inputHistory), TRUE, 
+  addMember(UnitInfo, "inputHistory", OBJA, OFFSET(U, inputHistory), TRUE,
 	    getUnitHistoryLength, 0, RealInfo);
   addMember(UnitInfo, "outputHistory", OBJA, OFFSET(U, outputHistory), TRUE,
 	    getUnitHistoryLength, 0, RealInfo);
   addMember(UnitInfo, "targetHistory", OBJA, OFFSET(U, targetHistory), TRUE,
 	    getUnitHistoryLength, 0, RealInfo);
-  addMember(UnitInfo, "outputDerivHistory", OBJA, 
-	    OFFSET(U, outputDerivHistory), TRUE, getUnitHistoryLength, 0, 
+  addMember(UnitInfo, "outputDerivHistory", OBJA,
+	    OFFSET(U, outputDerivHistory), TRUE, getUnitHistoryLength, 0,
 	    RealInfo);
   addSpacer(UnitInfo);
 
-  addMember(UnitInfo, "gain", OBJ, OFFSET(U, gain), TRUE, 
+  addMember(UnitInfo, "gain", OBJ, OFFSET(U, gain), TRUE,
 	    0, 0, RealInfo);
-  addMember(UnitInfo, "gainDeriv", OBJ, OFFSET(U, gainDeriv), TRUE, 
+  addMember(UnitInfo, "gainDeriv", OBJ, OFFSET(U, gainDeriv), TRUE,
 	    0, 0, RealInfo);
-  addMember(UnitInfo, "dtScale", OBJ, OFFSET(U, dtScale), TRUE, 
+  addMember(UnitInfo, "dtScale", OBJ, OFFSET(U, dtScale), TRUE,
 	    0, 0, RealInfo);
 
-  addMember(UnitInfo, "plotRow", OBJ, OFFSET(U, plotRow), FALSE, 
+  addMember(UnitInfo, "plotRow", OBJ, OFFSET(U, plotRow), FALSE,
 	    0, 0, IntInfo);
-  addMember(UnitInfo, "plotCol", OBJ, OFFSET(U, plotCol), FALSE, 
+  addMember(UnitInfo, "plotCol", OBJ, OFFSET(U, plotCol), FALSE,
 	    0, 0, IntInfo);
 }
 
@@ -556,27 +556,27 @@ int getBlockNumUnits(void *B) {
 
 static void initBlockInfo(void) {
   Block B;
-  addMember(BlockInfo, "type", OBJ, OFFSET(B, type), FALSE, 
+  addMember(BlockInfo, "type", OBJ, OFFSET(B, type), FALSE,
 	    0, 0, MaskInfo);
-  addMember(BlockInfo, "numUnits", OBJ, OFFSET(B, numUnits), FALSE, 
+  addMember(BlockInfo, "numUnits", OBJ, OFFSET(B, numUnits), FALSE,
 	    0, 0, IntInfo);
   addMember(BlockInfo, "unit", OBJP, OFFSET(B, unit), FALSE,
 	    0, 0, UnitInfo);
-  addMember(BlockInfo, "groupUnits", OBJ, OFFSET(B, groupUnits), FALSE, 
+  addMember(BlockInfo, "groupUnits", OBJ, OFFSET(B, groupUnits), FALSE,
 	    0, 0, IntInfo);
-  addMember(BlockInfo, "output", OBJA, OFFSET(B, output), TRUE, 
+  addMember(BlockInfo, "output", OBJA, OFFSET(B, output), TRUE,
 	    getBlockNumUnits, 0, RealInfo);
   addSpacer(BlockInfo);
 
-  addMember(BlockInfo, "learningRate", OBJ, OFFSET(B, learningRate), TRUE, 
+  addMember(BlockInfo, "learningRate", OBJ, OFFSET(B, learningRate), TRUE,
 	    0, 0, RealInfo);
-  addMember(BlockInfo, "momentum", OBJ, OFFSET(B, momentum), TRUE, 
+  addMember(BlockInfo, "momentum", OBJ, OFFSET(B, momentum), TRUE,
 	    0, 0, RealInfo);
-  addMember(BlockInfo, "weightDecay", OBJ, OFFSET(B, weightDecay), TRUE, 
+  addMember(BlockInfo, "weightDecay", OBJ, OFFSET(B, weightDecay), TRUE,
 	    0, 0, RealInfo);
-  addMember(BlockInfo, "randMean", OBJ, OFFSET(B, randMean), TRUE, 
+  addMember(BlockInfo, "randMean", OBJ, OFFSET(B, randMean), TRUE,
 	    0, 0, RealInfo);
-  addMember(BlockInfo, "randRange", OBJ, OFFSET(B, randRange), TRUE, 
+  addMember(BlockInfo, "randRange", OBJ, OFFSET(B, randRange), TRUE,
 	    0, 0, RealInfo);
   addMember(BlockInfo, "min", OBJ, OFFSET(B, min), TRUE, 0, 0, RealInfo);
 
@@ -584,7 +584,7 @@ static void initBlockInfo(void) {
 
   addSpacer(BlockInfo);
 
-  addMember(BlockInfo, "ext", OBJP, OFFSET(B, ext), FALSE, 
+  addMember(BlockInfo, "ext", OBJP, OFFSET(B, ext), FALSE,
 	    0, 0, BlockExtInfo);
 }
 
@@ -596,9 +596,9 @@ static void linkName(void *link, char *dest) {
 
 static void initLinkInfo(void) {
   Link L;
-  addMember(LinkInfo, "weight", OBJ, OFFSET(L, weight), TRUE, 
+  addMember(LinkInfo, "weight", OBJ, OFFSET(L, weight), TRUE,
 	    0, 0, RealInfo);
-  addMember(LinkInfo, "deriv", OBJ, OFFSET(L, deriv), FALSE, 
+  addMember(LinkInfo, "deriv", OBJ, OFFSET(L, deriv), FALSE,
 	    0, 0, RealInfo);
 }
 
@@ -610,10 +610,10 @@ static void link2Name(void *link2, char *dest) {
 
 static void initLink2Info(void) {
   Link2 M;
-  addMember(Link2Info, "lastWeightDelta", OBJ, OFFSET(M, lastWeightDelta), 
+  addMember(Link2Info, "lastWeightDelta", OBJ, OFFSET(M, lastWeightDelta),
 	    TRUE, 0, 0, RealInfo);
 #ifdef ADVANCED
-  addMember(Link2Info, "lastValue", OBJ, OFFSET(M, lastValue), TRUE, 
+  addMember(Link2Info, "lastValue", OBJ, OFFSET(M, lastValue), TRUE,
 	    0, 0, RealInfo);
 #endif /* ADVANCED */
 }
@@ -632,11 +632,11 @@ int getSetNumExamples(void *S) {
 
 static void initExampleSetInfo(void) {
   ExampleSet S;
-  addMember(ExampleSetInfo, "name", OBJ, OFFSET(S, name), TRUE, 
+  addMember(ExampleSetInfo, "name", OBJ, OFFSET(S, name), TRUE,
 	    0, 0, StringInfo);
-  addMember(ExampleSetInfo, "num", OBJ, OFFSET(S, num), FALSE, 
+  addMember(ExampleSetInfo, "num", OBJ, OFFSET(S, num), FALSE,
 	    0, 0, IntInfo);
-  addMember(ExampleSetInfo, "mode", OBJ, OFFSET(S, mode), FALSE, 
+  addMember(ExampleSetInfo, "mode", OBJ, OFFSET(S, mode), FALSE,
 	    0, 0, MaskInfo);
   addSpacer(ExampleSetInfo);
 
@@ -648,43 +648,43 @@ static void initExampleSetInfo(void) {
 	    0, 0, ExSetExtInfo);
   addSpacer(ExampleSetInfo);
 
-  addMember(ExampleSetInfo, "example", OBJPA, OFFSET(S, example), FALSE, 
+  addMember(ExampleSetInfo, "example", OBJPA, OFFSET(S, example), FALSE,
 	    getSetNumExamples, 0, ExampleInfo);
-  addMember(ExampleSetInfo, "permuted", OBJPA, OFFSET(S, permuted), FALSE, 
+  addMember(ExampleSetInfo, "permuted", OBJPA, OFFSET(S, permuted), FALSE,
 	    getSetNumExamples, 0, ExampleInfo);
-  addMember(ExampleSetInfo, "currentExampleNum", OBJ, 
+  addMember(ExampleSetInfo, "currentExampleNum", OBJ,
 	    OFFSET(S, currentExampleNum), FALSE, 0, 0, IntInfo);
-  addMember(ExampleSetInfo, "currentExample", OBJP, OFFSET(S, currentExample), 
+  addMember(ExampleSetInfo, "currentExample", OBJP, OFFSET(S, currentExample),
 	    FALSE, 0, 0, ExampleInfo);
-  addMember(ExampleSetInfo, "firstExample", OBJP, OFFSET(S, firstExample), 
+  addMember(ExampleSetInfo, "firstExample", OBJP, OFFSET(S, firstExample),
 	    FALSE, 0, 0, ExampleInfo);
-  addMember(ExampleSetInfo, "lastExample", OBJP, OFFSET(S, lastExample), 
+  addMember(ExampleSetInfo, "lastExample", OBJP, OFFSET(S, lastExample),
 	    FALSE, 0, 0, ExampleInfo);
   addMember(ExampleSetInfo, "pipeExample", OBJP, OFFSET(S, pipeExample), FALSE,
 	    0, 0, ExampleInfo);
   addMember(ExampleSetInfo, "pipeLoop", OBJ, OFFSET(S, pipeLoop), TRUE,
 	    0, 0, FlagInfo);
-  addMember(ExampleSetInfo, "pipeExampleNum", OBJ, OFFSET(S, pipeExampleNum), 
+  addMember(ExampleSetInfo, "pipeExampleNum", OBJ, OFFSET(S, pipeExampleNum),
 	    FALSE, 0, 0, IntInfo);
   addSpacer(ExampleSetInfo);
 
   addMember(ExampleSetInfo, "proc", OBJ, OFFSET(S, proc), TRUE,
 	    0, 0, TclObjInfo);
-  addMember(ExampleSetInfo, "chooseExample", OBJ, OFFSET(S, chooseExample), 
+  addMember(ExampleSetInfo, "chooseExample", OBJ, OFFSET(S, chooseExample),
 	    TRUE, 0, 0, TclObjInfo);
-  addMember(ExampleSetInfo, "maxTime", OBJ, OFFSET(S, maxTime), 
+  addMember(ExampleSetInfo, "maxTime", OBJ, OFFSET(S, maxTime),
 	    TRUE, 0, 0, RealInfo);
-  addMember(ExampleSetInfo, "minTime", OBJ, OFFSET(S, minTime), 
+  addMember(ExampleSetInfo, "minTime", OBJ, OFFSET(S, minTime),
 	    TRUE, 0, 0, RealInfo);
-  addMember(ExampleSetInfo, "graceTime", OBJ, OFFSET(S, graceTime), 
+  addMember(ExampleSetInfo, "graceTime", OBJ, OFFSET(S, graceTime),
 	    TRUE, 0, 0, RealInfo);
-  addMember(ExampleSetInfo, "defaultInput", OBJ, OFFSET(S, defaultInput), 
+  addMember(ExampleSetInfo, "defaultInput", OBJ, OFFSET(S, defaultInput),
 	    TRUE, 0, 0, RealInfo);
-  addMember(ExampleSetInfo, "activeInput", OBJ, OFFSET(S, activeInput), 
+  addMember(ExampleSetInfo, "activeInput", OBJ, OFFSET(S, activeInput),
 	    TRUE, 0, 0, RealInfo);
-  addMember(ExampleSetInfo, "defaultTarget", OBJ, OFFSET(S, defaultTarget), 
+  addMember(ExampleSetInfo, "defaultTarget", OBJ, OFFSET(S, defaultTarget),
 	    TRUE, 0, 0, RealInfo);
-  addMember(ExampleSetInfo, "activeTarget", OBJ, OFFSET(S, activeTarget), 
+  addMember(ExampleSetInfo, "activeTarget", OBJ, OFFSET(S, activeTarget),
 	    TRUE, 0, 0, RealInfo);
 }
 
@@ -703,27 +703,27 @@ int getExampleNumEvents(void *E) {
 
 static void initExampleInfo(void) {
   Example E;
-  addMember(ExampleInfo, "name", OBJ, OFFSET(E, name), TRUE, 
+  addMember(ExampleInfo, "name", OBJ, OFFSET(E, name), TRUE,
 	    0, 0, StringInfo);
-  addMember(ExampleInfo, "num", OBJ, OFFSET(E, num), FALSE, 
+  addMember(ExampleInfo, "num", OBJ, OFFSET(E, num), FALSE,
 	    0, 0, IntInfo);
-  addMember(ExampleInfo, "numEvents", OBJ, OFFSET(E, numEvents), FALSE, 
+  addMember(ExampleInfo, "numEvents", OBJ, OFFSET(E, numEvents), FALSE,
 	    0, 0, IntInfo);
-  addMember(ExampleInfo, "event", OBJA, OFFSET(E, event), FALSE, 
+  addMember(ExampleInfo, "event", OBJA, OFFSET(E, event), FALSE,
 	    getExampleNumEvents, 0, EventInfo);
   addMember(ExampleInfo, "set", OBJP, OFFSET(E, set), FALSE,
 	    0, 0, ExampleSetInfo);
-  addMember(ExampleInfo, "next", OBJP, OFFSET(E, next), FALSE, 
+  addMember(ExampleInfo, "next", OBJP, OFFSET(E, next), FALSE,
 	    0, 0, ExampleInfo);
-  addMember(ExampleInfo, "ext", OBJP, OFFSET(E, ext), FALSE, 
+  addMember(ExampleInfo, "ext", OBJP, OFFSET(E, ext), FALSE,
 	    0, 0, ExampleExtInfo);
   addSpacer(ExampleInfo);
 
-  addMember(ExampleInfo, "frequency", OBJ, OFFSET(E, frequency), TRUE, 
+  addMember(ExampleInfo, "frequency", OBJ, OFFSET(E, frequency), TRUE,
 	    0, 0, RealInfo);
-  addMember(ExampleInfo, "probability", OBJ, OFFSET(E, probability), FALSE, 
+  addMember(ExampleInfo, "probability", OBJ, OFFSET(E, probability), FALSE,
 	    0, 0, RealInfo);
-  addMember(ExampleInfo, "proc", OBJ, OFFSET(E, proc), TRUE, 
+  addMember(ExampleInfo, "proc", OBJ, OFFSET(E, proc), TRUE,
 	    0, 0, TclObjInfo);
 }
 
@@ -746,19 +746,19 @@ static void eventName(void *event, char *dest) {
 
 static void initEventInfo(void) {
   Event V;
-  addMember(EventInfo, "input", OBJP, OFFSET(V, input), TRUE, 
+  addMember(EventInfo, "input", OBJP, OFFSET(V, input), TRUE,
 	    0, 0, RangeInfo);
   addMember(EventInfo, "sharedInputs", OBJ, OFFSET(V, sharedInputs), FALSE,
 	    0, 0, FlagInfo);
-  addMember(EventInfo, "target", OBJP, OFFSET(V, target), TRUE, 
+  addMember(EventInfo, "target", OBJP, OFFSET(V, target), TRUE,
 	    0, 0, RangeInfo);
   addMember(EventInfo, "sharedTargets", OBJ, OFFSET(V, sharedTargets), FALSE,
 	    0, 0, FlagInfo);
   addSpacer(EventInfo);
 
-  addMember(EventInfo, "maxTime", OBJ, OFFSET(V, maxTime), TRUE, 
+  addMember(EventInfo, "maxTime", OBJ, OFFSET(V, maxTime), TRUE,
 	    0, 0, RealInfo);
-  addMember(EventInfo, "minTime", OBJ, OFFSET(V, minTime), TRUE, 
+  addMember(EventInfo, "minTime", OBJ, OFFSET(V, minTime), TRUE,
 	    0, 0, RealInfo);
   addMember(EventInfo, "graceTime", OBJ, OFFSET(V, graceTime), TRUE,
 	    0, 0, RealInfo);
@@ -773,18 +773,18 @@ static void initEventInfo(void) {
   addSpacer(EventInfo);
 
 
-  addMember(EventInfo, "proc", OBJ, OFFSET(V, proc), TRUE, 
+  addMember(EventInfo, "proc", OBJ, OFFSET(V, proc), TRUE,
 	    0, 0, TclObjInfo);
   addMember(EventInfo, "example", OBJP, OFFSET(V, example), FALSE,
 	    0, 0, ExampleInfo);
-  addMember(EventInfo, "ext", OBJP, OFFSET(V, ext), FALSE, 
+  addMember(EventInfo, "ext", OBJP, OFFSET(V, ext), FALSE,
 	    0, 0, EventExtInfo);
 }
 
 /*****************************************************************************/
 static void rangeName(void *r, char *dest) {
   Range R = (Range) r;
-  sprintf(dest, "%s %d %d %g", (R->groupName) ? R->groupName : "", 
+  sprintf(dest, "%s %d %d %g", (R->groupName) ? R->groupName : "",
 	  R->numUnits, R->firstUnit, R->value);
 }
 
@@ -881,7 +881,7 @@ static void traceName(void *r, char *dest) {
   Trace T = (Trace) r;
   if (!T)
     dest[0] = '\0';
-  else if (T->label) 
+  else if (T->label)
     sprintf(dest, "%s", T->label);
   else
     sprintf(dest, "%s", T->object);
@@ -906,21 +906,21 @@ static void initTraceInfo(void) {
   addSpacer(TraceInfo);
 
   addMember(TraceInfo, "numVals", OBJ, OFFSET(T, numVals), FALSE,
-            0, 0, IntInfo); 
+            0, 0, IntInfo);
   addMember(TraceInfo, "maxVals", OBJ, OFFSET(T, maxVals), FALSE,
-            0, 0, IntInfo); 
+            0, 0, IntInfo);
   addMember(TraceInfo, "val", OBJA, OFFSET(T, val), FALSE,
             getTraceNumVals, 0, PointInfo);
   addSpacer(TraceInfo);
 
   addMember(TraceInfo, "color", OBJ, OFFSET(T, color), TRUE,
-            0, 0, StringInfo); 
+            0, 0, StringInfo);
   addMember(TraceInfo, "active", OBJ, OFFSET(T, active), TRUE,
-            0, 0, FlagInfo); 
+            0, 0, FlagInfo);
   addMember(TraceInfo, "transient", OBJ, OFFSET(T, transient), TRUE,
-            0, 0, FlagInfo); 
+            0, 0, FlagInfo);
   addMember(TraceInfo, "visible", OBJ, OFFSET(T, visible), TRUE,
-            0, 0, FlagInfo); 
+            0, 0, FlagInfo);
 }
 
 /*****************************************************************************/
@@ -1038,8 +1038,8 @@ static void setTclObj(void *s, char *val) {
 /*****************************************************************************/
 
 ObjInfo newObject(char *name, int size, int maxDepth,
-		  void (*nameProc)(void *, char *), 
-		  void (*setProc)(void *, char *), 
+		  void (*nameProc)(void *, char *),
+		  void (*setProc)(void *, char *),
 		  void (*setStringProc)(void *, char *)) {
   ObjInfo O = (ObjInfo) safeCalloc(1, sizeof *O, "newObject:O");
   O->name = copyString(name);
@@ -1053,8 +1053,23 @@ ObjInfo newObject(char *name, int size, int maxDepth,
   return O;
 }
 
-void addMember(ObjInfo O, char *name, int type, int offset, 
-	       flag writable, int (*rows)(void *), int (*cols)(void *), 
+/* Wanted to use this with Tcl_SetExitProc() to cleanup, but
+ * maybe these objects are already being freed somehow? */
+void freeObject(ObjInfo objectInfo) {
+  MemInfo M;
+  if (objectInfo) {
+    for (M = objectInfo->members; M; M = M->next) {
+      print(1,"%s\n", M->name);
+      FREE(M->name);
+      FREE(M);
+    }
+    FREE(objectInfo->name);
+    FREE(objectInfo);
+  }
+}
+
+void addMember(ObjInfo O, char *name, int type, int offset,
+	       flag writable, int (*rows)(void *), int (*cols)(void *),
 	       ObjInfo info) {
   MemInfo M = (MemInfo) safeMalloc(sizeof *M, "addMember:M");
   M->name = copyString(name);
@@ -1077,22 +1092,22 @@ void addObjP(ObjInfo O, char *name, int offset, flag writable, ObjInfo info) {
   addMember(O, name, OBJP, offset, writable, NULL, NULL, info);
 }
 
-void addObjA(ObjInfo O, char *name, int offset, flag writable, 
+void addObjA(ObjInfo O, char *name, int offset, flag writable,
 	     int (*rows)(void *), ObjInfo info) {
   addMember(O, name, OBJA, offset, writable, rows, NULL, info);
 }
 
-void addObjPA(ObjInfo O, char *name, int offset, flag writable, 
+void addObjPA(ObjInfo O, char *name, int offset, flag writable,
 	     int (*rows)(void *), ObjInfo info) {
   addMember(O, name, OBJPA, offset, writable, rows, NULL, info);
 }
 
-void addObjAA(ObjInfo O, char *name, int offset, flag writable, 
+void addObjAA(ObjInfo O, char *name, int offset, flag writable,
 	      int (*rows)(void *), int (*cols)(void *), ObjInfo info) {
   addMember(O, name, OBJAA, offset, writable, rows, cols, info);
 }
 
-void addObjPAA(ObjInfo O, char *name, int offset, flag writable, 
+void addObjPAA(ObjInfo O, char *name, int offset, flag writable,
 	       int (*rows)(void *), int (*cols)(void *), ObjInfo info) {
   addMember(O, name, OBJPAA, offset, writable, rows, cols, info);
 }
@@ -1102,50 +1117,50 @@ void addSpacer(ObjInfo O) {
 }
 
 void createObjects(void) {
-  RootInfo = newObject("Root", sizeof(struct rootrec), 0, rootName, 
+  RootInfo = newObject("Root", sizeof(struct rootrec), 0, rootName,
 		       NULL, NULL);
-  NetInfo = newObject("Network", sizeof(struct network), 0, netName, 
+  NetInfo = newObject("Network", sizeof(struct network), 0, netName,
 		      NULL, NULL);
-  GroupInfo = newObject("Group", sizeof(struct group), 2, groupName, 
+  GroupInfo = newObject("Group", sizeof(struct group), 2, groupName,
 			NULL, NULL);
-  GroupProcInfo = newObject("GroupProc", sizeof(struct groupProc), 4, 
+  GroupProcInfo = newObject("GroupProc", sizeof(struct groupProc), 4,
 			    groupProcName, NULL, NULL);
-  UnitInfo = newObject("Unit", sizeof(struct unit), 4, unitName, 
+  UnitInfo = newObject("Unit", sizeof(struct unit), 4, unitName,
 		       NULL, NULL);
-  BlockInfo = newObject("Block", sizeof(struct block), 6, blockName, 
+  BlockInfo = newObject("Block", sizeof(struct block), 6, blockName,
 			NULL, NULL);
-  LinkInfo = newObject("Link", sizeof(struct link), 6, linkName, 
+  LinkInfo = newObject("Link", sizeof(struct link), 6, linkName,
 		       NULL, NULL);
-  Link2Info = newObject("Link2", sizeof(struct link2), 6, link2Name, 
+  Link2Info = newObject("Link2", sizeof(struct link2), 6, link2Name,
 			NULL, NULL);
   ExampleSetInfo = newObject("Example Set", sizeof(struct exampleSet), 2,
 			     exampleSetName, NULL, NULL);
   ExampleInfo = newObject("Example", sizeof(struct example), 4, exampleName,
 			  NULL, NULL);
-  EventInfo = newObject("Event", sizeof(struct event), 6, eventName, 
+  EventInfo = newObject("Event", sizeof(struct event), 6, eventName,
 			NULL, NULL);
-  RangeInfo = newObject("Range", sizeof(struct range), 8, rangeName, 
+  RangeInfo = newObject("Range", sizeof(struct range), 8, rangeName,
 			NULL, NULL);
-  GraphInfo = newObject("Graph", sizeof(struct graph), 2, graphName, 
+  GraphInfo = newObject("Graph", sizeof(struct graph), 2, graphName,
 			NULL, NULL);
-  TraceInfo = newObject("Trace", sizeof(struct trace), 4, traceName, 
+  TraceInfo = newObject("Trace", sizeof(struct trace), 4, traceName,
 			NULL, NULL);
-  PointInfo = newObject("Point", sizeof(struct point), 6, pointName, 
+  PointInfo = newObject("Point", sizeof(struct point), 6, pointName,
 			NULL, NULL);
 
-  IntInfo = newObject("Int", sizeof(int), -1, intName, 
+  IntInfo = newObject("Int", sizeof(int), -1, intName,
 		      setInt, setStringInt);
-  RealInfo = newObject("Real", sizeof(real), -1, realName, 
+  RealInfo = newObject("Real", sizeof(real), -1, realName,
 		       setReal, setStringReal);
-  DoubleInfo = newObject("Double", sizeof(double), -1, doubleName, 
+  DoubleInfo = newObject("Double", sizeof(double), -1, doubleName,
 		       setDouble, setStringDouble);
-  FlagInfo = newObject("Flag", sizeof(flag), -1, intName, 
+  FlagInfo = newObject("Flag", sizeof(flag), -1, intName,
 		       setFlag, setStringFlag);
-  MaskInfo = newObject("Mask", sizeof(mask), -1, maskName, 
+  MaskInfo = newObject("Mask", sizeof(mask), -1, maskName,
 		       setInt, setStringInt);
-  StringInfo = newObject("String", sizeof(char *), -1, stringName, 
+  StringInfo = newObject("String", sizeof(char *), -1, stringName,
 			 NULL, setString);
-  TclObjInfo = newObject("TclObj", sizeof(Tcl_Obj *), -1, tclObjName, 
+  TclObjInfo = newObject("TclObj", sizeof(Tcl_Obj *), -1, tclObjName,
 			 NULL, setTclObj);
 }
 
@@ -1165,6 +1180,32 @@ void initObjects(void) {
   initGraphInfo();
   initTraceInfo();
   initPointInfo();
+}
+
+void freeAllObjects(void) {
+  freeObject(RootInfo);
+  freeObject(NetInfo);
+  freeObject(GroupInfo);
+  freeObject(GroupProcInfo);
+  freeObject(UnitInfo);
+  freeObject(BlockInfo);
+  freeObject(LinkInfo);
+  freeObject(Link2Info);
+  freeObject(ExampleSetInfo);
+  freeObject(ExampleInfo);
+  freeObject(EventInfo);
+  freeObject(RangeInfo);
+  freeObject(GraphInfo);
+  freeObject(TraceInfo);
+  freeObject(PointInfo);
+
+  freeObject(IntInfo);
+  freeObject(RealInfo);
+  freeObject(DoubleInfo);
+  freeObject(FlagInfo);
+  freeObject(MaskInfo);
+  freeObject(StringInfo);
+  freeObject(TclObjInfo);
 }
 
 /*****************************************************************************/
@@ -1248,14 +1289,14 @@ void *ObjPAA(char *array, int row, int col) {
    this could point to part of an array if the array is 2D.
    objectInfo is the info about that structure type (GroupInfo)
    if the object is an array, this is the info about the objects in the array
-   type is the actual typeof the object.  This may be OBJA if the object is 
+   type is the actual typeof the object.  This may be OBJA if the object is
    actually part of an OBJAA.
    It returns a pointer to the object and what its actual type is.
    If the object is an array, its dimension(s) are returned
 */
 static void *lookupObject(char *path, char *object, ObjInfo O,
-			  int type, int rows, int cols, flag writable, 
-			  ObjInfo *retObjInfo, int *retType, int *retRows, 
+			  int type, int rows, int cols, flag writable,
+			  ObjInfo *retObjInfo, int *retType, int *retRows,
 			  int *retCols, flag *retWrit) {
   MemInfo M;
   char memberName[256], *newPath;
@@ -1284,24 +1325,24 @@ static void *lookupObject(char *path, char *object, ObjInfo O,
     fatalError("type was OBJ in lookupObject");
   if (type == OBJP) {
     if (!(M = lookupMember(memberName, O))) {
-      warning("lookupObject: field \"%s\" not found in object of type %s", 
+      warning("lookupObject: field \"%s\" not found in object of type %s",
 	      memberName, O->name);
       return NULL;
     }
 
     if (M->type == OBJ)
-      return lookupObject(newPath, Obj(object, M->offset), M->info, 
-			  OBJP, -1, -1, M->writable, retObjInfo, retType, 
+      return lookupObject(newPath, Obj(object, M->offset), M->info,
+			  OBJP, -1, -1, M->writable, retObjInfo, retType,
 			  retRows, retCols, retWrit);
     else if (M->type == OBJPP)
-      return lookupObject(newPath, ObjPP(object, M->offset), M->info, 
-			  OBJP, -1, -1, M->writable, retObjInfo, retType, 
+      return lookupObject(newPath, ObjPP(object, M->offset), M->info,
+			  OBJP, -1, -1, M->writable, retObjInfo, retType,
 			  retRows, retCols, retWrit);
     else {
       rows = (M->rows) ? M->rows(object) : -1;
       cols = (M->cols) ? M->cols(object) : -1;
-      return lookupObject(newPath, ObjP(object, M->offset), M->info, 
-			  M->type, rows, cols, M->writable, retObjInfo, 
+      return lookupObject(newPath, ObjP(object, M->offset), M->info,
+			  M->type, rows, cols, M->writable, retObjInfo,
 			  retType, retRows, retCols, retWrit);
     }
   } else { /* it is an array */
@@ -1317,20 +1358,20 @@ static void *lookupObject(char *path, char *object, ObjInfo O,
     }
     switch (type) {
     case OBJA:
-      return lookupObject(newPath, ObjA(object, O->size, index), O, 
-			  OBJP, -1, -1, writable, retObjInfo, retType, 
+      return lookupObject(newPath, ObjA(object, O->size, index), O,
+			  OBJP, -1, -1, writable, retObjInfo, retType,
 			  retRows, retCols, retWrit);
     case OBJPA:
-      return lookupObject(newPath, ObjPA(object, index), O, 
-			  OBJP, -1, -1, writable, retObjInfo, retType, 
+      return lookupObject(newPath, ObjPA(object, index), O,
+			  OBJP, -1, -1, writable, retObjInfo, retType,
 			  retRows, retCols, retWrit);
     case OBJAA:
-      return lookupObject(newPath, ObjPA(object, index), O, OBJA, 
-			  cols, -1, writable, retObjInfo, retType, 
+      return lookupObject(newPath, ObjPA(object, index), O, OBJA,
+			  cols, -1, writable, retObjInfo, retType,
 			  retRows, retCols, retWrit);
     case OBJPAA:
-      return lookupObject(newPath, ObjPA(object, index), O, OBJPA, 
-			  cols, -1, writable, retObjInfo, retType, 
+      return lookupObject(newPath, ObjPA(object, index), O, OBJPA,
+			  cols, -1, writable, retObjInfo, retType,
 			  retRows, retCols, retWrit);
     default:
       fatalError("lookupObject: undefined field type %d", type);
@@ -1339,7 +1380,7 @@ static void *lookupObject(char *path, char *object, ObjInfo O,
   return NULL;
 }
 
-void *getObject(char *path, ObjInfo *retObjInfo, int *retType, int *retRows, 
+void *getObject(char *path, ObjInfo *retObjInfo, int *retType, int *retRows,
 		int *retCols, flag *retWrit) {
   void *result = NULL;
   char memberName[256], *newPath;
@@ -1349,7 +1390,7 @@ void *getObject(char *path, ObjInfo *retObjInfo, int *retType, int *retRows,
   Unit U;
   ExampleSet S;
   if (Net)  /* Look it up in the network. */
-    result = lookupObject(path, (char *) Net, NetInfo, OBJP, -1, -1, FALSE, 
+    result = lookupObject(path, (char *) Net, NetInfo, OBJP, -1, -1, FALSE,
 			  retObjInfo, retType, retRows, retCols, retWrit);
   /* If not found, look it up starting at the root. */
   if (!result)
@@ -1363,20 +1404,20 @@ void *getObject(char *path, ObjInfo *retObjInfo, int *retType, int *retRows,
     }
     /* First see if it starts with a network name. */
     if ((N = lookupNet(memberName)))
-      return lookupObject(newPath, (char *) N, NetInfo, OBJP, -1, -1, FALSE, 
+      return lookupObject(newPath, (char *) N, NetInfo, OBJP, -1, -1, FALSE,
 			  retObjInfo, retType, retRows, retCols, retWrit);
     /* Then try a group name. */
     if (Net && (G = lookupGroup(memberName)))
-      return lookupObject(newPath, (char *) G, GroupInfo, OBJP, -1, -1, FALSE, 
+      return lookupObject(newPath, (char *) G, GroupInfo, OBJP, -1, -1, FALSE,
 			  retObjInfo, retType, retRows, retCols, retWrit);
     /* Then try a unit name. */
     if (Net && (U = lookupUnit(memberName)))
-      return lookupObject(newPath, (char *) U, UnitInfo, OBJP, -1, -1, FALSE, 
+      return lookupObject(newPath, (char *) U, UnitInfo, OBJP, -1, -1, FALSE,
 			  retObjInfo, retType, retRows, retCols, retWrit);
     /* Then try an example set. */
     if ((S = lookupExampleSet(memberName)))
-      return lookupObject(newPath, (char *) S, ExampleSetInfo, OBJP, -1, -1, 
-			  FALSE, retObjInfo, retType, retRows, retCols, 
+      return lookupObject(newPath, (char *) S, ExampleSetInfo, OBJP, -1, -1,
+			  FALSE, retObjInfo, retType, retRows, retCols,
 			  retWrit);
   }
   return result;
@@ -1390,12 +1431,12 @@ flag isObject(char *path) {
   return (getObject(path, &O, &type, &rows, &cols, &writable)) ? TRUE : FALSE;
 }
 
-void printObject(char *object, ObjInfo O, int type, int rows, 
+void printObject(char *object, ObjInfo O, int type, int rows,
 		 int cols, int depth, int initDepth, int maxDepth) {
   MemInfo M;
   int i, t;
 
-  if (!object || depth > maxDepth + 1) return;  
+  if (!object || depth > maxDepth + 1) return;
 
   if (type == OBJ || type == OBJPP)
     fatalError("type was OBJ in printObject");
@@ -1414,7 +1455,7 @@ void printObject(char *object, ObjInfo O, int type, int rows,
 	  printObject(Obj(object, M->offset), M->info, OBJP, -1, -1, depth + 1,
 		      initDepth, maxDepth);
 	else if (M->type == OBJPP)
-	  printObject(ObjPP(object, M->offset), M->info, OBJP, -1, -1, 
+	  printObject(ObjPP(object, M->offset), M->info, OBJP, -1, -1,
 		      depth + 1, initDepth, maxDepth);
 	else {
 	  rows = (M->rows) ? M->rows(object) : -1;

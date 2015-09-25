@@ -57,6 +57,7 @@ extern void stringAppend(String S, char *t);
 extern void stringAppendV(String S, char *fmt, ...);
 extern void clearString(String S);
 extern void freeString(String S);
+extern void freeBuffer(void);
 extern flag readFileIntoString(String S, Tcl_Obj *fileNameObj);
 extern char *readName(char *list, String name, flag *result);
 
