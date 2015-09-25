@@ -37,6 +37,29 @@ cd ${TOP}
 make
 ```
 
+## Running Lens
+For Lens to run, some environment variables need to be set. If you are running Lens on a distributed cluster, run_Lens.sh will handle setting up the environment on the remote machine.
+
+The spirit of the instructions at http://web.stanford.edu/group/mbc/LENSManual/Manual/running.html still apply to setting up your environment to run Lens, with slight differences. The following instructions will work with bash or zsh.
+
+First, set the `LENSDIR` environment variable.
+```{bash}
+# Your LENSDIR will probably be $TOP, created at the start of the build process.
+export LENSDIR=<your Lens directory>
+```
+
+Next, you need to let Lens/your system know where to find the Tcl/Tk libraries we compiled. Add this location to your `LD_LIBRARY_PATH` environment variable.
+```{bash}
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LENSDIR}/usr/local/lib
+```
+
+Finally, you need to let your system know where the the `Lens` executable is on your system. Note that the build process did not install Lens anywhere other than `${LENSDIR}/Bin`. So, you need to add that to the system path:
+```{bash}
+export PATH=${PATH}:${LENSDIR}/Bin
+```
+
+You might add all of these `export` commands to your .bashrc (or .zshrc, as the case may be). Equivalent commands are different in other shells, so you may need to Google to make this work with your shell of choice.
+
 ## Why LENS?
 LENS is a neural network simulator written specifically for cognitive science, and so has many features that more generic packages do not have. It is also lightweight, and can be run in batch mode without ever loading a GUI. This is useful when scaling up or when running many iterations of a simulation in a distributed computing environment. It is written to be extensible. The LENS is (Tcl) script driven, and so you have a great deal of flexibility without needing to write a new C extension.
 
