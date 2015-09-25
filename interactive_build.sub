@@ -1,0 +1,58 @@
+## THIS FILE IS USED FOR LAUNCHING AN INTERACTIVE JOB ON CHTC CLUSTER.
+# It should be called with:
+#
+# condor_submit -i interactive_build.sub
+#
+# This file plays no part in a non-Condor build.
+#
+# Before attempting to run this script, run:
+# make sdist
+#
+# This will generate a tar.gz file that contains all the source needed to
+# compile Lens, which will be sent to the machine where you can compile it.
+#
+# Once on the remote machine, you should be able to run:
+#
+# compile.sh send.tgz
+#
+# This will perform the whole build. Once done, you'll have two new directories: Bin and usr. These should be tar'd up.
+#
+# tar czvf return.tgz Bin usr
+#
+# When you close your connection with the remote machine, all regular files
+# (including tar files but excluding directories) will be returned to the
+# submit node. This is why the directories containing the compiled binaries
+# need to be tar'd.
+#
+# This is a "normal" job.
+universe = vanilla
+
+# If any information about this submission is written
+# as output to standard output or standard error,
+# where should it be saved?
+output = log/process.out
+error = log/process.err
+
+# Where to write a log of your jobs' statuses.
+log = log/process.log
+
+# All interactive jobs (compiling MatLab, R, Python, etc.) 
+# are pointed to our MatLab build machines
++IsMatlabBuildJob = true
+requirements = (OpSysAndVer =?= "SL6") && IsMatlabBuildSlot
+
+# Indicate if/when files should be transfered
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+# Indicate your tarball of compiling sources here, to be transfered
+# to the build machine when your interactive session starts.
+# Make sure to create a different tarball of the files you want
+# transfered back to the submit node when you're done compiling.
+transfer_input_files = send.tgz
+
+# We don't want email about our jobs. (If you do, let us know,
+# there may be some additional configuration necessary.)
+notification = never
+
+queue
