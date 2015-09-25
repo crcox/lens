@@ -1,0 +1,13 @@
+# This is a task in which there are a thousand random inputs and 1 output.
+# However, the output is always determined by the first input.  What does it
+# take for the network to learn this simple rule?
+
+addNet pick-one 1000 1
+if [catch {path -s train}] {
+  loadExamples pick-one.ex -s train
+  moveExamples train test 0 4
+}
+
+# setLinkValue randRange 0.1 -t input
+# setLinkValue randMean  0.1 -t input
+# setLinkValue min       0   -t input

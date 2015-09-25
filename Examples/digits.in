@@ -1,0 +1,24 @@
+# This is a very simple digit recognition task.  You could probably solve this
+# best with no hidden layers but we threw two in there to illustrate setting
+# group types and connecting groups.
+
+set hiddenSize 20
+
+addNet   digits-$hiddenSize
+addGroup input      20          INPUT
+addGroup hidden     $hiddenSize
+addGroup hidden2 $hiddenSize OUT_NOISE COSINE_COST
+addGroup output     3           OUTPUT
+
+connectGroups input hidden -p RANDOM -s 0.5
+connectGroups hidden hidden2 output
+
+loadExamples digits.ex  -s "clean"
+loadExamples digits2.ex -s "noisy"
+
+setObj learningRate 0.1
+
+setObj input.numColumns 4
+autoPlot
+viewUnits
+graphObject

@@ -1,0 +1,126 @@
+
+        _N_A_M_E
+
+              switch - Evaluate one of several scripts, depending on a given
+              value
+
+        _S_Y_N_O_P_S_I_S
+
+              sswwiittcchh?options?string pattern body?pattern body...?
+              sswwiittcchh?options?string{pattern body?pattern body...?}
+
+        _D_E_S_C_R_I_P_T_I_O_N
+
+              _--_ee_xx_aa_cc_tt
+              _--_gg_ll_oo_bb
+              _--_rr_ee_gg_ee_xx_pp
+              _--_ _--
+
+        _S_E_E_ _A_L_S_O
+        _K_E_Y_W_O_R_D_S
+
+  ---------------------------------------------------------------------------
+
+  NNAAMMEE
+
+  switch - Evaluate one of several scripts, depending on a given value
+
+  SSYYNNOOPPSSIISS
+
+  sswwiittcchh?options?string pattern body?pattern body...?
+  sswwiittcchh?options?string{pattern body?pattern body...?}
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  The sswwiittcchh command matches its string argument against each of the pattern
+  arguments in order. As soon as it finds a pattern that matches string it
+  evaluates the following body argument by passing it recursively to the Tcl
+  interpreter and returns the result of that evaluation. If the last pattern
+  argument is ddeeffaauulltt then it matches anything. If no pattern argument
+  matches string and no default is given, then the sswwiittcchh command returns an
+  empty string.
+
+  If the initial arguments to sswwiittcchh start with -- then they are treated as
+  options. The following options are currently supported:
+
+
+
+    --eexxaacctt
+        Use exact matching when comparing string to a pattern. This is the
+        default.
+
+    --gglloobb
+        When matching string to the patterns, use glob-style matching (i.e.
+        the same as implemented by the _ss_tt_rr_ii_nn_gg_ _mm_aa_tt_cc_hh command).
+
+    --rreeggeexxpp
+        When matching string to the patterns, use regular expression matching
+        (as described in the _rr_ee____ss_yy_nn_tt_aa_xx reference page).
+
+    -- --
+        Marks the end of options. The argument following this one will be
+        treated as string even if it starts with a --.
+
+
+  Two syntaxes are provided for the pattern and body arguments. The first
+  uses a separate argument for each of the patterns and commands; this form
+  is convenient if substitutions are desired on some of the patterns or
+  commands. The second form places all of the patterns and commands together
+  into a single argument; the argument must have proper list structure, with
+  the elements of the list being the patterns and commands. The second form
+  makes it easy to construct multi-line switch commands, since the braces
+  around the whole list make it unnecessary to include a backslash at the end
+  of each line. Since the pattern arguments are in braces in the second form,
+  no command or variable substitutions are performed on them; this makes the
+  behavior of the second form different than the first form in some cases.
+
+  If a body is specified as ``--'' it means that the body for the next pattern
+  should also be used as the body for this pattern (if the next pattern also
+  has a body of ``--'' then the body after that is used, and so on). This
+  feature makes it possible to share a single body among several patterns.
+
+  Beware of how you place comments in sswwiittcchh commands. Comments should only
+  be placed iinnssiiddee the execution body of one of the patterns, and not
+  intermingled with the patterns.
+
+  Below are some examples of sswwiittcchh commands:
+
+    sswwiittcchh aabbcc aa -- bb {{ffoorrmmaatt 11}} aabbcc {{ffoorrmmaatt 22}} ddeeffaauulltt {{ffoorrmmaatt 33}}
+  will return 22,
+
+    sswwiittcchh --rreeggeexxpp aaaaaabb {{
+    		^^aa..**bb$$ --
+    		bb {{ffoorrmmaatt 11}}
+    		aa** {{ffoorrmmaatt 22}}
+    		ddeeffaauulltt {{ffoorrmmaatt 33}}
+    }}
+  will return 11, and
+
+    sswwiittcchh xxyyzz {{
+    		aa
+    				--
+    		bb
+    				{{
+    				## CCoorrrreecctt CCoommmmeenntt PPllaacceemmeenntt
+    				ffoorrmmaatt 11
+    		}}
+    		aa**
+    				{{ffoorrmmaatt 22}}
+    		ddeeffaauulltt
+    				{{ffoorrmmaatt 33}}
+    }}
+  will return 33.
+
+  SSEEEE AALLSSOO
+
+  _ff_oo_rr, _ii_ff, _rr_ee_gg_ee_xx_pp
+
+  KKEEYYWWOORRDDSS
+
+  _s_w_i_t_c_h, _m_a_t_c_h, _r_e_g_u_l_a_r_ _e_x_p_r_e_s_s_i_o_n
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1997 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

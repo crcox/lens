@@ -1,0 +1,37 @@
+
+  lleessiioonnUUnniittss -- iinnaaccttiivvaatteess aa ppeerrcceennttaaggee ooff tthhee uunniittss iinn aa ggrroouupp
+
+  UUSSAAGGEE
+
+        lesionUnits (<group-list> <proportion> | <unit-list>)
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With a group list and proportion specified this will lesion each unit in
+  the groups with probability 100 x proportion. It is not guaranteed that
+  exactly (100 x proportion)% of the units will be affected.
+
+  With a unit list specified, it just lesions those units.
+
+  A lesioned unit will have 0 output and outputDeriv. All other values and
+  value histories will be NaN. It will not compute its input or output or
+  their reverses during forward and backward passes. Lesioned output units
+  will not contribute to the error.
+
+  EEXXAAMMPPLLEESS
+
+  To lesion approximately half the units in the "hidden" group:
+
+        lens> lesionUnits hidden 0.5
+
+  To lesion the unit "output:0":
+
+        lens> lesionUnits output:0
+
+  SSEEEE AALLSSOO
+
+  _h_e_a_l_U_n_i_t_s, _l_e_s_i_o_n_L_i_n_k_s, _n_o_i_s_e_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Sun Feb 28 21:34:55 EST 1999
+

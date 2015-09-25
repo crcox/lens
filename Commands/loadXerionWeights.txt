@@ -1,0 +1,41 @@
+
+  llooaaddXXeerriioonnWWeeiigghhttss -- llooaaddss wweeiigghhttss ffrroomm aa XXeerriioonn tteexxtt--ffoorrmmaatt wweeiigghhtt ffiillee
+
+  UUSSAAGGEE
+
+        loadXerionWeights <file-name>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This reads weights from a weight file produced by the Xerion simulator. The
+  file should have a format similar to the following:
+
+        named: 6936 # currentNet.currentEpoch: 15730
+        Bias -> hidden1.0: -0.663468
+        Bias -> hidden1.1: 0.190194
+        Bias -> hidden1.2: -2.51771
+        input.0 -> hidden1.0: -3.39392
+        input.1 -> hidden1.0: -1.9046
+        input.2 -> hidden1.0: -2.1046
+        ...
+
+  Other than "Bias", the group names in the weight file must match those in
+  the active network.
+
+  If the file name has the extension .gz, .bz, .bz2, or .Z, it will
+  automatically be decompressed. This extension may be omitted when
+  specifying the file name.
+
+  EEXXAAMMPPLLEESS
+
+  To load the weights from the compressed Xerion weight file xer1.wt.gz:
+
+        lens> loadWeights xer1.wt
+
+  SSEEEE AALLSSOO
+
+  _l_o_a_d_W_e_i_g_h_t_s, _s_a_v_e_W_e_i_g_h_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Mar 2 13:57:44 EST 1999
+

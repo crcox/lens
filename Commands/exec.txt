@@ -1,0 +1,320 @@
+
+        _N_A_M_E
+
+              exec - Invoke subprocess(es)
+
+        _S_Y_N_O_P_S_I_S
+
+              eexxeecc?switches? arg?arg ...?
+
+        _D_E_S_C_R_I_P_T_I_O_N
+
+              _--_kk_ee_ee_pp_nn_ee_ww_ll_ii_nn_ee
+              _--_ _--
+
+
+              _|
+              _|_&
+              _<_ _f_i_l_e_N_a_m_e
+              _<_@_ _f_i_l_e_I_d
+              _<_<_ _v_a_l_u_e
+              _>_ _f_i_l_e_N_a_m_e
+              _2_>_ _f_i_l_e_N_a_m_e
+              _>_&_ _f_i_l_e_N_a_m_e
+              _>_>_ _f_i_l_e_N_a_m_e
+              _2_>_>_ _f_i_l_e_N_a_m_e
+              _>_>_&_ _f_i_l_e_N_a_m_e
+              _>_@_ _f_i_l_e_I_d
+              _2_>_@_ _f_i_l_e_I_d
+              _>_&_@_ _f_i_l_e_I_d
+
+        _P_O_R_T_A_B_I_L_I_T_Y_ _I_S_S_U_E_S
+
+              _WW_ii_nn_dd_oo_ww_ss_ _(_a_l_l_ _v_e_r_s_i_o_n_s_)
+              _WW_ii_nn_dd_oo_ww_ss_ _NN_TT
+              _WW_ii_nn_dd_oo_ww_ss_ _99_55
+              _MM_aa_cc_ii_nn_tt_oo_ss_hh
+              _UU_nn_ii_xx
+
+        _S_E_E_ _A_L_S_O
+        _K_E_Y_W_O_R_D_S
+
+  ---------------------------------------------------------------------------
+
+  NNAAMMEE
+
+  exec - Invoke subprocess(es)
+
+  SSYYNNOOPPSSIISS
+
+  eexxeecc?switches? arg?arg ...?
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command treats its arguments as the specification of one or more
+  subprocesses to execute. The arguments take the form of a standard shell
+  pipeline where each arg becomes one word of a command, and each distinct
+  command becomes a subprocess.
+
+  If the initial arguments to eexxeecc start with -- then they are treated as
+  command-line switches and are not part of the pipeline specification. The
+  following switches are currently supported:
+
+
+
+    --kkeeeeppnneewwlliinnee
+        Retains a trailing newline in the pipeline's output. Normally a
+        trailing newline will be deleted.
+
+    -- --
+        Marks the end of switches. The argument following this one will be
+        treated as the first arg even if it starts with a --.
+
+
+  If an arg (or pair of arg's) has one of the forms described below then it
+  is used by eexxeecc to control the flow of input and output among the
+  subprocess(es). Such arguments will not be passed to the subprocess(es). In
+  forms such as ``< fileName'' fileName may either be in a separate argument
+  from ``<'' or in the same argument with no intervening space (i.e.
+  ``<fileName'').
+
+
+
+    |
+        Separates distinct commands in the pipeline. The standard output of
+        the preceding command will be piped into the standard input of the
+        next command.
+
+    |&
+        Separates distinct commands in the pipeline. Both standard output and
+        standard error of the preceding command will be piped into the
+        standard input of the next command. This form of redirection
+        overrides forms such as 2> and >&.
+
+    < fileName
+        The file named by fileName is opened and used as the standard input
+        for the first command in the pipeline.
+
+    <@ fileId
+        FileId must be the identifier for an open file, such as the return
+        value from a previous call to _oo_pp_ee_nn. It is used as the standard input
+        for the first command in the pipeline. FileId must have been opened
+        for reading.
+
+    << value
+        Value is passed to the first command as its standard input.
+
+    > fileName
+        Standard output from the last command is redirected to the file named
+        fileName, overwriting its previous contents.
+
+    2> fileName
+        Standard error from all commands in the pipeline is redirected to the
+        file named fileName, overwriting its previous contents.
+
+    >& fileName
+        Both standard output from the last command and standard error from
+        all commands are redirected to the file named fileName, overwriting
+        its previous contents.
+
+    >> fileName
+        Standard output from the last command is redirected to the file named
+        fileName, appending to it rather than overwriting it.
+
+    2>> fileName
+        Standard error from all commands in the pipeline is redirected to the
+        file named fileName, appending to it rather than overwriting it.
+
+    >>& fileName
+        Both standard output from the last command and standard error from
+        all commands are redirected to the file named fileName, appending to
+        it rather than overwriting it.
+
+    >@ fileId
+        FileId must be the identifier for an open file, such as the return
+        value from a previous call to _oo_pp_ee_nn. Standard output from the last
+        command is redirected to fileId's file, which must have been opened
+        for writing.
+
+    2>@ fileId
+        FileId must be the identifier for an open file, such as the return
+        value from a previous call to _oo_pp_ee_nn. Standard error from all commands
+        in the pipeline is redirected to fileId's file. The file must have
+        been opened for writing.
+
+    >&@ fileId
+        FileId must be the identifier for an open file, such as the return
+        value from a previous call to _oo_pp_ee_nn. Both standard output from the
+        last command and standard error from all commands are redirected to
+        fileId's file. The file must have been opened for writing.
+
+
+  If standard output has not been redirected then the eexxeecc command returns
+  the standard output from the last command in the pipeline. If any of the
+  commands in the pipeline exit abnormally or are killed or suspended, then
+  eexxeecc will return an error and the error message will include the pipeline's
+  output followed by error messages describing the abnormal terminations; the
+  eerrrroorrCCooddee variable will contain additional information about the last
+  abnormal termination encountered. If any of the commands writes to its
+  standard error file and that standard error isn't redirected, then eexxeecc
+  will return an error; the error message will include the pipeline's
+  standard output, followed by messages about abnormal terminations (if any),
+  followed by the standard error output.
+
+  If the last character of the result or error message is a newline then that
+  character is normally deleted from the result or error message. This is
+  consistent with other Tcl return values, which don't normally end with
+  newlines. However, if --kkeeeeppnneewwlliinnee is specified then the trailing newline
+  is retained.
+
+  If standard input isn't redirected with ``<'' or ``<<'' or ``<@'' then the
+  standard input for the first command in the pipeline is taken from the
+  application's current standard input.
+
+  If the last arg is ``&'' then the pipeline will be executed in background.
+  In this case the eexxeecc command will return a list whose elements are the
+  process identifiers for all of the subprocesses in the pipeline. The
+  standard output from the last command in the pipeline will go to the
+  application's standard output if it hasn't been redirected, and error
+  output from all of the commands in the pipeline will go to the
+  application's standard error file unless redirected.
+
+  The first word in each command is taken as the command name; tilde-
+  substitution is performed on it, and if the result contains no slashes then
+  the directories in the PATH environment variable are searched for an
+  executable by the given name. If the name contains a slash then it must
+  refer to an executable reachable from the current directory. No ``_g_l_o_b''
+  expansion or other shell-like substitutions are performed on the arguments
+  to commands.
+
+  PPOORRTTAABBIILLIITTYY IISSSSUUEESS
+
+
+    WWiinnddoowwss (all versions)
+        Reading from or writing to a socket, using the ``@@fileId'' notation,
+        does not work. When reading from a socket, a 16-bit DOS application
+        will hang and a 32-bit application will return immediately with end-
+        of-file. When either type of application writes to a socket, the
+        information is instead sent to the console, if one is present, or is
+        discarded.
+
+        The Tk console text widget does not provide real standard IO
+        capabilities. Under Tk, when redirecting from standard input, all
+        applications will see an immediate end-of-file; information
+        redirected to standard output or standard error will be discarded.
+
+        Either forward or backward slashes are accepted as path separators
+        for arguments to Tcl commands. When executing an application, the
+        path name specified for the application may also contain forward or
+        backward slashes as path separators. Bear in mind, however, that most
+        Windows applications accept arguments with forward slashes only as
+        option delimiters and backslashes only in paths. Any arguments to an
+        application that specify a path name with forward slashes will not
+        automatically be converted to use the backslash character. If an
+        argument contains forward slashes as the path separator, it may or
+        may not be recognized as a path name, depending on the program.
+
+        Additionally, when calling a 16-bit DOS or Windows 3.X application,
+        all path names must use the short, cryptic, path format (e.g., using
+        ``applba~1.def'' instead of ``applbakery.default'').
+
+        Two or more forward or backward slashes in a row in a path refer to a
+        network path. For example, a simple concatenation of the root
+        directory cc::// with a subdirectory //wwiinnddoowwss//ssyysstteemm will yield cc::////
+        wwiinnddoowwss//ssyysstteemm (two slashes together), which refers to the mount
+        point called ssyysstteemm on the machine called wwiinnddoowwss (and the cc::// is
+        ignored), and is not equivalent to cc:://wwiinnddoowwss//ssyysstteemm, which describes
+        a directory on the current computer. The _ff_ii_ll_ee_ _jj_oo_ii_nn command should be
+        used to concatenate path components.
+
+    WWiinnddoowwss NNTT
+        When attempting to execute an application, eexxeecc first searches for
+        the name as it was specified. Then, in order, ..ccoomm, ..eexxee, and ..bbaatt
+        are appended to the end of the specified name and it searches for the
+        longer name. If a directory name was not specified as part of the
+        application name, the following directories are automatically
+        searched in order when attempting to locate the application:
+
+
+              The directory from which the Tcl executable was loaded.
+              The current directory.
+              The Windows NT 32-bit system directory.
+              The Windows NT 16-bit system directory.
+              The Windows NT home directory.
+              The directories listed in the path.
+
+
+        In order to execute the shell builtin commands like ddiirr and ccooppyy, the
+        caller must prepend ``ccmmdd..eexxee //cc'' to the desired command.
+
+    WWiinnddoowwss 9955
+        When attempting to execute an application, eexxeecc first searches for
+        the name as it was specified. Then, in order, ..ccoomm, ..eexxee, and ..bbaatt
+        are appended to the end of the specified name and it searches for the
+        longer name. If a directory name was not specified as part of the
+        application name, the following directories are automatically
+        searched in order when attempting to locate the application:
+
+
+              The directory from which the Tcl executable was loaded.
+              The current directory.
+              The Windows 95 system directory.
+              The Windows 95 home directory.
+              The directories listed in the path.
+
+
+        In order to execute the shell builtin commands like ddiirr and ccooppyy, the
+        caller must prepend ``ccoommmmaanndd..ccoomm //cc'' to the desired command.
+
+        Once a 16-bit DOS application has read standard input from a console
+        and then quit, all subsequently run 16-bit DOS applications will see
+        the standard input as already closed. 32-bit applications do not have
+        this problem and will run correctly, even after a 16-bit DOS
+        application thinks that standard input is closed. There is no known
+        workaround for this bug at this time.
+
+        Redirection between the NNUULL:: device and a 16-bit application does not
+        always work. When redirecting from NNUULL::, some applications may hang,
+        others will get an infinite stream of ``0x01'' bytes, and some will
+        actually correctly get an immediate end-of-file; the behavior seems
+        to depend upon something compiled into the application itself. When
+        redirecting greater than 4K or so to NNUULL::, some applications will
+        hang. The above problems do not happen with 32-bit applications.
+
+        All DOS 16-bit applications are run synchronously. All standard input
+        from a pipe to a 16-bit DOS application is collected into a temporary
+        file; the other end of the pipe must be closed before the 16-bit DOS
+        application begins executing. All standard output or error from a 16-
+        bit DOS application to a pipe is collected into temporary files; the
+        application must terminate before the temporary files are redirected
+        to the next stage of the pipeline. This is due to a workaround for a
+        Windows 95 bug in the implementation of pipes, and is how the
+        standard Windows 95 DOS shell handles pipes itself.
+
+        Certain applications, such as ccoommmmaanndd..ccoomm, should not be executed
+        interactively. Applications which directly access the console window,
+        rather than reading from their standard input and writing to their
+        standard output may fail, hang Tcl, or even hang the system if their
+        own private console window is not available to them.
+
+    MMaacciinnttoosshh
+        The eexxeecc command is not implemented and does not exist under
+        Macintosh.
+
+    UUnniixx
+        The eexxeecc command is fully functional and works as described.
+
+
+  SSEEEE AALLSSOO
+
+  _ee_rr_rr_oo_rr, _oo_pp_ee_nn
+
+  KKEEYYWWOORRDDSS
+
+  _e_x_e_c_u_t_e, _p_i_p_e_l_i_n_e, _r_e_d_i_r_e_c_t_i_o_n, _s_u_b_p_r_o_c_e_s_s
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

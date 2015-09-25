@@ -1,0 +1,54 @@
+
+  pprriinnttLLiinnkkVVaalluueess -- pprriinnttss vvaalluueess ffoorr ssppeecciiffiieedd lliinnkkss ttoo aa ffiillee
+
+  UUSSAAGGEE
+
+        printLinkValues <file> <printProc> <group-list1> <group-list2>
+            [-type <link-type> | -append]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command is used to print information about links to a file. The first
+  list of groups is the "senders" and the second list is the "receivers". The
+  printProc Tcl procedure will be called once for each link from a sender to
+  a receiver. If a link type is given, only links of that type will be
+  printed.
+
+  The printProc procedure should take six arguments. These are: the sending
+  group path, the sending unit path, the receiving group path, the receiving
+  unit path, the number of the link's block, and the number of the link in
+  the receiving unit's incoming array.
+
+  The string returned by each call to the procedure will be written to the
+  file. The user, thus, determines the format of the output. The _f_o_r_m_a_t Tcl
+  command may come in very handy here.
+
+  The file can be specified using any of the standard Lens _f_i_l_e_ _t_y_p_e_s,
+  including ordinary files, compressed files, pipelines, Tcl file handles,
+  and a "-" for standard output. If you would like to periodically write
+  values to a file, after each example for instance, you could _o_p_e_n a Tcl
+  file, call printLinkValues after each example (maybe using the network's
+  postExampleProc) and then _c_l_o_s_e the Tcl file, or simply use the -append
+  flag, which causes the output to be appended to the file.
+
+  Links to lesioned units are ignored when the values are printed.
+
+  EEXXAAMMPPLLEESS
+
+  In this example, the sending unit name, receiving unit name, and link
+  weight are printed for every link of type "special" leaving the groups
+  "input" and "hidden". The output is sent to standard output.
+
+        lens> proc printStuff {g1 u1 g2 u2 b l} {
+                format "%s->%s %.3f\n" [getObj $u1.name] [getObj $u2.name] \
+                  [getObj $u2.incoming($l).weight]
+              }
+        lens> printLinkValues - printStuff {input hidden} * -t special
+
+  SSEEEE AALLSSOO
+
+  _p_r_i_n_t_U_n_i_t_V_a_l_u_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:59:51 EDT 1998
+

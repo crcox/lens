@@ -1,0 +1,52 @@
+
+  rreeppeeaatt -- llooooppss aa ssppeecciiffiieedd nnuummbbeerr ooff ttiimmeess
+
+  UUSSAAGGEE
+
+        repeat [<variable>] <iterations> <body>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Because writing for loops in Tcl is annoying, this command provides an
+  easier way to perform the most common sorts of loops.
+
+  If iterations is an integer, the code in body will be executed iterations
+  number of times. On the first iteration, the counter variable will be 0 and
+  on the ith iteration it will be i-1. Changing the variable within the body
+  will not affect this.
+
+  You may omit the variable and there will simply not be one accessible
+  within the body of the loop.
+
+  Alternatively, if iterations is a pair of numbers, "a b", the counter
+  variable will range from a to b, inclusive. If a is greater than b it will
+  count backwards.
+
+  EEXXAAMMPPLLEESS
+
+  To just do something 10 times:
+
+        repeat 10 {puts hi}
+
+  To train the network for 1000 iterations, testing every 100:
+
+        repeat i 10 {
+            train 100
+            echo "Updates: [expr $i * 100]\n[test]" >> outputFile
+        }
+
+  To print 3, 4, and 5:
+
+        repeat i "3 5" {puts $i}
+
+  To print 5, 4, and 3:
+
+        repeat x "5 3" {puts $x}
+
+  SSEEEE AALLSSOO
+
+  _f_o_r, _w_h_i_l_e, _f_o_r_e_a_c_h
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 22 14:15:59 EST 2000
+

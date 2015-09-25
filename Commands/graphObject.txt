@@ -1,0 +1,39 @@
+
+  ggrraapphhOObbjjeecctt -- ooppeennss aa ggrraapphh ooff tthhee vvaalluuee ooff aann oobbjjeecctt oorr ccoommmmaanndd
+
+  UUSSAAGGEE
+
+        graphObject [<object-list>] [-updates <update-rate>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This opens a graph and creates a trace for each object or command in the
+  object list. It returns the graph's number. This is a shortcut for what
+  could be done with the _g_r_a_p_h and _t_r_a_c_e commands.
+
+  The "objects" can either be the name of a real-valued network object, like
+  error or group(3).unit(2).output or they can be Tcl commands that return
+  numbers, like expr log([getObj error]). If no object is specified, error is
+  the default.
+
+  If -updates is given, it determines the frequency with which the graph will
+  update its values. Recognized values are NEVER, TICKS, EVENTS, EXAMPLES,
+  WEIGHT_UPDATES, PROGRESS_REPORTS, TRAINING_AND_TESTING, and USER_SIGNALS.
+  You only need to specify a unique prefix of the full name. The default is
+  PROGRESS_REPORTS.
+
+  You can read more about graphs in the _G_r_a_p_h_s_ _s_e_c_t_i_o_n of the main manual.
+
+  EEXXAAMMPPLLEESS
+
+  To graph the output of units out:0 to out:2 every tick:
+
+        lens> graphObject "out:0.output out:1.output out:2.output" -u TICK
+
+  SSEEEE AALLSSOO
+
+  _g_r_a_p_h, _t_r_a_c_e, _e_x_p_o_r_t_G_r_a_p_h
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 10:52:38 EST 2000
+

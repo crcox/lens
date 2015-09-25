@@ -1,0 +1,129 @@
+
+        _N_A_M_E
+
+              history - Manipulate the history list
+
+        _S_Y_N_O_P_S_I_S
+
+              hhiissttoorryy?option? ?arg arg ...?
+
+        _D_E_S_C_R_I_P_T_I_O_N
+
+              _hh_ii_ss_tt_oo_rr_yy
+              _hh_ii_ss_tt_oo_rr_yy_ _aa_dd_dd_c_o_m_m_a_n_d_?_ee_xx_ee_cc_?
+              _hh_ii_ss_tt_oo_rr_yy_ _cc_hh_aa_nn_gg_ee_n_e_w_V_a_l_u_e_ _?_e_v_e_n_t_?
+              _hh_ii_ss_tt_oo_rr_yy_ _cc_ll_ee_aa_rr
+              _hh_ii_ss_tt_oo_rr_yy_ _ee_vv_ee_nn_tt_ _?_e_v_e_n_t_?
+              _hh_ii_ss_tt_oo_rr_yy_ _ii_nn_ff_oo_?_c_o_u_n_t_?
+              _hh_ii_ss_tt_oo_rr_yy_ _kk_ee_ee_pp_?_c_o_u_n_t_?
+              _hh_ii_ss_tt_oo_rr_yy_ _nn_ee_xx_tt_ii_dd
+              _hh_ii_ss_tt_oo_rr_yy_ _rr_ee_dd_oo_?_e_v_e_n_t_?
+
+        _H_I_S_T_O_R_Y_ _R_E_V_I_S_I_O_N
+        _K_E_Y_W_O_R_D_S
+
+  ---------------------------------------------------------------------------
+
+  NNAAMMEE
+
+  history - Manipulate the history list
+
+  SSYYNNOOPPSSIISS
+
+  hhiissttoorryy?option? ?arg arg ...?
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  The hhiissttoorryy command performs one of several operations related to recently-
+  executed commands recorded in a history list. Each of these recorded
+  commands is referred to as an ``_e_v_e_n_t''. When specifying an event to the
+  hhiissttoorryy command, the following forms may be used:
+
+
+
+    [1]
+        A number: if positive, it refers to the event with that number (all
+        events are numbered starting at 1). If the number is negative, it
+        selects an event relative to the current event (--11 refers to the
+        previous event, --22 to the one before that, and so on). Event 00 refers
+        to the current event.
+
+    [2]
+        A string: selects the most recent event that matches the string. An
+        event is considered to match the string either if the string is the
+        same as the first characters of the event, or if the string matches
+        the event in the sense of the _ss_tt_rr_ii_nn_gg_ _mm_aa_tt_cc_hh command.
+
+
+  The hhiissttoorryy command can take any of the following forms:
+
+
+
+    hhiissttoorryy
+        Same as hhiissttoorryy iinnffoo, described below.
+
+    hhiissttoorryy aaddddcommand?eexxeecc?
+        Adds the command argument to the history list as a new event. If eexxeecc
+        is specified (or abbreviated) then the command is also executed and
+        its result is returned. If eexxeecc isn't specified then an empty string
+        is returned as result.
+
+    hhiissttoorryy cchhaannggeenewValue ?event?
+        Replaces the value recorded for an event with newValue. Event
+        specifies the event to replace, and defaults to the current event
+        (not event --11). This command is intended for use in commands that
+        implement new forms of history substitution and wish to replace the
+        current event (which invokes the substitution) with the command
+        created through substitution. The return value is an empty string.
+
+    hhiissttoorryy cclleeaarr
+        Erase the history list. The current keep limit is retained. The
+        history event numbers are reset.
+
+    hhiissttoorryy eevveenntt ?event?
+        Returns the value of the event given by event. Event defaults to --11.
+
+    hhiissttoorryy iinnffoo?count?
+        Returns a formatted string (intended for humans to read) giving the
+        event number and contents for each of the events in the history list
+        except the current event. If count is specified then only the most
+        recent count events are returned.
+
+    hhiissttoorryy kkeeeepp?count?
+        This command may be used to change the size of the history list to
+        count events. Initially, 20 events are retained in the history list.
+        If count is not specified, the current keep limit is returned.
+
+    hhiissttoorryy nneexxttiidd
+        Returns the number of the next event to be recorded in the history
+        list. It is useful for things like printing the event number in
+        command-line prompts.
+
+    hhiissttoorryy rreeddoo?event?
+        Re-executes the command indicated by event and return its result.
+        Event defaults to --11. This command results in history revision: see
+        below for details.
+
+
+  HHIISSTTOORRYY RREEVVIISSIIOONN
+
+  Pre-8.0 Tcl had a complex history revision mechanism. The current mechanism
+  is more limited, and the old history operations ssuubbssttiittuuttee and wwoorrddss have
+  been removed. (As a consolation, the cclleeaarr operation was added.)
+
+  The history option rreeddoo results in much simpler ``history revision''. When
+  this option is invoked then the most recent event is modified to eliminate
+  the history command and replace it with the result of the history command.
+  If you want to redo an event without modifying history, then use the _ee_vv_ee_nn_tt
+  operation to retrieve some event, and the aadddd operation to add it to
+  history and execute it.
+
+  KKEEYYWWOORRDDSS
+
+  _e_v_e_n_t, _h_i_s_t_o_r_y, _r_e_c_o_r_d
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1997 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

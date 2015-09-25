@@ -1,0 +1,43 @@
+
+  mmoovveeEExxaammpplleess -- mmoovveess eexxaammpplleess ffrroomm oonnee sseett ttoo aannootthheerr
+
+  UUSSAAGGEE
+
+        moveExamples <example-set1> <example-set2>
+            ([<first-example> [<num-examples>]] | <proportion> | ) [-copy]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This moves examples from set1 to set2. If set2 already exists, the examples
+  are appended. If set2 doesn't exist, it will be created.
+
+  If only set1 and set2 are given, all examples will be moved, but set1 won't
+  be deleted.
+
+  If just an example index is given, that example will be moved. If num-
+  examples is also given, that many examples will be moved, starting with the
+  specified example.
+
+  If proportion is specified, that proportion of examples will be randomly
+  selected and moved.
+
+  The -copy flag causes examples to be copied, rather than moved.
+
+  EEXXAAMMPPLLEESS
+
+  To move 20% of the examples, at random, from a training set to a testing
+  set:
+
+        lens> moveExamples training testing 0.2
+
+  To partition a set of 1000 examples into 5 sets of 200:
+
+        lens> repeat i 5 {moveExamples bigset set$i 0 200}
+
+  SSEEEE AALLSSOO
+
+  _l_o_a_d_E_x_a_m_p_l_e_s, _d_e_l_e_t_e_E_x_a_m_p_l_e_S_e_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Nov 14 17:53:56 EST 2000
+

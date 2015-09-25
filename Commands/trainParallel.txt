@@ -1,0 +1,81 @@
+
+  ttrraaiinnPPaarraalllleell -- ttrraaiinnss tthhee nneettwwoorrkk iinn ppaarraalllleell oonn tthhee cclliieennttss
+
+  UUSSAAGGEE
+
+        trainParallel [<num-updates>] [-nonsynchronous | -report <report-
+    interval> |
+            -algorithm <algorithm> | -test <test-interval>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command is to be run on a server and is used to train a network in
+  parallel using the clients to gather weight derivatives over example
+  batches. Parallel training involves repeatedly sending clients weight
+  updates, requesting them to accumulate link weight error derivatives over a
+  batch of examples, receiving the derivatives from the clients, and
+  performing the weight updates using the server's learning method. The
+  trainParallel command returns when training completes.
+
+  Training will continue if a client dies or is stopped by the user. If the
+  client is merely halted, they will no longer participate in the current
+  round of training but they will be used again the next time trainParallel
+  is called. If a new client connects during training, the client will join
+  right in.
+
+  By default, training is _s_y_n_c_h_r_o_n_o_u_s, in which link derivatives are
+  accumulated across all clients and then a single weight update is performed
+  and the new weights sent to all clients. Synchronous mode is effectively
+  equivalent to standard training. The speed of the processors is taken into
+  account when partitioning the batch to balance training time, as a batch
+  takes as long as the slowest client.
+
+  The -nonsynchronous flag will cause training to be asynchronous, in which
+  weight updates are performed each time a client returns its derivatives and
+  that client is immediately sent the new weights. In this case, the
+  effective batch size is equal to the batch size of each client, but the
+  dynamics are not quite the same as standard training.
+
+  num-updates is the number of batches or weight updates to be performed. If
+  not given, the value is taken from the network's numUpdates parameter. If
+  given, the network's numUpdates parameter will be changed.
+
+  report-interval is the interval, in number of weight updates, between
+  progress reports by the server. If not given, the value is taken from the
+  network's reportInterval parameter. If given, the network's reportInterval
+  parameter will be changed.
+
+  The report generated during parallel training is similar to that for normal
+  training but it includes a column for the last client to have reported in.
+
+  algorithm is the training method to be used for weight updates. It may be
+  any of the algorithms, such as steepest, momentum, or deltaBarDelta,
+  provided with your version of Lens. If unspecified, the previously active
+  algorithm is used.
+
+  test-interval is the number of weight updates between automatic testing of
+  the network. A value of 0, the default, results in no testing. If training
+  is asynchronous, testing will be performed by the next available client. In
+  synchronous mode, testing is performed by the server while the clients are
+  processing the next batch.
+
+  EEXXAAMMPPLLEESS
+
+  To train in asynchronous mode for 10000 weight updates with dougsMomentum,
+  reporting every 100 updates and testing every 1000:
+
+        lens> trainParallel 10000 -n -r 100 -t 1000 -a dougsMomentum
+
+  If you're in a script and you want the outcome of training to be printed
+  out (and you want synchronous mode for the default number of updates, with
+  the default report interval and algorithm and without periodic testing):
+
+        lens> puts [trainParallel]
+
+  SSEEEE AALLSSOO
+
+  _t_r_a_i_n, _s_t_a_r_t_S_e_r_v_e_r, _s_t_a_r_t_C_l_i_e_n_t, _c_l_i_e_n_t_I_n_f_o, _w_a_i_t_F_o_r_C_l_i_e_n_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 18:00:42 EST 1999
+

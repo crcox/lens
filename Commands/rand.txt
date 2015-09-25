@@ -1,0 +1,26 @@
+
+  rraanndd -- rreettuurrnnss aa rraannddoomm rreeaall nnuummbbeerr iinn aa ggiivveenn rraannggee
+
+  UUSSAAGGEE
+
+        rand [[<min>] <max>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This returns a random floating-point number. With no arguments, the number
+  will be uniformly distributed in the range [0.0,1.0). With one argument,
+  the number will be in the range [0.0, max). With two arguments, the number
+  will be in the range [min, max).
+
+  This uses the same generator that Lens uses for its internal random real
+  numbers. Therefore, calling this will affect the next value used during
+  weight randomization, building sparse projections, or in other randomized
+  procedures.
+
+  SSEEEE AALLSSOO
+
+  _r_a_n_d_I_n_t, _s_e_e_d
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Jun 30 20:30:04 EDT 1998
+

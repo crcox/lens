@@ -1,0 +1,38 @@
+
+  NNAAMMEE
+
+  if - Execute scripts conditionally
+
+  SSYYNNOOPPSSIISS
+
+  iiffexpr1?tthheenn? body1eellsseeiiffexpr2?tthheenn? body2 eellsseeiiff ... ?eellssee? ?bodyN?
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  The if command evaluates expr1 as an expression (in the same way that _ee_xx_pp_rr
+  evaluates its argument). The value of the expression must be a boolean (a
+  numeric value, where 0 is false and anything is true, or a string value
+  such as ttrruuee or yyeess for true and ffaallssee or nnoo for false); if it is true then
+  body1 is executed by passing it to the Tcl interpreter. Otherwise expr2 is
+  evaluated as an expression and if it is true then bbooddyy22 is executed, and so
+  on. If none of the expressions evaluates to true then bodyN is executed.
+  The tthheenn and eellssee arguments are optional ``noise words'' to make the
+  command easier to read. There may be any number of eellsseeiiff clauses,
+  including zero. BodyN may also be omitted as long as eellssee is omitted too.
+  The return value from the command is the result of the body script that was
+  executed, or an empty string if none of the expressions was non-zero and
+  there was no bodyN.
+
+  SSEEEE AALLSSOO
+
+  _ee_xx_pp_rr, _ff_oo_rr, _ff_oo_rr_ee_aa_cc_hh
+
+  KKEEYYWWOORRDDSS
+
+  _b_o_o_l_e_a_n, _c_o_n_d_i_t_i_o_n_a_l, _e_l_s_e, _f_a_l_s_e, _i_f, _t_r_u_e
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

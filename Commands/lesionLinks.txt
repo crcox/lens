@@ -1,0 +1,55 @@
+
+  lleessiioonnLLiinnkkss -- rreemmoovveess lliinnkkss oorr sseettss oorr aaddddss nnooiissee ttoo tthheeiirr wweeiigghhttss
+
+  UUSSAAGGEE
+
+        lesionLinks <group-list> [-proportion <proportion> |
+            -value <value> | -range <range> | -multiply | -flat |
+            -type <link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This will lesion incoming links to the groups in one of three ways. The
+  proportion, which defaults to 1.0, gives the likelihood that each link will
+  be affected. It is not guaranteed that exactly (100 x proportion)% of the
+  links will be affected. If a link type is given, only links of that type
+  will be affected.
+
+  With no value or range, the links will be permanently deleted.
+
+  With just a value specified, the link weights will be set to this value.
+  Typically a value of 0.0 would be used.
+
+  With a positive range and boolean multiplicative and gaussian values
+  specified, noise will be introduced in the weights of affected links. See
+  the help for the command _n_o_i_s_e_T_y_p_e for an explanation of these parameters.
+
+  When the weight of a link has been changed with this procedure, it is not
+  possible to restore the previous value. Therefore, be sure to _s_a_v_e_W_e_i_g_h_t_s
+  before lesioning the links.
+
+  If you may want to recreate the exact same lesion again, be sure to seed
+  the random number generator before lesioning and record the seed value.
+
+  EEXXAAMMPPLLEESS
+
+  To remove 50% of all incoming connections to the group "output":
+
+        lens> lesionLinks output -p 0.5
+
+  To zero all the bias connections to the group "output":
+
+        lens> lesionLinks output -v 0 -t bias
+
+  To multiply the weights of all links by gaussian noise with a standard
+  deviation of 0.1:
+
+        lens> lesionLinks * -r 0.1 -m
+
+  SSEEEE AALLSSOO
+
+  _l_e_s_i_o_n_U_n_i_t_s, _n_o_i_s_e_T_y_p_e, _f_r_e_e_z_e_W_e_i_g_h_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:11:11 EST 2000
+

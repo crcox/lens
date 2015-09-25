@@ -1,0 +1,48 @@
+
+  wwaaiittFFoorrCClliieennttss -- eexxeeccuutteess aa ccoommmmaanndd wwhheenn eennoouugghh cclliieennttss hhaavvee ccoonnnneecctteedd
+
+  UUSSAAGGEE
+
+        waitForClients [<num-clients> [<command>]]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command is used to synchronize clients and servers at the start or end
+  of training. It has several different functions. With no arguments,
+  waitForClients acts as a barrier: If called by a client, the client will
+  wait until the server releases it. If called by the server, the server will
+  wait until all of the clients are also waiting and then the server will
+  release itself and all clients. This is useful for ensuring that the
+  clients and server are ready before training begins and is also useful at
+  the end of training. A client can only call this command with no arguments.
+
+  If waitForClients is called by the server with a single argument, the
+  command will cause the server to wait until the specified number of clients
+  have connected. The clients themselves need not make a wait call.
+
+  Finally, if waitForClients is called by the server with a number of clients
+  and a command, the command will be executed once that many clients have
+  connected. If enough clients have already connected, the command will be
+  executed and then waitForClients will return. Otherwise, waitForClients
+  will return immediately and the command will be executed when enough
+  clients have connected.
+
+  EEXXAAMMPPLLEESS
+
+  To run the script "trainIt.in" once five clients have connected:
+
+        lens> waitForClients 5 "source trainIt.in"
+
+  To wait for five clients and then continue processing the current script:
+
+        waitForClients 5
+        sendObj learningRate 0.01
+        ...
+
+  SSEEEE AALLSSOO
+
+  _w_a_i_t, _s_t_a_r_t_S_e_r_v_e_r, _s_t_a_r_t_C_l_i_e_n_t, _t_r_a_i_n_P_a_r_a_l_l_e_l
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:27:16 EDT 1998
+

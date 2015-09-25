@@ -1,0 +1,27 @@
+
+  vviieewwCCoonnssoollee -- ooppeennss tthhee sshheellll ccoonnssoollee
+
+  UUSSAAGGEE
+
+        viewConsole
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This opens the graphical shell console. It doesn't work if Lens was
+  originally started in batch mode. This can also be invoked from the WWiinnddooww//
+  VViieeww CCoonnssoollee menu button on the main display. This command is generally
+  used to regain the console window after it has been closed.
+
+  If you close both the main window and the console window, you will no
+  longer have control of your Lens process. Fortunately, you can regain
+  control by sending it the USR2 signal using kill because the default
+  sigUSR2Proc opens the main window. If you changed that, you are basically
+  S.O.L.
+
+  SSEEEE AALLSSOO
+
+  _v_i_e_w
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8 01:56:39 EDT 1998
+

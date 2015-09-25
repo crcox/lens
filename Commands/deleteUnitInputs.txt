@@ -1,0 +1,27 @@
+
+  ddeelleetteeUUnniittIInnppuuttss -- ddeelleetteess iinnppuuttss ttoo aa uunniitt ooff aa ssppeecciiffiieedd ttyyppee
+
+  UUSSAAGGEE
+
+        deleteUnitInputs <unit-list> [-type <link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This removes all unit inputs of the specified type. If no type is given,
+  all inputs are removed.
+
+  EEXXAAMMPPLLEESS
+
+  To remove all inputs to the units "output:0" and "output:99":
+
+        lens> deleteUnitInputs {output:0 output:99}
+
+  SSEEEE AALLSSOO
+
+  _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_s, _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_U_n_i_t, _d_i_s_c_o_n_n_e_c_t_U_n_i_t_s, _d_e_l_e_t_e_L_i_n_k_s,
+  _d_e_l_e_t_e_G_r_o_u_p_I_n_p_u_t_s, _d_e_l_e_t_e_G_r_o_u_p_O_u_t_p_u_t_s, _d_e_l_e_t_e_U_n_i_t_O_u_t_p_u_t_s, _c_o_n_n_e_c_t_U_n_i_t_s,
+  _a_d_d_L_i_n_k_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Sun Feb 28 21:11:05 EST 1999
+

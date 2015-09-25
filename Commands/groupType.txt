@@ -1,0 +1,74 @@
+
+  ggrroouuppTTyyppee -- sseettss oorr ddiissppllaayyss tthhee ttyyppeess ooff aa ggrroouupp
+
+  UUSSAAGGEE
+
+        groupType [(<group> | <group-list> ([+|-]<group-type>)*)]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no arguments, this lists the valid group types. Given the name of a
+  group, it lists the types of the group. Given a group-list and a list of
+  types, it sets the type of all groups in the list and then lists the
+  groups' new types.
+
+  When setting the group types with this command, you are starting from
+  scratch, just as you would be when creating the group with _a_d_d_G_r_o_u_p and you
+  must specify all of the types (other than defaults you don't wish to
+  override). If you just want to change some types, use _c_h_a_n_g_e_G_r_o_u_p_T_y_p_e.
+
+  Type names are normally listed with no - or + preceding them. Using a +
+  before the name is essentially equivalent to using nothing. Using a -, on
+  the other hand, causes the type to be removed if it would otherwise have
+  been created by default. For example, to create a HIDDEN group with no
+  incoming bias links, use the -BIASED type. You should think of the - as a
+  minus, not as a dash.
+
+  EEXXAAMMPPLLEESS
+
+  To list all the group types:
+
+        lens> groupType
+        Base Types
+          BIAS
+          ELMAN
+          INPUT
+          OUTPUT
+        Input Types
+          DISTANCE
+          DOT_PRODUCT
+        ...
+
+  To see the type of a group:
+
+        lens> groupType output
+        Base Type
+          OUTPUT
+        Input Type
+          DOT_PRODUCT
+          IN_NOISE
+        Output Type
+          EXPONENTIAL
+          OUT_INTEGR
+        Cost Type
+          SUM_SQUARED
+        Group Criterion Type
+          STANDARD_CRIT
+        Other Types
+          BIASED
+          RESET_ON_EXAMPLE
+  To change the type of the hidden and hidden2 groups:
+
+        lens> groupType {hidden hidden2} DISTANCE LINEAR -BIASED
+        Input Type
+          DISTANCE
+        Output Type
+          LINEAR
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p, _c_h_a_n_g_e_G_r_o_u_p_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:27:30 EST 2000
+

@@ -1,0 +1,24 @@
+
+  eexxiitt -- eexxiittss ffrroomm tthhee ssiimmuullaattoorr
+
+  UUSSAAGGEE
+
+        exit [<return-code>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This immediately terminates the simulator process, returning the return-
+  code as its exit status. The default code is 0, which means everything is
+  OK.
+
+  Although exits caused by using the GUI buttons or by an interrupt signal
+  while the simulator is idle will ask the user for verification, invoking
+  this command does not give the user a second chance.
+
+  SSEEEE AALLSSOO
+
+  _r_e_t_u_r_n
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:49:13 EDT 1998
+

@@ -1,0 +1,26 @@
+
+  ddeelleetteeNNeettss -- ddeelleetteess aa lliisstt ooff nneettwwoorrkkss oorr tthhee aaccttiivvee nneettwwoorrkk
+
+  UUSSAAGGEE
+
+        deleteNets [<network-list>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no arguments, this deletes the active network, leaving no network
+  active. If the network list is *, all networks will be deleted. Otherwise
+  it deletes those networks listed.
+
+  EEXXAAMMPPLLEESS
+
+  To delete networks netA and netB:
+
+        lens> deleteNets {netA netB}
+
+  SSEEEE AALLSSOO
+
+  _d_e_l_e_t_e_G_r_o_u_p_s, _a_d_d_N_e_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Thu Feb 25 19:14:36 EST 1999
+

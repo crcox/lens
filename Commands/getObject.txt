@@ -1,0 +1,55 @@
+
+  ggeettOObbjjeecctt -- pprriinnttss tthhee ccoonntteennttss ooff aann oobbjjeecctt
+
+  UUSSAAGGEE
+
+        getObject [<object>] [-depth <max-depth>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command will return the value of a Lens object. If the object is a
+  simple field, such as an integer, real, or string, it will return the value
+  as expected.
+
+  If the field is a container object, all of the fields will be displayed. In
+  addition, sub-objects will be traversed and their contents printed as well.
+  max-depth sets the depth of traversal of sub-objects. The default value is
+  1, which will display the names of sub-objects but not traverse them. A
+  value of 0 will display just the name of the main object. A value of 2 will
+  display the names of sub-sub-objects and sub-objects in arrays. A value of
+  3 will display the contents of sub-sub-objects and the names of sub-objects
+  in 2D arrays, and so on.
+
+  The default object is the null string "{}" which refers to the current
+  network.
+
+  EEXXAAMMPPLLEESS
+
+  To see the number of units in the third group:
+
+        lens> getObject group(2).numUnits
+        50
+
+  To see the fields of the current network:
+
+        lens> getObject
+        ...
+
+  To see the contents of the current network down to level of the names of
+  units and the contents of examples:
+
+        lens> getObject -d 4
+        ...
+  To see the contents of the "hidden" group down to the level of the contents
+  of units and pipe the result through more:
+
+        lens> more << [getObject hidden -d 3]
+        ...
+
+  SSEEEE AALLSSOO
+
+  _s_e_t_O_b_j_e_c_t, _v_i_e_w_O_b_j_e_c_t, _g_r_a_p_h_O_b_j_e_c_t, _p_a_t_h
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:14:19 EST 2000
+

@@ -1,0 +1,56 @@
+
+  sseettTTiimmee -- sseettss tthhee nneettwwoorrkk''ss ttiimmee aanndd hhiissttoorryy ppaarraammeetteerrss
+
+  UUSSAAGGEE
+
+        setTime [-intervals <timeIntervals> |
+            -ticks <ticksPerInterval> | -history <historyLength> | -dtfixed]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no arguments this returns the values of the active network's
+  timeIntervals, ticksPerInterval, and historyLength parameters.
+
+  Otherwise, this changes one or more of these values and returns the new
+  values. All values are integers. If ticksPerInterval is set to a value
+  other than 1, the network will not be set to CONTINUOUS type as it would be
+  in old versions of Lens.
+
+  historyLength determines the size of the history arrays in each unit and
+  thus the values displayed in the _U_n_i_t_ _V_i_e_w_e_r. A full history is needed for
+  continuous networks but not for feed-forward or simple-recurrent nets or
+  deterministic Boltzmann machines. If not specified, historyLength will be
+  set to the maximum useful value, which is the same as the network's
+  maxTicks, or timeIntervals * ticksPerInterval, when this command is
+  invoked. A historyLength of zero will prevent the unit history arrays from
+  being allocated or used.
+
+  If ticksPerInterval is set, the default behavior is for the network's dt to
+  be recalculated to its inverse. However, the -dtfixed option will prevent
+  dt from being changed.
+
+  EEXXAAMMPPLLEESS
+
+  To get the time parameters for the active network:
+
+        lens> setTime
+        3 5 16
+
+  To change the time parameters for the active network:
+
+        lens> setTime -i 4
+        4 5 21
+
+  To save space when training a Boltzmann machine, you might set the history
+  length to 0:
+
+        lens> setTime -h 0
+        4 5 0
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_N_e_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 15 22:18.30 EST 1999
+

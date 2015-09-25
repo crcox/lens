@@ -1,0 +1,56 @@
+
+  ooppeennNNeettOOuuttppuuttFFiillee -- bbeeggiinnss wwrriittiinngg nneettwwoorrkk oouuttppuutt aaccttiivvaattiioonnss ttoo aa ffiillee
+
+  UUSSAAGGEE
+
+        openNetOutputFile <file-name> [-binary | -append]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command opens the network's output file. Subsequently, each time an
+  example is run during training, testing, or using _d_o_E_x_a_m_p_l_e, the outputs
+  and possibly target values of selected groups will be written to the file.
+  This allows the network's performance to be saved and custom-analyzed.
+
+  The values written to the file are taken from the history arrays of groups
+  that have the WRITE_OUTPUTS type. If the group is also of type OUTPUT, both
+  the output and target values are written, otherwise only outputs are
+  written. By default, output groups are given the WRITE_OUTPUTS type, but
+  other groups are not.
+
+  Because the values are taken from the output or target history array once
+  the example is done, the values will not be accurate unless those arrays
+  are filled in. If you are using a non-continuous network and do not have
+  the Unit Viewer open, Lens may not fill in the history array to save time.
+  To force Lens to use the history arrays, add USE_OUTPUT_HIST and
+  USE_TARGET_HIST to the types of the groups.
+
+  Ordinarily, if the file already exists, it will be overwritten. But if the
+  -append option is used, the output will be appended to the specified file.
+  If a file is already open from a previous openNetOutputFile call, it will
+  be closed before opening the new file. The exception to this is if the -
+  append flag is used and the open file and the new file have the same name,
+  in which case the file simply remains open.
+
+  It is best to close files with the _c_l_o_s_e_N_e_t_O_u_t_p_u_t_F_i_l_e when you are done
+  writing to them. File names ending in .gz, .bz, .bz2, or .Z will
+  automatically be compressed.
+
+  By default, files are written in text format. The -binary flag will cause
+  outputs to be written in binary.
+
+  Customarily, output record files end in ".or" or ".out".
+
+  EEXXAAMMPPLLEESS
+
+  To begin saving outputs in the compressed binary file "foo.or.gz":
+
+        lens> openNetOutputFile foo.or.gz -b
+
+  SSEEEE AALLSSOO
+
+  _c_l_o_s_e_N_e_t_O_u_t_p_u_t_F_i_l_e, _t_r_a_i_n, _t_e_s_t, _d_o_E_x_a_m_p_l_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Nov 20 13:26:32 EST 2000
+

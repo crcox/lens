@@ -1,0 +1,32 @@
+
+  ssttaarrttCClliieenntt -- mmaakkeess tthhee ccuurrrreenntt pprroocceessss aa ppaarraalllleell ttrraaiinniinngg cclliieenntt
+
+  UUSSAAGGEE
+
+        startClient <hostname> <port> [<my-address>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command makes the current process a parallel training client and
+  creates a connection to a server. hostname is the host name (such as
+  "vim.boltz.cs.cmu.edu") or the IP address (such as "128.2.181.181") of the
+  server machine. port is the port on which the server process is listening.
+
+  Ordinarily, the name of the current machine, which is passed to the server,
+  will be determined by using the gethostname call. If my-address is
+  specified, it will override that. This may be useful if a machine is
+  attached to multiple networks.
+
+  EEXXAAMMPPLLEESS
+
+  To connect to a server on port 6789 on the current machine:
+
+        lens> startClient localhost 6789
+
+  SSEEEE AALLSSOO
+
+  _s_t_o_p_C_l_i_e_n_t, _s_t_a_r_t_S_e_r_v_e_r, _s_e_n_d_E_v_a_l, _s_e_n_d_O_b_j_e_c_t, _t_r_a_i_n_P_a_r_a_l_l_e_l
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 17:42:22 EST 1999
+

@@ -1,0 +1,41 @@
+#!/usr/bin/tclsh
+
+proc not {} {if {rand() < 0.5} {return "!"} else {return ""}}
+proc bit {} {expr int(rand() * 100000 / 1000) % 2;}
+
+proc var {} {
+  return [not][bit]
+}
+
+proc form depth {
+  if {$depth <= 0} {return [var]}
+  incr depth -1
+  if [expr rand() < 0.3] {return [var]}
+  if [expr rand() < 0.5] {return "[not]([form $depth]&&[form $depth])"}
+  return "[not]([form $depth]||[form $depth])"
+}
+
+set code("(") 0
+set code("!") 1
+set code("0") 2
+set code("1") 3
+set code("|") 4
+set code("&") 5
+set code(")") 6
+
+for {set i 0} {$i < 1000} {incr i} {
+  set f [form 2]
+  set a [expr $f]
+  regsub -all {&&}   $f {\&} f
+  regsub -all {\|\|} $f {|}  f
+  set len [string length $f]
+  puts "name:{$f = $a} $len"
+  for {set c 0} {$c < $len} {incr c} {
+    puts -nonewline "i:$code(\"[string index $f $c]\")"
+    if {$c == [expr $len - 1]} {
+      puts " T:$a;"
+    } else {
+      puts " T:-"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+
+  rreesseettDDeerriivvss -- cclleeaarrss tthhee uunniitt aanndd lliinnkk eerrrroorr ddeerriivvaattiivveess
+
+  UUSSAAGGEE
+
+        resetDerivs
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Sets the unit input, output, and gain derivatives to zero and sets the link
+  weight derivatives to zero. The _u_p_d_a_t_e_W_e_i_g_h_t_s command will also do this,
+  but only after using the derivatives to update the link weights.
+
+  SSEEEE AALLSSOO
+
+  _u_p_d_a_t_e_W_e_i_g_h_t_s, _r_e_s_e_t_N_e_t, _d_o_E_x_a_m_p_l_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:10:34 EST 2000
+

@@ -1,0 +1,25 @@
+
+  ddeelleetteeLLiinnkkTTyyppee -- ddeelleetteess aa uusseerr--ddeeffiinneedd lliinnkk ttyyppee
+
+  UUSSAAGGEE
+
+        deleteLinkType [<link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no argument, this returns a list of currently defined link types.
+  Otherwise this deletes the specified link type.
+
+  EEXXAAMMPPLLEESS
+
+  To delete a type called "my links":
+
+        lens> deleteLinkType "my links"
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_L_i_n_k_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8 00:50:06 EDT 1998
+

@@ -1,0 +1,31 @@
+
+  uusseeTTeessttiinnggSSeett -- mmaakkeess aann eexxaammppllee sseett tthhee ccuurrrreenntt tteessttiinngg sseett
+
+  UUSSAAGGEE
+
+        useTestingSet [<example-set>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no argument, this returns a list of all example sets compatible with
+  the active network. Given the name of an example set, this will make that
+  set the testing set for the active network. With the null string in place
+  of an example set, this will set the network to have no testing set.
+
+  EEXXAAMMPPLLEESS
+
+  To make "lots-o-data" the testing set:
+
+        lens> useTestingSet lots-o-data
+
+  To give the network no testing set:
+
+        lens> useTestingSet {}
+
+  SSEEEE AALLSSOO
+
+  _u_s_e_T_r_a_i_n_i_n_g_S_e_t, _l_o_a_d_E_x_a_m_p_l_e_s, _d_e_l_e_t_e_E_x_a_m_p_l_e_S_e_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 12:23:23 EST 1999
+

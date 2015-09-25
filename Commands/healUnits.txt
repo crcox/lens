@@ -1,0 +1,30 @@
+
+  hheeaallUUnniittss -- rreessttoorreess aallll lleessiioonneedd uunniittss iinn aa ggrroouupp
+
+  UUSSAAGGEE
+
+        healUnits [(<group-list> <proportion> | <unit-list>)]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no arguments, this will restore all lesioned units in the network.
+  With just a unit-list, it will restore the given units. Otherwise, it will
+  restore the given proportion of lesioned units in the given groups.
+
+  EEXXAAMMPPLLEESS
+
+  To heal all lesioned units in group "output":
+
+        lens> healUnits output 1.0
+
+  To heal just units "output:3" and "output:5":
+
+        lens> healUnits {output:3 output:5}
+
+  SSEEEE AALLSSOO
+
+  _l_e_s_i_o_n_U_n_i_t_s, _l_e_s_i_o_n_L_i_n_k_s, _n_o_i_s_e_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Sun Feb 28 21:36:07 EST 1999
+

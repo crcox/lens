@@ -1,0 +1,48 @@
+
+  pprriinnttUUnniittVVaalluueess -- pprriinnttss vvaalluueess ffoorr eeaacchh uunniitt iinn aa lliisstt ooff ggrroouuppss ttoo aa ffiillee
+
+  UUSSAAGGEE
+
+        printUnitValues <file> <printProc> <group-list> [-append]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command is used to print information about units to a file. It
+  traverses the units in the specified groups and calls the printProc Tcl
+  procedure for each unit. The procedure should take two arguments: the path
+  to the group object and the path to the unit object.
+
+  Whatever string the procedure returns will be written to the file. The
+  user, thus, determines the format of the output. In fact, the _f_o_r_m_a_t Tcl
+  command may come in very handy here.
+
+  The file can use any of the standard Lens _f_i_l_e_ _t_y_p_e_s, including ordinary
+  files, compressed files, pipelines, Tcl file handles, and a "-" for
+  standard output. If you would like to periodically write values to a file,
+  after each example for instance, you could _o_p_e_n a Tcl file, call
+  printUnitValues after each example (maybe using the network's
+  postExampleProc) and then _c_l_o_s_e the Tcl file, or simply use the -append
+  flag, which causes the output to be appended to the file.
+
+  Lesioned units are ignored when the values are printed.
+
+  EEXXAAMMPPLLEESS
+
+  In this example, the group name, unit number, and unit output for every
+  unit in the groups out1 and out2 are appended to the compressed file
+  "helloKitty.gz":
+
+        lens> proc printStuff {group unit} {
+                format "%s %-3d %.3f\n" [getObj $group.name] [getObj
+    $unit.num] \
+                  [getObj $unit.output]
+              }
+        lens> printUnitValues helloKitty.gz printStuff {out1 out2} -a
+
+  SSEEEE AALLSSOO
+
+  _p_r_i_n_t_L_i_n_k_V_a_l_u_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:59:51 EDT 1998
+

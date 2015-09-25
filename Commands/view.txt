@@ -1,0 +1,19 @@
+
+  vviieeww -- ooppeennss tthhee mmaaiinn ccoonnttrrooll ddiissppllaayy
+
+  UUSSAAGGEE
+
+        view
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This opens the main control display if it is closed or deiconifies it and
+  brings it to the front if it is open.
+
+  SSEEEE AALLSSOO
+
+  _v_i_e_w_C_o_n_s_o_l_e, _v_i_e_w_U_n_i_t_s, _v_i_e_w_L_i_n_k_s, _v_i_e_w_O_b_j_e_c_t, _g_r_a_p_h_O_b_j_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Fri Jul 16 13:12:56 EDT 1999
+

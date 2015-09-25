@@ -1,0 +1,11 @@
+# This network learns simple boolean formulae with three variables and without
+# clause negation.  10% of the training examples are held out in the testing
+# set.
+# If you test, it will tell you how many examples it got correct.
+
+addNet logic1 9 7 1 STANDARD_CRIT
+setObj testGroupCrit 0.5
+if [catch {path -s train}] {
+  loadExamples logic.ex -s train
+  moveExamples train test 0.10
+}

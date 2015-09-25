@@ -1,0 +1,33 @@
+
+  ssttaarrttSSeerrvveerr -- mmaakkeess tthhee ccuurrrreenntt pprroocceessss aa ppaarraalllleell ttrraaiinniinngg sseerrvveerr
+
+  UUSSAAGGEE
+
+        startServer [<port>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command makes the current process a server for parallel training. It
+  will then accept connections from clients and will be able to invoke
+  commands on the clients and control parallel training.
+
+  If port is specified, it sets the port to be used when listening for new
+  clients. Values between 2001 and 6999 are often free. Otherwise, a random
+  free port will be selected. This command always returns the port number
+  used. It is important to save this value so clients can use it when
+  connecting.
+
+  EEXXAAMMPPLLEESS
+
+  To start the server with a random port and save the port in the variable
+  "serverPort":
+
+        lens> set serverPort [startServer]
+
+  SSEEEE AALLSSOO
+
+  _s_t_o_p_S_e_r_v_e_r, _s_t_a_r_t_C_l_i_e_n_t, _s_e_n_d_E_v_a_l, _s_e_n_d_O_b_j_e_c_t, _c_l_i_e_n_t_I_n_f_o, _t_r_a_i_n_P_a_r_a_l_l_e_l
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:20:53 EDT 1998
+

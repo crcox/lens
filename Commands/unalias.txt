@@ -1,0 +1,18 @@
+
+  uunnaalliiaass -- rreemmoovveess aa ccoommmmaanndd aalliiaass
+
+  UUSSAAGGEE
+
+        unalias <command>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This removes the command from the alias database.
+
+  SSEEEE AALLSSOO
+
+  _a_l_i_a_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:35:57 EDT 1998
+

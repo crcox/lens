@@ -1,0 +1,49 @@
+
+  nnooiisseeTTyyppee -- sseettss aa ggrroouupp''ss nnooiissee ppaarraammeetteerrss
+
+  UUSSAAGGEE
+
+        noiseType <group-list> [-range <range> | -multiply | -flat]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command sets the type of noise function and range of the distribution
+  used by all of the input, output, or link derivative noise procedures in
+  the groups. A group can only have a single noise function and range, as it
+  is assumed that no more than one of these forms of noise will be used at
+  any one time. The actual noise procedures are activated by including one of
+  the following group types: DERIV_NOISE, IN_NOISE, IN_DERIV_NOISE,
+  OUT_NOISE, OUT_DERIV_NOISE.
+
+  The default range is 0.1 and the default noise procedure is additive and
+  gaussian. In this case the range is the standard deviation and the
+  distribution is centered on 0.0. -multiply will make the noise procedure
+  multiplicative, scaling the values based on a distribution centered around
+  1.0. -flat will make the distribution uniform, rather than gaussian, where
+  the range is half the distribution width.
+
+  Using * in place of the group name will affect all groups.
+
+  EEXXAAMMPPLLEESS
+
+  To use additive noise selected uniformly from the range [-0.01, +0.01) on
+  the "hidden" group:
+
+        lens> noise hidden -flat -r 0.01
+
+  To use multiplicative noise sampled from a gaussian distribution with
+  standard deviation 0.1 centered around 1.0:
+
+        lens> noise hidden -r 0.1 -m
+
+  To eliminate the effect of noise in the network:
+
+        lens> noise * -r 0
+
+  SSEEEE AALLSSOO
+
+  _l_e_s_i_o_n_L_i_n_k_s, _l_e_s_i_o_n_U_n_i_t_s, _t_r_a_i_n
+
+  ---------------------------------------------------------------------------
+    Last modified: Sun Feb 28 21:37:34 EST 1999
+

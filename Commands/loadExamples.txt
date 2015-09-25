@@ -1,0 +1,100 @@
+
+  llooaaddEExxaammpplleess -- rreeaaddss aann eexxaammppllee ffiillee iinnttoo aann eexxaammppllee sseett
+
+  UUSSAAGGEE
+
+        loadExamples <file-name> [-set <example-set> | -num <num-examples> |
+            -exmode <example-mode> | -mode <load-mode>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command loads examples from either a binary or text example file into
+  an example set. If the file name ends in .gz, .bz, .bz2, or .Z it will
+  automatically be decompressed. If no set name is specified, the name of the
+  example set will be the root of the file name (without the path or
+  extensions). Otherwise the examples will be loaded into the specified set.
+  As with most file reading commands in Lens, the file may be a normal file
+  name, standard input ("-"), a Tcl channel, or a pipe.
+
+  If the example-mode is specified, it will set the way in which examples
+  will be selected when training or testing with this set. The example
+  selection mode can also be set with the _e_x_a_m_p_l_e_S_e_t_M_o_d_e command. The example
+  mode should not be confused with the set loading mode, which is explained
+  below.
+
+  There are two basic forms of this command, stored and piped. Stored is the
+  normal behavior. It will load the examples from the file and store them in
+  the example set. There are three forms of stored mode behavior, explained
+  below. If num-examples is specified, only that many examples will be
+  loaded. Otherwise the entire file will be loaded. If the file is a normal
+  file or a pipe, it will then be closed.
+
+  In piped mode, which occurs when a load-mode of PIPE is given, no examples
+  are actually loaded. The example set header will be read and then the file
+  or pipe will be left open. Subsequently, whenever an example is needed it
+  will be read from the file and only stored temporarily. This is most useful
+  when working with a program that generates examples on the fly. If a _T_c_l
+  _c_h_a_n_n_e_l is used, it is possible to create a two way pipe that will choose
+  the next example based on some input, such as the output of the network on
+  the previous example. In piped mode, the file or pipe will remain open
+  until the example set is deleted, a new pipe is opened with this command,
+  an error occurs, or the pipe is exhausted. If the pipe is exhausted and the
+  example set's pipeLoop flag is set to TRUE, which is the default, the pipe
+  will be re-opened automatically. Note that stored mode could read from a
+  pipe and piped mode could read from a file. The difference is only whether
+  the examples are loaded all at once or one at a time.
+
+  Piped mode can read either text or binary examples. The pipe must begin
+  with the same header that a normal example file uses. Unlike normal files,
+  however, there must be a newline at the end of each example with piped text
+  input. The pipe may be buffered so any program producing examples should
+  probably flush its output after each example, particularly if the pipe is
+  two-way. If the example set already exists and has some examples stored in
+  it, the examples will remain there if a pipe is opened. The examples can
+  only be accessed if the example selection mode is change to something other
+  than PIPE using the _e_x_a_m_p_l_e_S_e_t_M_o_d_e command.
+
+  In stored mode, the default behavior if a set with the same name already
+  exists is to silently abort. This is typically what one would want if one
+  were using the command in a network initialization script file that might
+  be run repeatedly. Alternately, one of two additional modes may be
+  specified: REPLACE or APPEND. The mode name may be abbreviated to the first
+  letter. In REPLACE mode, an existing set of the same name will be discarded
+  and the example file reloaded. In APPEND mode, the examples will be added
+  to the existing set. This is convenient for concatenating multiple example
+  files as the user need not worry about removing the headers. Both the
+  default mode, REPLACE, and APPEND are all stored modes.
+
+  If the new example set is compatible with the active network and the active
+  network has no training set, the network will use the new set as its
+  training set. If the network has a training set but no testing set, the new
+  set will automatically become the testing set.
+
+  EEXXAAMMPPLLEESS
+
+  To read the file "Examples/digits.ex.gz" into the example set "digits":
+
+        lens> loadExamples Examples/digits.ex.gz
+
+  To append 100 examples from the file "set2.ex" to "big set":
+
+        lens> loadExamples set2.ex -s "big set" -n 100 -m A
+
+  To begin reading from the pipeline "generateStuff | formatExamples":
+
+        lens> loadExamples "| generateStuff | formatExamples" -s mySet -
+    m PIPE
+
+  To read from a Tcl channel:
+
+        lens> set file [open myFile]
+        lens> loadExamples -$file -s mySet
+
+  SSEEEE AALLSSOO
+
+  _u_s_e_T_r_a_i_n_i_n_g_S_e_t, _u_s_e_T_e_s_t_i_n_g_S_e_t, _d_e_l_e_t_e_E_x_a_m_p_l_e_S_e_t_s, _m_o_v_e_E_x_a_m_p_l_e_s,
+  _s_a_v_e_E_x_a_m_p_l_e_s, _o_p_e_n, _e_x_a_m_p_l_e_S_e_t_M_o_d_e, _G_e_n_e_r_a_l_ _F_i_l_e_ _U_s_a_g_e, _E_x_a_m_p_l_e_ _F_i_l_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:13:26 EST 2000
+

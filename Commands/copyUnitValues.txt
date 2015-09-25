@@ -1,0 +1,46 @@
+
+  ccooppyyUUnniittVVaalluueess -- ccooppiieess iinnppuuttss,, oouuttppuuttss,, oorr ootthheerr ffiieellddss bbeettwweeeenn ggrroouuppss
+
+  UUSSAAGGEE
+
+        copyUnitValues <group1> -<field1> (<group2> | -<field2> |
+            <group2> -<field2>)
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command copies values from the units in one group to the units in
+  another (or the same) group. It could be used to copy the inputs of a group
+  to its outputs or the outputs of one group to the targets of another. The
+  copy is instantaneous; this does not set up a permanent connection.
+
+  group1 is the name of the group the values are coming from. Valid fields
+  are -inputs, -outputs, -targets, -inputDerivs, -outputDerivs, and -
+  externalInputs. Any unique prefix will do. If the third argument is another
+  field specifier, the values will be copied from one field in group1 to the
+  new field.
+
+  If the third argument is a group name, it will be the destination group. If
+  no second field is given, the same field will be used for both groups.
+  Otherwise, field2 gives the destination for the copy.
+
+  EEXXAAMMPPLLEESS
+
+  To copy the inputs of group hidden1 to the outputs of the same group:
+
+        lens> copyUnitValues hidden1 -i -o
+
+  To copy the outputs of group hidden1 to the outputs of group hidden2:
+
+        lens> copyUnitValues hidden1 -o hidden2
+
+  To copy the outputs of group hidden1 to the outputDerivs of group hidden2:
+
+        lens> copyUnitValues hidden1 -o hidden2 -outputD
+
+  SSEEEE AALLSSOO
+
+  _r_e_s_e_t_U_n_i_t_V_a_l_u_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Feb 23 22:35:27 EST 1999
+

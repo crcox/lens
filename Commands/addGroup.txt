@@ -1,0 +1,105 @@
+
+  aaddddGGrroouupp -- aaddddss aa ggrroouupp ttoo tthhee aaccttiivvee nneettwwoorrkk
+
+  UUSSAAGGEE
+
+        addGroup <group> <num-units> [[+|-]<group-type>]*
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This creates a group with the specified name and number of units and places
+  it at the end of the network's group array. The group must contain at least
+  one unit. Following the number of units is a list of group types.
+
+  The units in the group will be given names composed of the group name
+  followed by a colon and the unit's number.
+
+  Type names are normally listed with no - or + preceding them. Using a +
+  before the name is essentially equivalent to using nothing. Using a -, on
+  the other hand, causes the type to be removed if it would otherwise have
+  been created by default. For example, to create a HIDDEN group with no
+  incoming bias links, use the -BIASED type. You should think of the - as a
+  minus, not as a dash.
+
+  A group may have one of four main or fixed types: BIAS, INPUT, OUTPUT, or
+  ELMAN. The default is no fixed type which corresponds to a hidden layer.
+  Typically the user will never create a BIAS group as one is created with
+  the network. It is possible to create a group that is both an INPUT and an
+  OUTPUT group. This may be useful for Boltzmann machines. A projection is
+  automatically created from the bias layer to hidden and OUTPUT groups. The
+  links in this projection will be of type "bias" so they can be controlled
+  separately.
+
+  If no input, output, or cost types are specified, Lens will attempt to
+  guess reasonable values given the type of the network and the group.
+  However, you may need to over-ride these if you want to use non-standard
+  functions or if you want an INPUT or ELMAN group to use incoming
+  connections as well as its clamping function.
+
+  Input functions compute the units' input values. Multiple input types may
+  be specified and the functions will be computed in the order given. The
+  main input functions are DOT_PRODUCT, DISTANCE, and PRODUCT. Additional
+  functions and modifiers include SOFT_CLAMP, IN_BOLTZ, IN_INTEGR, IN_NORM,
+  IN_NOISE, and IN_DERIV_NOISE. DOT_PRODUCT is the default for most networks
+  and IN_BOLTZ is the default for BOLTZMANN networks.
+
+  Output functions compute the units' outputs. Like input functions, several
+  may be specified and the order determines when they will be executed. The
+  basic transfer functions include LINEAR, LOGISTIC, TERNARY, TANH,
+  EXPONENTIAL, SOFT_MAX, KOHONEN, and OUT_BOLTZ. Clamping functions, which
+  can be used with or without basic functions are HARD_CLAMP, BIAS_CLAMP,
+  ELMAN_CLAMP, and WEAK_CLAMP. Modifiers include OUT_INTEGR, OUT_NORM,
+  OUT_NOISE, OUT_DERIV_NOISE, OUT_CROPPED, and OUT_WINNER.
+
+  LOGISTIC is the default for most groups. BIAS groups will have BIAS_CLAMP,
+  ELMAN groups ELMAN_CLAMP, and INPUT groups HARD_CLAMP. Continuous networks
+  will have OUT_INTEGR added to most groups.
+
+  Cost functions are broken into two types: error functions which are based
+  on the output units' targets and unit output cost functions, which are
+  based on the strength of the outputs of the units.
+
+  The error functions include SUM_SQUARED, CROSS_ENTROPY, and DIVERGENCE.
+  CCRROOSSSS__EENNTTRROOPPYY iiss tthhee ddeeffaauulltt except that SOFT_MAX output groups will have
+  DIVERGENCE.
+
+  Output cost functions include LINEAR_COST, QUADRATIC_COST, CONV_QUAD_COST,
+  LOGISTIC_COST, COSINE_COST. There is no default.
+
+  Ordinarily all groups automatically receive bias inputs except INPUT,
+  ELMAN, and BIAS groups. The BIASED and -BIASED types may be specified to
+  change this default.
+
+  Output groups' criterion functions are used to determine when to stop
+  training the network or when to proceed to the next event. Currently the
+  only available function is STANDARD_CRIT. This is only activated by default
+  for output groups in continuous networks.
+
+  Not all groups will allocate targetHistory and outputDerivHistory arrays
+  for their units. USE_TARGET_HIST and USE_OUT_DERIV_HIST will force these
+  arrays to be allocated if you wish to use them for your own purposes.
+
+  Finally, DERIV_NOISE will cause noise to be injected into the link
+  derivatives prior to each weight update.
+
+  EEXXAAMMPPLLEESS
+
+  To create a hidden layer with a DOT_PRODUCT input combining function and
+  LINEAR transfer function:
+
+        lens> addGroup myGroup 100 LINEAR
+
+  To create an output layer with a DOT_PRODUCT input function followed by the
+  application of noise to the input, an EXPONENTIAL output function that is
+  time averaged, a SUM_SQUARED error measure, and no bias projection:
+
+        lens> addGroup "group 2" 10 OUTPUT IN_NOISE EXPONENTIAL OUT_INTEGR
+    SUM_SQUARED -BIASED
+
+  SSEEEE AALLSSOO
+
+  _g_r_o_u_p_T_y_p_e, _o_r_d_e_r_G_r_o_u_p_s, _a_d_d_N_e_t, _d_e_l_e_t_e_G_r_o_u_p_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Sat Aug 28.39:25:29 EDT 1999
+

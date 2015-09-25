@@ -1,0 +1,21 @@
+
+  rreesseettEExxaammpplleeSSeettss -- rreettuurrnnss tthhee eexxaammppllee sseett ttoo tthhee ffiirrsstt eexxaammppllee
+
+  UUSSAAGGEE
+
+        resetExampleSets <example-set-list>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This resets the example sets to their initial state. In ORDERED mode this
+  means the next example presented will be the first. In PERMUTED mode it
+  restarts the permutation. It has no effect in RANDOMIZED, PROBABILISTIC,
+  PIPE, or CUSTOM modes.
+
+  SSEEEE AALLSSOO
+
+  _d_o_E_x_a_m_p_l_e, _e_x_a_m_p_l_e_S_e_t_M_o_d_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jul 12 16:34:49 EDT 1999
+

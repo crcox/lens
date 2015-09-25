@@ -1,0 +1,22 @@
+# This is a more complicated digit recognition task that data from actual
+# handwritten digits.
+# The training and test set come from different sets of people.  Sure you can
+# get 100% accuracy on the training set, but can you break 98% on the test set?
+# Try improving generalization with some weight decay (maybe around 0.001) or
+# by changing the number of hidden units.
+
+addNet "Handwritten Digits" 64 20 10 SOFT_MAX MAX_CRIT
+loadExamples hand-digits.trn.bex -e PERMUTED
+loadExamples hand-digits.tst.bex
+
+setObj learningRate   0.2
+setObj reportInterval 1
+setObj randRange      0.1
+setObj testGroupCrit  1.0
+setObj numUpdates     50
+resetNet
+
+setObj input.numColumns 8
+autoPlot 10
+
+graphObj error

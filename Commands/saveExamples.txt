@@ -1,0 +1,48 @@
+
+  ssaavveeEExxaammpplleess -- wwrriitteess aann eexxaammppllee sseett ttoo aann eexxaammppllee ffiillee
+
+  UUSSAAGGEE
+
+        saveExamples <example-set> <file-name> [-binary | -append]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This writes an example file in either text or binary format. If the file
+  name ends in .gz, .bz, .bz2, or .Z it will automatically be compressed. The
+  -binary flag results in the file being written in binary format. Text is
+  the default.
+
+  This command is useful for converting text example files to standard text
+  format or to binary format or for producing combined files after multiple
+  sets have been appended. Only the stored examples will be written to the
+  file, so if the example set is reading from a pipe, the pipe is ignored.
+
+  Binary example files will be much quicker to load with _l_o_a_d_E_x_a_m_p_l_e_s because
+  little parsing is required. They will also tend to take up less space.
+  However, if the inputs and targets have little precision (like 0 and 1
+  values), a compressed text example file may be smaller than a compressed
+  binary file.
+
+  It is suggested that example files be given the extension .ex and binary
+  example files the extension .bex, but this is not done automatically.
+
+  If the -append flag is used, the examples will be appended to the file.
+  This only works when writing text files. When appending to a file, the
+  example set header information will not be written, only the examples
+  themselves. Appending is useful for combining example sets, or perhaps for
+  constructing them one example at a time.
+
+  EEXXAAMMPPLLEESS
+
+  To save the set "my set" as the compressed binary file Examples/
+  mySet.bex.gz:
+
+        lens> saveExamples "my set" Examples/mySet.bex.gz -b
+
+  SSEEEE AALLSSOO
+
+  _l_o_a_d_E_x_a_m_p_l_e_s, _m_o_v_e_E_x_a_m_p_l_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:13:42 EST 2000
+

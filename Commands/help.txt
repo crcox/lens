@@ -1,0 +1,25 @@
+
+  hheellpp -- pprriinnttss tthhee ccoommmmaanndd ssuummmmaarriieess oorr eexxppllaaiinnss aa ccoommmmaanndd
+
+  UUSSAAGGEE
+
+        help [(-s | <command>)]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no arguments, help will display a list of commands and their synopses
+  organized by topic.
+
+  The argument -s causes help to print a sorted list of commands and their
+  synopses.
+
+  Given a command, help will display a manual page about the command or
+  report whether it is a valid alias.
+
+  SSEEEE AALLSSOO
+
+  _m_a_n_u_a_l
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 18:01:22 EST 1999
+

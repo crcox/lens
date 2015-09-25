@@ -1,0 +1,48 @@
+# This is a simple-recurrent network that learns to add base-10 numbers.
+# The inputs are the sequential digits of the numbers, starting with the 
+# least-significant one and the output on each step is the corresponding digit
+# of the sum.
+
+set hid 12
+
+addNet adder-a -i 7 20 $hid ELMAN 10 SOFT_MAX
+loadExamples adder10.ex
+setObj learningRate 0.2
+setObj numUpdates 500
+
+resetPlot 12
+plotAll output
+plotRow 1
+plotAll hidden
+plotRow 1 b 2 f n context $hid f
+plotRow 1
+plotRow * f n input 10 f
+drawUnits
+
+
+# This version has a network architecture explicitly designed for the task.
+# But it doesn't seem to work as well as adder-a.  I wonder why not.
+
+set hid 12
+
+addNet adder-b -i 7 20 $hid 10 SOFT_MAX
+addGroup carry 1
+addGroup context 1 ELMAN
+connectGroups context hidden
+elmanConnect carry context
+connectGroups hidden carry
+orderGroups bias input context hidden carry output
+
+useTrainingSet adder10
+setObj numUpdates 500
+
+resetPlot 12
+plotRow 1 f n output 10 f n carry 1
+plotRow 1
+plotAll hidden
+plotRow 1 f n context 1
+plotRow 1
+plotRow * f n input 10 f
+drawUnits
+
+useNet adder-a

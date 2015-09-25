@@ -1,0 +1,28 @@
+
+  ddiissccoonnnneeccttGGrroouuppUUnniitt -- ddeelleetteess lliinnkkss ffrroomm aa ggrroouupp ttoo aa uunniitt
+
+  UUSSAAGGEE
+
+        disconnectGroupUnit <group> <unit> [-type <link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This removes all links of the specified type that project from the group to
+  the unit. If no type is given, all links are removed.
+
+  EEXXAAMMPPLLEESS
+
+  To remove all links of type "special" from the "input" group to the unit
+  "hidden:3":
+
+        lens> disconnectGroupUnit input hidden:3 -type special
+
+  SSEEEE AALLSSOO
+
+  _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_s, _d_i_s_c_o_n_n_e_c_t_U_n_i_t_s, _d_e_l_e_t_e_L_i_n_k_s, _d_e_l_e_t_e_G_r_o_u_p_I_n_p_u_t_s,
+  _d_e_l_e_t_e_G_r_o_u_p_O_u_t_p_u_t_s, _d_e_l_e_t_e_U_n_i_t_I_n_p_u_t_s, _d_e_l_e_t_e_U_n_i_t_O_u_t_p_u_t_s, _c_o_n_n_e_c_t_G_r_o_u_p_s,
+  _a_d_d_L_i_n_k_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Feb 24 16:57:12 EST 1999
+

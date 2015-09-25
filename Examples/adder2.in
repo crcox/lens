@@ -1,0 +1,6 @@
+# This is a simple-recurrent network that learns to add binary numbers.
+
+addNet adder -i 11 2 3 ELMAN 1 SUM_SQUARED
+loadExamples adder2.ex
+setObj learningRate 0.02
+setObj numUpdates 500

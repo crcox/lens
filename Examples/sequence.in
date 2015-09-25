@@ -1,0 +1,14 @@
+# This is a simple sequence prediction task.  There are four symbols plus a
+# terminating symbol.  The first symbol is random, the second is chosen from
+# the other three, the third from the other two and then the three symbols are
+# repeated.  You will probably find that the tasks are unlearnable without 
+# using backpropTicks of at least 3.
+
+addNet sequence -i 9 5 8 ELMAN 6 SOFT_MAX
+setObj learningRate 0.05
+setObj backpropTicks 1
+
+if [catch {path -s train}] {
+  loadExamples sequence.ex -s train
+  moveExamples train test 0.1
+}

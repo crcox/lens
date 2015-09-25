@@ -1,0 +1,12 @@
+#!/usr/bin/tclsh
+
+for {set e 0} {$e < 100} {incr e} {
+  set a [expr int(rand() * 1024)]
+  set b [expr int(rand() * 1024)]
+  set c [expr $a + $b]
+  puts "name: {$a + $b = $c}\n11"
+  for {set i 0} {$i <= 10} {incr i} {
+    puts "I: [expr ($a & (1 << $i)) != 0] [expr ($b & (1 << $i)) != 0] T: [expr ($c & (1 << $i)) != 0]"
+  }
+  puts ";"
+}

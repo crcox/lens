@@ -1,0 +1,27 @@
+
+  ddeelleetteeLLiinnkkss -- ddeelleetteess aallll lliinnkkss ooff aa ssppeecciiffiieedd ttyyppee
+
+  UUSSAAGGEE
+
+        deleteLinks [-type <link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This removes all links of the specified type. If no type is given, all
+  links are removed.
+
+  EEXXAAMMPPLLEESS
+
+  To remove all bias links:
+
+        lens> deleteAllLinks -type bias
+
+  SSEEEE AALLSSOO
+
+  _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_s, _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_U_n_i_t, _d_i_s_c_o_n_n_e_c_t_U_n_i_t_s, _d_e_l_e_t_e_U_n_i_t_I_n_p_u_t_s,
+  _d_e_l_e_t_e_U_n_i_t_O_u_t_p_u_t_s, _d_e_l_e_t_e_U_n_i_t_I_n_p_u_t_s, _d_e_l_e_t_e_U_n_i_t_O_u_t_p_u_t_s, _c_o_n_n_e_c_t_U_n_i_t_s,
+  _a_d_d_L_i_n_k_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Feb 24 16:58:57 EST 1999
+

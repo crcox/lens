@@ -1,0 +1,50 @@
+
+  ddooEExxaammppllee -- rruunnss tthhee nneettwwoorrkk oonn tthhee nneexxtt oorr aa ssppeecciiffiieedd eexxaammppllee
+
+  UUSSAAGGEE
+
+        doExample [<example-num>] [-set <example-set> | -train | -test]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This runs the network on an example and adds the error to the network's
+  total error. If no example number is given, the next example from the set
+  will be used. If the set is in PIPE mode, the next example will be read
+  from the pipe. If an example number is specified, it will not affect the
+  example order maintained by the example set when in ORDERED or PERMUTED
+  mode. The set will later resume where it left off.
+
+  If neither "-train" nor "-test" is specified, the network's current
+  netRunExample and netRunTick functions will be used to run the example. "-
+  train" will cause the netRunExample to be set to netTrainExample and
+  netRunTick to netTrainTick. "-test" will set netRunExample to
+  netTestExample and netRunTick to netTestTick.
+
+  If an example set is specified, the example will be chosen from it.
+  Otherwise, either the training set or testing set will be used, provided
+  they exist. If the "-test" flag is given, the testing set will be given
+  priority. Otherwise, the training set will be given priority.
+
+  EEXXAAMMPPLLEESS
+
+  To run the next training example, assuming there is a training set:
+
+        lens> doExample
+  To run example 3 from the training set:
+
+        lens> doExample 3
+  To run the next training example from the set "extra set":
+
+        lens> doExample -s "extra set"
+  To train the network (accumulate link weight error derivatives) on the next
+  training example, assuming there is a training set:
+
+        lens> doExample -tr
+
+  SSEEEE AALLSSOO
+
+  _l_o_a_d_E_x_a_m_p_l_e_s, _e_x_a_m_p_l_e_S_e_t_M_o_d_e, _r_e_s_e_t_E_x_a_m_p_l_e_S_e_t_s, _u_p_d_a_t_e_W_e_i_g_h_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Apr 11 22:45:47 EDT 2000
+

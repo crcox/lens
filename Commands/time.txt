@@ -1,0 +1,31 @@
+
+  ttiimmee -- rruunnss aa ccoommmmaanndd aanndd rreettuurrnnss tthhee ttiimmee eellaappsseedd
+
+  UUSSAAGGEE
+
+        time <command> [-iterations <iterations>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is similar but not identical to the standard Tcl time procedure. It
+  will run the specified command for certain number of iterations and return
+  the time elapsed. The default number of iterations is 1. Unlike the Tcl
+  procedure, the time reported is the total for all iterations, not the time
+  per iteration.
+
+  Four time values are reported. active is the time elapsed while the process
+  was being executed and when the system was executing on behalf of the
+  process. user and system break this down into the two components. real is
+  the real time elapsed. All times are in seconds.
+
+  EEXXAAMMPPLLEESS
+
+  To time 10 iterations of the train command (each doing 200 updates):
+
+        lens> time {train 200} -i 10
+        ...
+        0.720 active  0.620 user  0.100 system  2.740 real
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 18:30:18 EST 1999
+

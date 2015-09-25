@@ -1,0 +1,33 @@
+
+  oorrddeerrGGrroouuppss -- sseettss tthhee oorrddeerr iinn wwhhiicchh ggrroouuppss aarree uuppddaatteedd
+
+  UUSSAAGGEE
+
+        orderGroups (<group>)*
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This sets the order of the groups in the network's group array and thus the
+  order in which the groups are updated. This is crucial for standard
+  networks, but less important for continuous networks since continuous
+  networks are updated synchronously.
+
+  Any groups not listed in the order will follow those listed, but the
+  previous order of such groups will not be retained. Groups will originally
+  be in the order in which they were created so this command is unnecessary
+  if groups were created in the desired updating order.
+
+  For simple recurrent networks, it is important that context groups come
+  before their source group.
+
+  EEXXAAMMPPLLEESS
+
+        lens> orderGroups bias input context hidden output
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Feb 23 22:11:48 EST 1999
+

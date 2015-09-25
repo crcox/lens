@@ -1,0 +1,55 @@
+
+  ssaavveeWWeeiigghhttss -- ssaavveess tthhee lliinnkk wweeiigghhttss aanndd ootthheerr vvaalluueess iinn aa ffiillee
+
+  UUSSAAGGEE
+
+        saveWeights <file-name> [-values <num-values> | -text |
+            -noFrozen | -onlyFrozen]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This writes the weights for every link in the network into a special file.
+  The file can be later reloaded into a network of the same architecture. If
+  the file name has the extension .gz, .bz, .bz2, or .Z it will automatically
+  be compressed. It is customary to give weight files the extension .wt.
+
+  When training networks with momentum, deltaBarDelta, or other
+  "sophisticated" algorithms, it is usually important to save more
+  information for each link than just its weight. If num-values is 2, both
+  the weights and the deltas (used by momentum) will be saved. A value of 3
+  will save the weights, deltas, and "last values", which are used by
+  deltaBarDelta in alens.
+
+  If a num-values of 3 is specified in standard lens, only the weights and
+  deltas will be written (as there are no lastValue fields). Therefore, you
+  can use 3 to store all of the link values in either version of Lens.
+
+  The default is to write a binary weight file. If the -text flag is given,
+  values will be written in text format.
+
+  Ordinarily, all links in the network will be saved. If -noFrozen is
+  specified, frozen links will not be saved. If -onlyFrozen is specified,
+  thawed links will not be saved. These are useful if you only wish to save
+  part of the network.
+
+  When using networks with randomized structures, it is important to record
+  the random _s_e_e_d used when building the network so the same architecture can
+  be reconstructed later. Otherwise, weight files saved with this command may
+  be useless later.
+
+  EEXXAAMMPPLLEESS
+
+  To save the weights in the compressed binary file greatNet.wt.gz:
+
+        lens> saveWeights greatNet.wt.gz
+  To save all of the link values of non-frozen weights in text format:
+
+        lens> saveWeights foo.wt.gz -v 3 -n -t
+
+  SSEEEE AALLSSOO
+
+  _l_o_a_d_W_e_i_g_h_t_s, _s_e_e_d
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Nov 14 00:05:03 EST 2000
+

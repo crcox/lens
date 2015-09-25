@@ -1,0 +1,38 @@
+# This network has two sets of inputs: task inputs and data inputs.  The task
+# inputs specify what task to perform on the data inputs.  In this case, the
+# data inputs are broken into three blocks of two units and the task inputs
+# specify which of those blocks is to be output.  This is a rather easy task
+# but it illustrates how you might design a network to do something more
+# complicated, like calculating boolean formulas.
+
+addNet task
+addGroup task       3 INPUT
+addGroup taskHidden 6
+addGroup input      6 INPUT
+addGroup hidden     6 PRODUCT
+addGroup output     2 OUTPUT
+
+connectGroups task taskHidden
+connectGroups taskHidden hidden -p ONE_TO_ONE
+connectGroups input hidden      -p ONE_TO_ONE
+connectGroups hidden output
+
+setObj learningRate 0.01
+
+if [catch {path -s train}] {
+  loadExamples task.ex -s train
+  moveExamples train test 0.05
+}
+
+resetPlot 15
+plotRow 1 f c output 8
+plotRow 1
+plotRow 1 f c hidden 8
+plotRow 1
+plotRow 1 c taskHidden 6 f
+plotRow 1
+plotRow 1 c task 7 n input 2 b 1 n input 2 b 1 n input 2
+drawUnits
+
+viewUnits
+graphObject

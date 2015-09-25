@@ -1,0 +1,75 @@
+
+  tteesstt -- tteessttss tthhee nneettwwoorrkk oonn tthhee tteessttiinngg sseett
+
+  UUSSAAGGEE
+
+        test [<num-examples>] [-noreset | -return]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This runs the network (forward pass only) on examples in the testing set
+  and accumulates the overall error. If there is no testing set, the training
+  set is used. The total error is stored in the network's error field. By
+  default, a small report is printed to the terminal. The -return flag can be
+  used if you instead want the report to be the command's return value.
+
+  In addition to printing the report, the numbers in the report are also
+  stored in a global array called Test. You can access the fields in the
+  array to easily retrieve the results of the test. The following are the
+  available fields:
+
+  * nnuummEExxaammpplleess: The number of examples on which testing was done.
+  * nnuummTTiicckkss: The total number of ticks in those examples.
+  * ttoottaallEErrrroorr: The total error across all examples.
+  * eexxaammpplleeEErrrroorr: The total error per example.
+  * ttiicckkEErrrroorr: The total error per tick.
+  * ttoottaallCCoosstt: The total unit output cost for the network.
+  * ttiicckkCCoosstt: The total unit output cost divided by the number of ticks.
+  * eexxaammpplleessCCoorrrreecctt: The number of examples on which the output groups'
+    criteria (such as STANDARD_CRIT or MAX_CRIT) were met.
+  * ppeerrcceennttCCoorrrreecctt: The percentage of examples for which the criteria were
+    met.
+
+  If the network has more than one output group, it prints the error and cost
+  values for the network as a whole as well as for each output group. The
+  error values for the individual groups are stored in the Test array as
+  well. The values for the groups are accessed with the name of the group,
+  followed by a . and then the field name. For example, the totalError for
+  group output1 is stored in Test(output1.totalError).
+
+  The default behavior is to reset the testing set and run every example in
+  it. This is also the behavior if a num-examples value of 0 is given.
+  Otherwise, the testing set is not reset and only the next num-examples will
+  be processed. This may be necessary if the testing set is in PIPE mode. The
+  -noreset flag prevents the network's overall error from being reset to 0.0
+  prior to testing.
+
+  EEXXAAMMPPLLEESS
+
+  To test the network, resetting the error before starting:
+
+        lens> test
+        Test results on 100 examples, 700 ticks:
+                             Network
+        Error total:         46.5343
+        Error per example:   0.46534
+        Error per tick:      0.06648
+        Unit cost per tick:  2.33553
+        Output unit criterion reached on 92 examples (92.00%)
+
+        lens> puts $Test(tickError)
+        0.00664776
+
+  To append the test results to a file:
+
+        lens> set f [open "testResults" "a"]
+        lens> puts $f [test -r]
+        lens> close $f
+
+  SSEEEE AALLSSOO
+
+  _t_r_a_i_n, _d_o_E_x_a_m_p_l_e, _e_x_a_m_p_l_e_S_e_t_M_o_d_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 14:43:22 EST 1999
+

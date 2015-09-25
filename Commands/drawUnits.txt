@@ -1,0 +1,35 @@
+
+  ddrraawwUUnniittss -- aaccttuuaallllyy rreennddeerrss aa nneeww pplloott oonn tthhee uunniitt ddiissppllaayy
+
+  UUSSAAGGEE
+
+          drawUnits [<cell-size> [<cell-spacing>]]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command takes the layout described with prior _p_l_o_t_R_o_w and _p_l_o_t_A_l_l
+  commands and draws the network on the Unit Viewer. Opening or refreshing
+  the Unit Viewer invokes this command.
+
+  If cell-size is given, it determines the size of the unit rectangles in the
+  display and sets the network's unitCellSize field. Otherwise, this field is
+  used as the default. The initial default is 14.
+
+  If cell-spacing is given, it determines the spacing between unit cells and
+  sets the network's unitCellSpacing field. Otherwise, this field is used as
+  the default. The initial default is 2.
+
+  EEXXAAMMPPLLEESS
+
+  To render the current layout using units of size 12 with no blank space
+  between them:
+
+        lens> drawUnits 12 1
+
+  SSEEEE AALLSSOO
+
+  _r_e_s_e_t_P_l_o_t, _p_l_o_t_R_o_w, _p_l_o_t_A_l_l, _a_u_t_o_P_l_o_t, _v_i_e_w_U_n_i_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:08:58 EST 2000
+

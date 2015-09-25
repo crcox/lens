@@ -1,0 +1,15 @@
+# This is essentially the sequencer network introduced on page 358 of 
+# Parallel Distributed Processing, Explorations in the Microstructure of 
+# Cognition, Vol. 1, edited by David Rumelhart and James McClelland.
+
+addNet RHW-sequencer -i 6 SRBPTT 5 30 ELMAN 3 ELMAN SUM_SQUARED
+loadExamples rhw-sequence.trn.ex -s train
+loadExamples rhw-sequence.tst.ex -s test
+
+setObj targetRadius 0.2
+setObj randRange    0.3
+setObj learningRate 0.02
+setObj output.initOutput 0.2
+setObj hidden.initOutput 0.2
+momentum -s
+resetNet

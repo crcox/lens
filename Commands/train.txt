@@ -1,0 +1,68 @@
+
+  ttrraaiinn -- ttrraaiinnss tthhee nneettwwoorrkk uussiinngg aa ssppeecciiffiieedd aallggoorriitthhmm
+
+  UUSSAAGGEE
+
+        train [<num-updates>] [-report <report-interval> |
+            -algorithm <algorithm> | -setOnly]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This will train the network on the current training set. Examples are
+  selected based on the training set's example mode. The number of examples
+  per weight update is determined by the network's batchSize parameter. A
+  batchSize of 0 indicates that the batch size should be the number of
+  examples in the training set.
+
+  If the num-updates is given, the network's numUpdates parameter will be
+  set. This is the maximum number of weight updates, or batches, allowed
+  during training. If not set, the network's previous value will be used.
+
+  The report-interval will set the network's reportInterval parameter, which
+  is the number of weight updates between printing training reports. A report
+  is always generated after the first and last updates.
+
+  Finally, an algorithm name may be specified. The available algorithms are
+  steepest, momentum, dougsMomentum, and deltaBarDelta. deltaBarDelta is only
+  available with the "advanced" version of Lens, alens. If not given, the
+  previous algorithm is reused. dougsMomentum is the initial default.
+
+  If the -setOnly flag is used, no training will occur. However, the
+  network's numUpdates, reportInterval, and default algorithm will be set.
+  This can be used to set the default training behavior in an initialization
+  script prior to actually training.
+
+  Training will stop if the total network error on a batch is less than or
+  equal to the network's criterion parameter. Training will also stop if the
+  unit criterion is achieved. For this to occur, the distance between each
+  output unit's activation and its target must be smaller than a certain
+  value at the end of every event in every example in the batch. The unit
+  criterion for an output unit is given by its group's unitCriterion
+  parameter.
+
+  If the net's output file is open, the output units' activations and targets
+  will be recorded on each tick.
+
+  _r_e_s_e_t_N_e_t will randomize the weights, clear the momentum direction
+  information, and otherwise get the network ready to start training from
+  scratch.
+
+  EEXXAAMMPPLLEESS
+
+  To train with delta-bar-delta for 1000 batches, printing a report every 100
+  updates:
+
+        lens> train 1000 -r 100 -a deltaBarDelta
+
+  To do it again, just do:
+
+        lens> train
+
+  SSEEEE AALLSSOO
+
+  _s_t_e_e_p_e_s_t, _m_o_m_e_n_t_u_m, _d_e_l_t_a_B_a_r_D_e_l_t_a, _u_p_d_a_t_e_W_e_i_g_h_t_s, _t_e_s_t, _r_e_s_e_t_N_e_t,
+  _u_s_e_T_r_a_i_n_i_n_g_S_e_t, _e_x_a_m_p_l_e_S_e_t_M_o_d_e, _o_p_e_n_N_e_t_O_u_t_p_u_t_F_i_l_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Fri Nov 17 12:35:20 EST 2000
+

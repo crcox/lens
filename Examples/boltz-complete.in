@@ -1,0 +1,46 @@
+# These Boltzmann machines are used to perform the pattern completion task on
+# the boltz.ex data, which involves mapping a digit with 60% of the bits
+# missing to a complete digit.  One uses two layers and one uses a single
+# layer, which is both an INPUT and an OUTPUT layer.
+
+addNet Boltz-Complete2 -i 4 -t 10 BOLTZMANN
+addGroup input  20 INPUT OUT_BOLTZ IN_BOLTZ
+addGroup output 20 OUTPUT
+connectGroups {input output} {input output}
+setObj input.numColumns 4
+setObj output.numColumns 4
+
+loadExamples boltz.ex
+setObj boltz.maxTime   3.0
+setObj boltz.graceTime 1.0
+setObj boltz.minTime   0.0
+
+setObj trainGroupCrit 0.001
+setObj testGroupCrit  0.001
+setObj clampStrength  1.0
+setObj initGain       0.1
+setObj finalGain      1.0
+setObj annealTime     1.0
+
+autoPlot
+
+###############################################################################
+
+addNet Boltz-Complete -i 4 -t 10 BOLTZMANN
+addGroup input 20 INPUT OUTPUT
+connectGroups input input
+setObj input.numColumns 4
+
+useTrainingSet boltz
+
+setObj trainGroupCrit 0.001
+setObj testGroupCrit  0.001
+setObj clampStrength  1.0
+setObj initGain       0.1
+setObj finalGain      1.0
+setObj annealTime     1.0
+
+autoPlot
+
+viewUnits
+graphObject

@@ -1,0 +1,31 @@
+
+  rreesseettPPlloott -- rreesseettss tthhee pplloott llaayyoouutt
+
+  UUSSAAGGEE
+
+        resetPlot [<plot-columns>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command clears all unit layout information used in drawing the network
+  in the Unit Viewer. The next call to _p_l_o_t_R_o_w or _p_l_o_t_A_l_l will position the
+  specified units in the upper-most row of the display.
+
+  Specifying plot-columns will set the network's plotCols field, which
+  determines the desired width, in cells, of each row of network layout.
+  Otherwise, the previous value of plotCols is retained. The initial default
+  is 10.
+
+  EEXXAAMMPPLLEESS
+
+  To clear all plot information and prepare to layout a plot 20 cells wide:
+
+        lens> resetPlot 20
+
+  SSEEEE AALLSSOO
+
+  _p_l_o_t_R_o_w, _p_l_o_t_A_l_l, _d_r_a_w_U_n_i_t_s, _a_u_t_o_P_l_o_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:16:51 EST 2000
+

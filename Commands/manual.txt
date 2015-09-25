@@ -1,0 +1,24 @@
+
+  mmaannuuaall -- ooppeennss tthhee LLeennss mmaannuuaall iinn aa wweebb bbrroowwsseerr
+
+  UUSSAAGGEE
+
+        manual
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command will bring up the Lens manual in a web browser. The browser
+  executable is taken from the WEBBROWSER environment variable. If that is
+  not defined, the default is "netscape".
+
+  If Netscape is being used and a window is already open on the current
+  display, the manual will be opened in that window. Otherwise a new browser
+  will be spawned.
+
+  SSEEEE AALLSSOO
+
+  _h_e_l_p
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:34:38 EDT 1998
+

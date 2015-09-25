@@ -1,0 +1,26 @@
+
+  ggeettSSeeeedd -- rreettuurrnnss tthhee llaasstt sseeeedd uusseedd oonn tthhee rraannddoomm nnuummbbeerr ggeenneerraattoorr
+
+  UUSSAAGGEE
+
+        getSeed
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command returns the last value used to seed the random number
+  generator. This is useful if you fail to store the seed value and later
+  decide to duplicate the previous run.
+
+  EEXXAAMMPPLLEESS
+
+  To reseed with the previous seed value:
+
+        lens> seed [getSeed]
+
+  SSEEEE AALLSSOO
+
+  _s_e_e_d
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:42:03 EDT 1998
+

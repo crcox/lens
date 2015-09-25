@@ -1,0 +1,40 @@
+
+  ddeellttaaBBaarrDDeellttaa -- ttrraaiinnss tthhee nneettwwoorrkk uussiinngg ddeellttaa--bbaarr--ddeellttaa
+
+  UUSSAAGGEE
+
+        deltaBarDelta [<num-updates>] [-report <report-interval> | -setOnly]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is a shortcut for training the network using delta-bar-delta. The
+  arguments are similar to those for _t_r_a_i_n. The momentum term is taken from
+  the network's momentum parameter. Other parameters of importance are the
+  network's rateIncrement and rateDecrement.
+
+  In this algorithm, each link stores its own learning rate in its lastValue
+  field. This is multiplied by the default learning rate (which is taken from
+  the first one of the block's, group's, or network's learningRate fields
+  that is not NaN). If the link weight takes consecutive steps in the same
+  direction, the link's rate is incremented by rateIncrement. If the weight
+  step changes direction, the rate is multiplied by rateDecrement to scale it
+  back. Thus, rateDecrement is not, strictly speaking, a decrement.
+
+  If the -setOnly flag is used, no training will occur. However, the
+  network's numUpdates, reportInterval, and default algorithm will be set.
+  This can be used to set the default training behavior in an initialization
+  script prior to actually training.
+
+  EEXXAAMMPPLLEESS
+
+  To train for 1000 epochs, printing reports every 100:
+
+        lens> deltaBarDelta 1000 -r 100
+
+  SSEEEE AALLSSOO
+
+  _t_r_a_i_n, _s_t_e_e_p_e_s_t, _m_o_m_e_n_t_u_m, _d_o_u_g_s_M_o_m_e_n_t_u_m
+
+  ---------------------------------------------------------------------------
+    Last modified: Fri Nov 17 12:37:33 EST 2000
+

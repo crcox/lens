@@ -1,0 +1,106 @@
+
+        _N_A_M_E
+
+              return - Return from a procedure
+
+        _S_Y_N_O_P_S_I_S
+
+              rreettuurrnn?--ccooddeecode? ?--eerrrroorriinnffooinfo? ?--eerrrroorrccooddeecode? ?string?
+
+        _D_E_S_C_R_I_P_T_I_O_N
+        _E_X_C_E_P_T_I_O_N_A_L_ _R_E_T_U_R_N_S
+
+              _oo_kk
+              _ee_rr_rr_oo_rr
+              _rr_ee_tt_uu_rr_nn
+              _bb_rr_ee_aa_kk
+              _cc_oo_nn_tt_ii_nn_uu_ee
+              _v_a_l_u_e
+
+        _S_E_E_ _A_L_S_O
+        _K_E_Y_W_O_R_D_S
+
+  ---------------------------------------------------------------------------
+
+  NNAAMMEE
+
+  return - Return from a procedure
+
+  SSYYNNOOPPSSIISS
+
+  rreettuurrnn?--ccooddeecode? ?--eerrrroorriinnffooinfo? ?--eerrrroorrccooddeecode? ?string?
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Return immediately from the current procedure (or top-level command or
+  _ss_oo_uu_rr_cc_ee command), with string as the return value. If string is not
+  specified then an empty string will be returned as result.
+
+  EEXXCCEEPPTTIIOONNAALL RREETTUURRNNSS
+
+  In the usual case where the --ccooddee option isn't specified the procedure will
+  return normally (its completion code will be TCL_OK). However, the --ccooddee
+  option may be used to generate an exceptional return from the procedure.
+  Code may have any of the following values:
+
+
+
+    ookk
+        Normal return: same as if the option is omitted.
+
+    eerrrroorr
+        Error return: same as if the eerrrroorr command were used to terminate the
+        procedure, except for handling of eerrrroorrIInnffoo and eerrrroorrCCooddee variables
+        (see below).
+
+    rreettuurrnn
+        The current procedure will return with a completion code of
+        TCL_RETURN, so that the procedure that invoked it will return also.
+
+    bbrreeaakk
+        The current procedure will return with a completion code of
+        TCL_BREAK, which will terminate the innermost nested loop in the code
+        that invoked the current procedure.
+
+    ccoonnttiinnuuee
+        The current procedure will return with a completion code of
+        TCL_CONTINUE, which will terminate the current iteration of the
+        innermost nested loop in the code that invoked the current procedure.
+
+    value
+        Value must be an integer; it will be returned as the completion code
+        for the current procedure.
+
+
+  The --ccooddee option is rarely used. It is provided so that procedures that
+  implement new control structures can reflect exceptional conditions back to
+  their callers.
+
+  Two additional options, --eerrrroorriinnffoo and --eerrrroorrccooddee, may be used to provide
+  additional information during error returns. These options are ignored
+  unless code is eerrrroorr.
+
+  The --eerrrroorriinnffoo option specifies an initial stack trace for the eerrrroorrIInnffoo
+  variable; if it is not specified then the stack trace left in eerrrroorrIInnffoo
+  will include the call to the procedure and higher levels on the stack but
+  it will not include any information about the context of the error within
+  the procedure. Typically the info value is supplied from the value left in
+  eerrrroorrIInnffoo after a _cc_aa_tt_cc_hh command trapped an error within the procedure.
+
+  If the --eerrrroorrccooddee option is specified then code provides a value for the
+  eerrrroorrCCooddee variable. If the option is not specified then eerrrroorrCCooddee will
+  default to NNOONNEE.
+
+  SSEEEE AALLSSOO
+
+  bbrreeaakk, ccoonnttiinnuuee, eerrrroorr, _pp_rr_oo_cc
+
+  KKEEYYWWOORRDDSS
+
+  _b_r_e_a_k, _c_o_n_t_i_n_u_e, _e_r_r_o_r, _p_r_o_c_e_d_u_r_e, _r_e_t_u_r_n
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

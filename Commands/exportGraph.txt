@@ -1,0 +1,34 @@
+
+  eexxppoorrttGGrraapphh -- eexxppoorrtt tthhee ddaattaa iinn aa ggrraapphh ttoo aa ffiillee
+
+  UUSSAAGGEE
+
+        exportGraph <graph> <file-name> [-labels | -gnuplot]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command writes the data in a graph to a file for analysis or graphing
+  by an external program. By default, all of the visible traces are exported,
+  with one tab-separated column for each trace. If the -labels option is
+  given, the trace's labels will be written as column headers.
+
+  If the -gnuplot option is used, the data will be exported in a format
+  useable by the gnuplot program. This lists the traces in sequence with two
+  blank spaces between them.
+
+  You can read more about graphs and traces in the _G_r_a_p_h_s_ _s_e_c_t_i_o_n of the main
+  manual.
+
+  EEXXAAMMPPLLEESS
+
+  To export the data in graph 2 to the file foo.dat with trace labels:
+
+        lens> exportGraph 2 foo.dat -l
+
+  SSEEEE AALLSSOO
+
+  _g_r_a_p_h_O_b_j_e_c_t, _g_r_a_p_h, _t_r_a_c_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 10:52:38 EST 2000
+

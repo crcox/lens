@@ -1,0 +1,19 @@
+
+  cclloosseeNNeettOOuuttppuuttFFiillee -- ssttooppss wwrriittiinngg nneettwwoorrkk oouuttppuutt aaccttiivvaattiioonnss
+
+  UUSSAAGGEE
+
+        closeNetOutputFile
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This closes the network's output file, terminating the recording of
+  activations and targets.
+
+  SSEEEE AALLSSOO
+
+  _o_p_e_n_N_e_t_O_u_t_p_u_t_F_i_l_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8 01:41:29 EDT 1998
+

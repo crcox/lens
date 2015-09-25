@@ -1,0 +1,29 @@
+
+  NNAAMMEE
+
+  unset - Delete variables
+
+  SSYYNNOOPPSSIISS
+
+  uunnsseettname?name name ...?
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command removes one or more variables. Each name is a variable name,
+  specified in any of the ways acceptable to the _ss_ee_tt command. If a name
+  refers to an element of an array then that element is removed without
+  affecting the rest of the array. If a name consists of an array name with
+  no parenthesized index, then the entire array is deleted. The uunnsseett command
+  returns an empty string as result. An error occurs if any of the variables
+  doesn't exist, and any variables after the non-existent one are not
+  deleted.
+
+  KKEEYYWWOORRDDSS
+
+  _r_e_m_o_v_e, _v_a_r_i_a_b_l_e
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

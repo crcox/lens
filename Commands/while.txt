@@ -1,0 +1,49 @@
+
+  NNAAMMEE
+
+  while - Execute script repeatedly as long as a condition is met
+
+  SSYYNNOOPPSSIISS
+
+  wwhhiilleetest body
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  The wwhhiillee command evaluates test as an expression (in the same way that
+  _ee_xx_pp_rr evaluates its argument). The value of the expression must a proper
+  boolean value; if it is a true value then body is executed by passing it to
+  the Tcl interpreter. Once body has been executed then test is evaluated
+  again, and the process repeats until eventually test evaluates to a false
+  boolean value. _CC_oo_nn_tt_ii_nn_uu_ee commands may be executed inside body to terminate
+  the current iteration of the loop, and _bb_rr_ee_aa_kk commands may be executed
+  inside body to cause immediate termination of the wwhhiillee command. The wwhhiillee
+  command always returns an empty string.
+
+  Note: test should almost always be enclosed in braces. If not, variable
+  substitutions will be made before the wwhhiillee command starts executing, which
+  means that variable changes made by the loop body will not be considered in
+  the expression. This is likely to result in an infinite loop. If test is
+  enclosed in braces, variable substitutions are delayed until the expression
+  is evaluated (before each loop iteration), so changes in the variables will
+  be visible. For an example, try the following script with and without the
+  braces around $$xx<<1100:
+
+    set x 0
+    while {$x<10} {
+    	puts "x is $x"
+    	incr x
+    }
+
+  SSEEEE AALLSSOO
+
+  _bb_rr_ee_aa_kk, _cc_oo_nn_tt_ii_nn_uu_ee, _ff_oo_rr, _ff_oo_rr_ee_aa_cc_hh
+
+  KKEEYYWWOORRDDSS
+
+  _b_o_o_l_e_a_n_ _v_a_l_u_e, _l_o_o_p, _t_e_s_t, _w_h_i_l_e
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1997 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

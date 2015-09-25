@@ -1,0 +1,48 @@
+# This provides two simple Boltzmann networks for solving the digits task, one
+# with a hidden layer and one without.
+
+addNet Boltz-big -i 4 -t 5 BOLTZMANN
+addGroup input 20 INPUT
+addGroup hidden 10
+addGroup output 3 OUTPUT
+connectGroups input  hidden -bi
+connectGroups hidden hidden
+connectGroups hidden output -bi
+connectGroups output output
+
+loadExamples digits.ex
+setObj digits.maxTime   3.0
+setObj digits.graceTime 1.0
+setObj digits.minTime   0.0
+
+setObj trainGroupCrit  0.001
+setObj testGroupCrit   0.001
+setObj clampStrength   1.0
+setObj initGain        0.1
+setObj finalGain       1.0
+setObj annealTime      1.0
+
+setObj input.numColumns 4
+autoPlot
+
+###############################################################################
+
+addNet Boltz-small -i 4 -t 5 BOLTZMANN
+addGroup input 20 INPUT
+addGroup output 3 OUTPUT
+connectGroups input output output input
+
+useTrainingSet digits
+
+setObj trainGroupCrit  0.001
+setObj testGroupCrit   0.001
+setObj clampStrength   1.0
+setObj initGain        0.1
+setObj finalGain       1.0
+setObj annealTime      1.0
+
+setObj input.numColumns 4
+autoPlot
+
+viewUnits
+graphObject

@@ -1,0 +1,20 @@
+
+  vviieewwOObbjjeecctt -- ooppeennss aann oobbjjeecctt vviieewweerr
+
+  UUSSAAGGEE
+
+        viewObject [<object>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This opens a new object viewer showing the given object. If no object is
+  specified, the current network is shown. Multiple object viewers may be
+  open simultaneously.
+
+  SSEEEE AALLSSOO
+
+  _s_e_t_O_b_j_e_c_t, _g_e_t_O_b_j_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8 02:04:32 EDT 1998
+

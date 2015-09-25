@@ -1,0 +1,94 @@
+
+  pplloottRRooww -- ddeeffiinneess oonnee oorr mmoorree rroowwss ooff tthhee uunniitt ddiissppllaayy pplloott
+
+  UUSSAAGGEE
+
+        plotRow [<numRows>] [next <group> <n> | lnext <group> <n> |
+            cnext <group> <n> | rnext <group> <n> | span <group> <start> <n>
+    |
+            unit <unit> | blank <n> | fill]*
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is the main command for describing the network layout used in the Unit
+  Viewer. It adds one or more rows of unit cells to the bottom of the layout.
+  The actual drawing in the Unit Viewer is not changed until _d_r_a_w_U_n_i_t_s is
+  called or the Unit Viewer is refreshed.
+
+  The first optional argument specifies the number of rows that are to be
+  produced by this command. Essentially, this is the number of times the
+  subsequent commands are to be repeated and a new row produced. A value of *
+  will cause the commands to be repeated as long as they result in at least
+  one unit being displayed. If no value is specified, this defaults to 1.
+
+  With no additional arguments, plotRow will leave the specified number of
+  rows blank. Otherwise, any number of plot commands may be given. Each
+  command describes a layout block. The blocks will be packed together from
+  left to right on the row in the order in which their commands are
+  specified. Some blocks are of fixed width and others are of flexible width.
+  Each command may be abbreviated to its first character.
+
+  next takes a group and an integer. It will plot the next n units of the
+  group that have not already been plotted. Ordinarily, the width of the
+  block created by this command is n. However, if there are no longer n
+  unused units remaining, the width of the block will be the actual number of
+  units plotted.
+
+  lnext is similar to next, but the width of the block created will always be
+  n. If there are no longer n unused units remaining, those units plotted
+  will be left-justified in the block and the rest of the block will be left
+  blank.
+
+  cnext is identical to lnext except that units in partially full blocks will
+  be centered within the block rather than left justified.
+
+  rnext is identical to lnext except that units in partially full blocks will
+  be right rather than left justified.
+
+  span plots a range of n units from the group beginning with the unit whose
+  number is given by start. The width of the block will always be n. If a
+  unit in the span has already been plotted, its position will be blank.
+
+  unit plots a single unit in a block of width 1. The unit will be replotted
+  even if it has already been plotted. In this case, a blank space will be
+  left in its previous location in the layout.
+
+  blank creates an empty block of width n.
+
+  fill creates a block of variable width. Once all of the other blocks in the
+  row have been created, if the total number of columns taken up by those
+  blocks is less than the networks plotCol value, any fill blocks will be
+  expanded roughly equally to take up any remaining space.
+
+  EEXXAAMMPPLLEESS
+
+  To layout groups hidden1 and hidden2 in two columns of width 5 with a
+  column one cell wide separating them and units in the last row left
+  justified within their blocks:
+
+        lens> plotRow * l hidden1 5 b 1 l hidden2 5
+
+  To plot units input:0 and input:9 at the left and right of a row and then
+  plot the first ten input units with spaces where units 0 and 9 would have
+  been:
+
+        lens> plotRow u input:0 f u input:9
+        lens> plotRow s input 0 10
+
+  To layout the entire network in columns of width two rather than in rows:
+
+        lens> plotRow * n input 2 b 1 n hidden 2 b 1 n output 2
+
+  To arrange a group of 86 units in a circle:
+
+        lens> set r 5.5
+        lens> for {set i 1} {$i < 2 * $r} {incr i} {
+        > plotRow f n input [expr 2 * sqrt(2 * $i * $r - $i * $i)] f }
+
+  SSEEEE AALLSSOO
+
+  _r_e_s_e_t_P_l_o_t, _p_l_o_t_A_l_l, _d_r_a_w_U_n_i_t_s, _a_u_t_o_P_l_o_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:16:24 EST 2000
+

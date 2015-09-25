@@ -1,0 +1,42 @@
+#!/usr/bin/tclsh
+
+set op(0) ||
+set op(1) &&
+
+foreach paren {0 1} {
+  foreach AB {0 1} {
+    foreach BC {0 1} {
+      foreach Aneg {0 1} {
+	foreach Bneg {0 1} {
+	  foreach Cneg {0 1} {
+	    foreach A {0 1} {
+	      foreach B {0 1} {
+		foreach C {0 1} {
+		  set name ""
+                  if {!$paren} {append name "("}
+		  if {$Aneg} {append name "!"}
+		  append name $A
+		  append name " $op($AB) "
+                  if {$paren} {append name "("}
+		  if {$Bneg} {append name "!"}
+		  append name $B
+		  if {!$paren} {append name ")"}
+		  append name " $op($BC) "
+		  if {$Cneg} {append name "!"}
+		  append name $C
+		  if {$paren} {append name ")"}
+		  set ans [expr $name]
+		  regsub -all {&&} $name {\&} name
+		  regsub -all {\|\|} $name {|} name
+		  puts "name:{$name = $ans}"
+		  puts "I:$paren  $Aneg $A  $AB  $Bneg $B  $BC  $Cneg $C T: $ans;"
+		}
+	      }
+	    }
+	  }
+	}
+      }
+    }
+  }
+}
+  

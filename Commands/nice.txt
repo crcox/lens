@@ -1,0 +1,38 @@
+
+  nniiccee -- iinnccrreemmeennttss oorr rreettuurrnnss tthhee pprroocceessss''ss pprriioorriittyy
+
+  UUSSAAGGEE
+
+        nice [<priority-increment>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no argument this returns the current process's priority. 0 is the
+  maximum priority and 19 is the minimum. Given a non-negative integer, it
+  will increase the priority value by that amount.
+
+  If you always want your Lens processes to run niced, put a call to it in
+  your _._l_e_n_s_r_c file. However, this is no longer really necessary since Lens
+  will automatically renice itself to 10 if it is actively chewing cycles
+  (not idle) for 10 minutes. This lets short interactive process be very
+  responsive while long jobs will be nice.
+
+  EEXXAAMMPPLLEESS
+
+  To be nice:
+
+        lens> nice 10
+        10
+
+  To be really swell:
+
+        lens> nice 20
+        19
+
+  SSEEEE AALLSSOO
+
+  _p_i_d
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 18:26:27 EST 1999
+

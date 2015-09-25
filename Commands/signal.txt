@@ -1,0 +1,42 @@
+
+  ssiiggnnaall -- rraaiisseess aa ssiiggnnaall iinn tthhee ccuurrrreenntt pprroocceessss
+
+  UUSSAAGGEE
+
+        signal [<code>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This raises a signal in the current process. With no arguments it prints a
+  list of useful signals. Otherwise, the first argument can be the name of a
+  signal or the numerical value, which range from 1-31 on most machines.
+
+  Recognized signal names are:
+
+
+    INT
+        interrupts ongoing work or does a soft quit, the same as Ctrl-C.
+
+    USR1
+        runs the sigUSR1Proc
+
+    USR2
+        runs the sigUSR1Proc
+
+    QUIT, KILL, ABRT, ALRM, TERM
+        at the moment these all kill the process, but some could be used for
+        other purposes in the future.
+
+
+  EEXXAAMMPPLLEESS
+
+  To send a soft interrupt signal:
+
+        lens> signal INT
+  or
+
+        lens> signal 2
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Oct 26 18:20:42 EST 1998
+

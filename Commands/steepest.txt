@@ -1,0 +1,33 @@
+
+  sstteeeeppeesstt -- ttrraaiinnss tthhee nneettwwoorrkk uussiinngg sstteeeeppeesstt ddeesscceenntt
+
+  UUSSAAGGEE
+
+        steepest [<num-updates>] [-report <report-interval> | -setOnly]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is a shortcut for training the network using steepest descent. The
+  arguments are similar to those for _t_r_a_i_n.
+
+  Steepest descent simply does pure steepest gradient descent in weight
+  space.
+
+  If the -setOnly flag is used, no training will occur. However, the
+  network's numUpdates, reportInterval, and default algorithm will be set.
+  This can be used to set the default training behavior in an initialization
+  script prior to actually training.
+
+  EEXXAAMMPPLLEESS
+
+  To train for 1000 epochs, printing reports every 100:
+
+        lens> steepest 1000 -r 100
+
+  SSEEEE AALLSSOO
+
+  _t_r_a_i_n, _m_o_m_e_n_t_u_m, _d_o_u_g_s_M_o_m_e_n_t_u_m, _d_e_l_t_a_B_a_r_D_e_l_t_a
+
+  ---------------------------------------------------------------------------
+    Last modified: Fri Nov 17 12:36:12 EST 2000
+

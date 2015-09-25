@@ -1,0 +1,31 @@
+
+  sseennddOObbjjeecctt -- aa sshhoorrttccuutt ffoorr ddooiinngg aa llooccaall aanndd rreemmoottee sseettOObbjjeecctt
+
+  UUSSAAGGEE
+
+        sendObject <object> <value>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is a shortcut useful for setting an object field to the same value on
+  the server and on all clients. It is equivalent to "setObject <object>
+  <value>; sendEval {setObject <object> <value>}".
+
+  If invoked on the server, the object will be set on the server and on all
+  clients. If invoked on a client, the value will be set on that client and
+  on the server.
+
+  EEXXAAMMPPLLEESS
+
+  If called on the server, this will set the batchSize to 100 on all clients
+  as well as the server:
+
+        lens> sendObject batchSize 100
+
+  SSEEEE AALLSSOO
+
+  _s_e_t_O_b_j_e_c_t, _s_e_n_d_E_v_a_l
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:24:48 EDT 1998
+

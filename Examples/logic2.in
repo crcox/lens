@@ -1,0 +1,15 @@
+addNet logic2 -i 20 SRBPTT 7 20 ELMAN 1 STANDARD_CRIT
+loadExamples logic2.trn.ex -s train -e PERMUTED
+loadExamples logic2.tst.ex -s test
+setObj testGroupCrit 0.5
+setObj batchSize     50
+setObj numUpdates    500
+
+proc testit {} {
+  useTestingSet train
+  puts [test]
+  useTestingSet test
+  puts [test]
+}
+proc go {} {train; testit}
+

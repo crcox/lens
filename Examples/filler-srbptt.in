@@ -1,0 +1,27 @@
+# This is a simple recurrent backprop through time version of the filler
+# task.
+
+set CHARS   4
+set SLOTS   5
+set HIDDEN  20
+set OUTPUTS [expr $CHARS * $SLOTS]
+
+addNet filler-srbptt -i 5 SRBPTT $CHARS $HIDDEN ELMAN RESET_ON_EXAMPLE $OUTPUTS
+
+if [catch {path -s train}] {
+  loadExamples filler.ex -s train -e PERMUTED
+  moveExamples train test 0.05
+}
+useTrainingSet train
+useTestingSet  test
+
+setObj learningRate    0.05
+setObj momentum        0.9
+setObj batchSize       10
+setObj numUpdates      5000
+setObj reportInterval  100
+resetNet
+
+setObj output.numColumns $CHARS
+autoPlot
+drawUnits

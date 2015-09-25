@@ -1,0 +1,48 @@
+
+  cchhaannggeeGGrroouuppTTyyppee -- aaddddss,, rreemmoovveess,, oorr ttoogggglleess ggrroouupp ttyyppeess
+
+  UUSSAAGGEE
+
+        changeGroupType <group-list> [<group-type> | +<group-type> |
+            -<group-type>]*
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command is used to selectively activate and deactivate types for a
+  group or a list of groups.
+
+  If a type is preceded by a "+", the type will be appended to the list of
+  types of the same class. For example, a newly added output function will
+  follow any current output functions.
+
+  If a type is preceded by a "-", it will simply be deactivated. A type
+  preceded by nothing will be toggled: if already present, it will be
+  removed; if not present, it will be added.
+
+  This command returns a list of the new group types of the last group
+  specified.
+
+  EEXXAAMMPPLLEESS
+
+  To add noise to the output of the groups "out1" and "out2", remove their
+  unit cost functions and toggle their STANDARD_CRIT criterion functions:
+
+        lens> changeGroupType "out1 out2" +OUT_NOISE -COSINE_COST
+    STANDARD_CRIT
+        Input Type
+          DISTANCE
+        Output Type
+          LINEAR
+          OUT_NOISE
+        Group Criterion Type
+          STANDARD_CRIT
+        Bias Type
+          BIASED
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p, _g_r_o_u_p_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Mar 28.33:28:37 EST 2000
+

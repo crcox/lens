@@ -1,0 +1,56 @@
+
+  ttrraaccee -- ccrreeaatteess,, ddeelleetteess,, oorr mmaanniippuullaatteess ttrraacceess wwiitthhiinn aa ggrraapphh
+
+  UUSSAAGGEE
+
+        trace create <graph> [<object>] | list <graph> | [delete | store |
+            clear] <graph> <trace-list>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  A trace is essentially a single series, or chain of points, within a graph.
+  This command performs several different operations on the traces within a
+  single graph. They are as follows:
+
+  "trace create <graph> [<object>]" creates a new trace and returns its name,
+  which is an integer index into the graph's trace() array. graph is the
+  integer name of the graph that was returned when the graph was created and
+  is displayed in the graph's title bar. If no object is specified, the new
+  trace will not have one. If an object is specified, it can be either the
+  path to a real-valued object to be graphed, such as output(3).unit
+  (2).output, or it can be a Tcl function that returns a real value.
+
+  "trace list <graph>" returns a list of the numbers of all of the traces
+  within the graph.
+
+  "trace delete <graph> <trace-list>" destroys all of the traces within the
+  graph whose numbers are listed. * refers to all of the traces in the graph.
+
+  "trace store <graph> <trace-list>" stores the given traces. When a trace is
+  stored, an inactive, transient copy of it is created (in a new color) and
+  the original trace is cleared.
+
+  "trace clear <graph> <trace-list>" clears the given traces. When a trace is
+  cleared, all of the points are removed from the trace. But, otherwise, the
+  trace remains the same.
+
+  You can read more about graphs and traces in the _G_r_a_p_h_s_ _s_e_c_t_i_o_n of the main
+  manual.
+
+  EEXXAAMMPPLLEESS
+
+  To create a graph, add a trace to it, and change the trace's color to red,
+  do:
+
+        lens> set g [graph create]
+        lens> set t [trace create $g error]
+        lens> setObject graph($g).trace($t).color red
+        lens> graph refresh $g
+
+  SSEEEE AALLSSOO
+
+  _g_r_a_p_h_O_b_j_e_c_t, _g_r_a_p_h, _e_x_p_o_r_t_G_r_a_p_h
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 10:52:38 EST 2000
+

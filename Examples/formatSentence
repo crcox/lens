@@ -1,0 +1,26 @@
+#!/usr/bin/awk -f
+
+# This script is used to format sentences for a predictor network.
+# It assumes you are using a 1-bit per word encoding.
+# The first command-line argument is a vocab list which should contain
+# the words in your language, one per line.
+# The second argument is the name of a file containing sentences, one per line.
+# If there is no second argument, they will be read from stdin.
+# Note that the first input to the network for each sentence will be a special
+# START symbol and the first output is the prediction for the first word.
+
+BEGIN {
+  if (ARGC < 1 || ARGC > 2) {
+    print "usage: formatSentence vocab-file [sentence-file]" | "cat 1>&2"
+    exit(1);
+  }
+  Word[START] = 0;
+  while (getline < ARGV[1]) Word[$1] = ++NumWords;
+  ARGV[1] = ARGV[2]; ARGV[2] = "";
+}
+{
+  print "name:{" $0 "} " NF;
+  print "i:" Word[START];
+  for (i = 1; i < NF; i++) print "b:" Word[$i];
+  print "t:" Word[$NF]";"
+}

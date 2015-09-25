@@ -1,0 +1,26 @@
+
+  rraannddIInntt -- rreettuurrnnss aa rraannddoomm iinntteeggeerr iinn aa ggiivveenn rraannggee
+
+  UUSSAAGGEE
+
+        randInt [[<min>] <max>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This returns a random integer. With no arguments, the number will be either
+  0 or 1 with equal chance. With one argument, the number will be in the
+  range [0, max). With two arguments, the number will be in the range [min,
+  max).
+
+  This uses the same generator that Lens uses for its internal random
+  integers. Therefore, calling this will affect the next value used when
+  selecting examples probabilistically or in other discrete randomized
+  procedures.
+
+  SSEEEE AALLSSOO
+
+  _r_a_n_d, _s_e_e_d
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:41:38 EDT 1998
+

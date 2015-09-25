@@ -1,0 +1,90 @@
+
+  ccoonnnneeccttGGrroouuppss -- ccrreeaatteess lliinnkkss wwiitthh aa ssppeecciiffiieedd ppaatttteerrnn bbeettwweeeenn ggrroouuppss
+
+  UUSSAAGGEE
+
+        connectGroups <group-list1> (<group-list>)* [-projection <proj-type>
+    |
+            -strength <strength> | -mean <mean> | -range <range> |
+            -type <link-type> | -bidirectional]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command creates sets of links between groups. Each group in group-
+  list1 will project to each group in the second group list. Those in the
+  second list will project to those in the third and so on. By default this
+  creates a full projection, but several patterns of sparse projections may
+  also be specified.
+
+  Possible projection types (or connectivity patterns) are FULL, UNLESIONED,
+  RANDOM, FIXED_IN, FIXED_OUT, FAIR, FAN, and ONE_TO_ONE. These may be
+  abbreviated by any unique prefix. For sparse patterns, the strength is a
+  floating point number in the range [0,1] specifying the density of the
+  connectivity, as described below. It must be specified for all of the
+  sparse patterns, but not for FULL or ONE_TO_ONE.
+
+  In describing the projection types, S is the specified connectivity
+  strength, I is the number of units in the sending group, O is the number of
+  units in the receiving group and f() is the floor function.
+
+  FULL creates the dense projection from each sending unit to all receiving
+  units. This is the default.
+
+  UNLESIONED is like FULL but only creates connections between healthy,
+  unlesioned units in the two groups. This can be used to create a partial
+  projection.
+
+  RANDOM simply connects each pair of pre- and post-synaptic cells with
+  probability S.
+
+  FIXED_IN ensures that each postsynaptic unit receives exactly f(S*I)
+  inputs. The number of outputs from a given presynaptic unit may vary.
+
+  FIXED_OUT ensures that each presynaptic unit has exactly f(S*O) outputs.
+
+  FAIR ensures that each sending unit will have exactly f(S*O) outputs and
+  each receiving unit will have either floor or ceiling of (I*f(S*O) / O)
+  inputs.
+
+  FAN causes each input unit to project to the f(S*O) outputs that are
+  closest to it. The closeness measure wraps around the ends of the arrays.
+
+  ONE_TO_ONE connects each unit in the sending group to the corresponding
+  unit in the receiving group. The two groups need not have the same number
+  of units; one link will be formed for each unit in the smaller of the two
+  groups. For one-to-one connections, the mean defaults to 1.0 and the range
+  defaults to 0.0. The weights are frozen by default.
+
+  If range or both mean and range are given, they will determine the
+  parameters used for randomizing weights in this projection. If left
+  unspecified, the network defaults will be used for these links.
+
+  By default the links in the new projection will have a type with the same
+  name as the sending group. This can be overridden by specifying a different
+  link type.
+
+  The -bidirectional flag will cause a projection to be formed in the reverse
+  direction whenever one is formed in the forward direction.
+
+  EEXXAAMMPPLLEESS
+
+  To create a full projection (of type "input") from group "input" to group
+  "hidden" which uses range -1.0+/-0.5 when randomizing weights in this
+  projection:
+
+        lens> connectGroups input hidden -mean -1.0 -range 0.5
+
+  To create bidirectional FAIR projections between groups "in" and "hid1",
+  "in" and "hid2", "hid1" and "out", and "hid2" and "out" with approximately
+  50% of the possible connections and with each link having type "t1":
+
+        lens> connectGroups in {hid1 hid2} out -bi -p FAIR -s 0.5 -type t1
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p, _c_o_n_n_e_c_t_G_r_o_u_p_T_o_U_n_i_t_s, _c_o_n_n_e_c_t_U_n_i_t_s, _e_l_m_a_n_C_o_n_n_e_c_t, _a_d_d_L_i_n_k_T_y_p_e,
+  _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_s, _s_e_t_L_i_n_k_V_a_l_u_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:12:30 EST 2000
+

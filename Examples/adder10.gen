@@ -1,0 +1,18 @@
+#!/usr/bin/tclsh
+
+for {set e 0} {$e < 100} {incr e} {
+  set a [expr int(rand() * 1000000)]
+  set b [expr int(rand() * 1000000)]
+  set c [expr $a + $b]
+  puts "name: {$a + $b = $c}\n7"
+  for {set i 0} {$i <= 6} {incr i} {
+    set va [expr $a % 10]
+    set a  [expr $a / 10]
+    set vb [expr $b % 10]
+    set b  [expr $b / 10]
+    set vc [expr $c % 10]
+    set c  [expr $c / 10]
+    puts "i: $va [expr $vb + 10] t: $vc"
+  }
+  puts ";"
+}

@@ -1,0 +1,65 @@
+
+  ggrraapphh -- ccrreeaatteess,, ddeelleetteess,, oorr mmaanniippuullaatteess ggrraapphhss
+
+  UUSSAAGGEE
+
+        graph [create | list] | [delete | refresh | update | store | clear |
+            hide | show] <graph-list>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command performs several different operations on graphs. They are as
+  follows:
+
+  "graph create" creates a new graph and returns its name, which is an
+  integer index into the root.graph() array. The new graph has no trace
+
+  "graph list" returns a list of the numbers of all of the graphs.
+
+  "graph delete <graph-list>" destroys all of the graphs whose numbers are
+  listed. * refers to all graphs.
+
+  "graph refresh <graph-list>" redraws one or more graphs. This may be
+  necessary if you have directly changed a parameter for the graph using
+  _s_e_t_O_b_j_e_c_t or the Object Viewer.
+
+  "graph update <graph-list>" causes the active traces in the graph(s) to
+  update themselves. This adds an additional point to the trace using the
+  current value of the object or command that the trace is tracking. If the
+  graph's updateEvery field is greater than 1, then an update may not
+  actually occur every time this is called. If a graph has been configured to
+  update NEVER, it won't be updated by this command.
+
+  "graph store <graph-list>" causes the graphs in the list to store
+  themselves. This creates an inactive and transient copy of the active
+  traces, and then clears the active traces.
+
+  "graph clear <graph-list>" causes the graphs in the list to clear
+  themselves. This deletes the transient traces and clears the active traces.
+
+  "graph hide <graph-list>" hides the graphs in the list. A graph that is
+  hidden continue to update itself, but there is no graphical window so the
+  graph updates are much faster.
+
+  "graph show <graph-list>" shows all of the hidden graphs, creating windows
+  for them. In BATCH mode, this does nothing.
+
+  You can read more about graphs in the _G_r_a_p_h_s_ _s_e_c_t_i_o_n of the main manual.
+
+  EEXXAAMMPPLLEESS
+
+  To create a graph, add a trace to it, change its columns to 500 and redraw
+  it, do:
+
+        lens> set g [graph create]
+        lens> trace create $g error
+        lens> setObject graph($g).cols 500
+        lens> graph refresh $g
+
+  SSEEEE AALLSSOO
+
+  _g_r_a_p_h_O_b_j_e_c_t, _t_r_a_c_e, _e_x_p_o_r_t_G_r_a_p_h
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 10:52:38 EST 2000
+

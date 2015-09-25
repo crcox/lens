@@ -1,0 +1,22 @@
+
+  pplloottAAllll -- pplloottss aallll tthhee uunniittss iinn aa ggrroouupp iinn aass mmaannyy rroowwss aass nneeeeddeedd
+
+  UUSSAAGGEE
+
+        plotAll <group>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is a shortcut for laying out an entire group on the plot display. Each
+  row will be filled as long as enough unplotted units remain in the group.
+  Units in the final row will be centered if the row is not full. The width
+  of each row will be determined by the group's numColumns if it is non-zero.
+  Otherwise, the width will be determined by the network's plotCols.
+
+  SSEEEE AALLSSOO
+
+  _p_l_o_t_R_o_w, _r_e_s_e_t_P_l_o_t, _d_r_a_w_U_n_i_t_s, _a_u_t_o_P_l_o_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:15:42 EST 2000
+

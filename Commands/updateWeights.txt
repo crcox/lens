@@ -1,0 +1,39 @@
+
+  uuppddaatteeWWeeiigghhttss -- uuppddaatteess tthhee wweeiigghhttss uussiinngg tthhee ccuurrrreenntt lliinnkk ddeerriivvaattiivveess
+
+  UUSSAAGGEE
+
+        updateWeights [-algorithm <algorithm> | -noreset | -report]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This performs a single weight update using the currently accumulated link
+  derivatives. This is useful in conjunction with _d_o_E_x_a_m_p_l_e for designing
+  custom training patterns other than the standard fixed batch size.
+
+  If an algorithm, such as steepest, momentum, or dougsMomentum, is
+  specified, it will be used to update the weights, but the network's default
+  algorithm will not change. If no algorithm is specified, the network
+  default will be used.
+
+  By default the link and unit derivatives will be reset after the update,
+  but this can be prevented with the -noreset option.
+
+  -report will cause a report to be printed.
+
+  EEXXAAMMPPLLEESS
+
+  Here's a way to train using random batch sizes:
+
+        repeat 1000 {
+          repeat [randInt 100] {doExample -train};
+          updateWeights
+        }
+
+  SSEEEE AALLSSOO
+
+  _t_r_a_i_n, _d_o_E_x_a_m_p_l_e, _s_t_e_e_p_e_s_t, _m_o_m_e_n_t_u_m, _d_e_l_t_a_B_a_r_D_e_l_t_a
+
+  ---------------------------------------------------------------------------
+    Last modified: Fri Nov 17 12:39:05 EST 2000
+

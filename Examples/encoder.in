@@ -1,0 +1,20 @@
+# This is an 8-?-8 auto-encoder.  You can change the value of numHidden to set
+# the size of the hidden layer.  At the moment it is 2 which is rather
+# difficult.
+# Try changing the type of the hidden layer to TERNARY and see if you get
+# better results.
+
+loadExamples encoder.sparse.ex -s encoder
+proc buildEncoder hidden {
+  addNet "8-${hidden}-8 Encoder" 8 $hidden 8
+  useTrainingSet encoder
+}
+buildEncoder 3
+
+setObj learningRate    0.1
+setObj weightDecay     0.0001
+setObj zeroErrorRadius 0.01
+
+autoPlot 8
+viewUnits -s 18
+graph

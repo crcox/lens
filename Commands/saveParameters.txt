@@ -1,0 +1,35 @@
+
+  ssaavveePPaarraammeetteerrss -- wwrriitteess nneettwwoorrkk oorr ggrroouupp ppaarraammeetteerrss ttoo aa ssccrriipptt ffiillee
+
+  UUSSAAGGEE
+
+        saveParameters <file-name> [-append] [<object> ...]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command is used to save network parameter values to a file. Sourcing
+  the parameter file will restore the values. Only writable fields are
+  stored. If the -append flag is given, parameters will be appended to the
+  file.
+
+  The object list is a list of container objects from which writable fields
+  are to be stored. It is not a list of parameter names. If no objects are
+  specified, all parameters in the network and each group are saved.
+
+  EEXXAAMMPPLLEESS
+
+  To store the parameters from groups 2 and 3 to the file foo.tcl:
+
+        lens> saveParameters foo.tcl group(2) group(3)
+
+  To append just the network-level parameters to your network building file:
+
+        lens> saveParam net.in -a {}
+
+  SSEEEE AALLSSOO
+
+  _s_o_u_r_c_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:59:51 EDT 1998
+

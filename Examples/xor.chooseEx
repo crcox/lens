@@ -1,0 +1,64 @@
+#!/usr/bin/tclsh
+# This code is used to scale the example frequencies by the error of the
+# network on those examples.  When using pseudo-example-frequencies, this
+# causes the error of an example to be scaled by how badly the network does
+# on that example.  As a result, the network gets more training on the
+# examples that are difficult for it.
+
+set foo [open "foo" "w"]
+
+# This reads an example from the network activation output file and determines
+# the difference between target and output.
+proc readOutput i {
+  global error
+# <I total-updates> <I example-number>
+  gets stdin line
+  set updates [lindex $line 0]
+# <I ticks-on-example> <I num-groups>
+  gets stdin
+# <I tick-number> <I event-number>
+  gets stdin
+# <I num-units> <B num-units>
+  gets stdin
+# <R output-value> <R target-value>
+  gets stdin vals
+  set output [lindex $vals 0]
+  set target [lindex $vals 1]
+  if {$updates == 0} {
+    set error($i) 1
+  } else {
+    set error($i) [expr abs($target - $output) + 1.0]
+  }
+  global foo
+  puts $foo "$updates $i $output $target $error($i)"
+}
+
+# This writes an XOR example
+proc writeExample i {
+  global error
+  set a [expr ($i & 2) / 2]
+  set b [expr $i & 1]
+  set out [expr $a ^ $b]
+  puts "name:{$a $b} freq:$error($i) I:$a $b T:$out;"
+  flush stdout
+}
+
+# Set the initial errors to 1.
+for {set i 0} {$i < 4} {incr i} {set error($i) 1}
+set sum 4
+
+while (1) {
+# Write the four examples
+  for {set i 0} {$i < 4} {incr i} {
+#   Scale the errors
+    set error($i) [expr double($error($i) * 4) / $sum]
+    writeExample $i
+  }
+# Reset the error sum
+  set sum 0
+# Now read the results and determine the errors
+  for {set i 0} {$i < 4} {incr i} {
+    readOutput $i
+    set sum [expr $sum + $error($i)]
+  }
+}

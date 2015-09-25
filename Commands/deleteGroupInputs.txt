@@ -1,0 +1,27 @@
+
+  ddeelleetteeGGrroouuppIInnppuuttss -- ddeelleetteess iinnppuuttss ttoo aa ggrroouupp ((iinncclluuddiinngg EEllmmaann iinnppuuttss))
+
+  UUSSAAGGEE
+
+        deleteGroupInputs <group-list> [-type <link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This removes all group inputs of the specified type. If no type is given,
+  all inputs to the groups are removed, including the Elman sources.
+
+  EEXXAAMMPPLLEESS
+
+  To remove all inputs to the groups "output" and "input":
+
+        lens> deleteGroupInputs {output input}
+
+  SSEEEE AALLSSOO
+
+  _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_s, _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_U_n_i_t, _d_i_s_c_o_n_n_e_c_t_U_n_i_t_s, _d_e_l_e_t_e_L_i_n_k_s,
+  _d_e_l_e_t_e_G_r_o_u_p_O_u_t_p_u_t_s, _d_e_l_e_t_e_U_n_i_t_I_n_p_u_t_s, _d_e_l_e_t_e_U_n_i_t_O_u_t_p_u_t_s, _c_o_n_n_e_c_t_U_n_i_t_s,
+  _a_d_d_L_i_n_k_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Sun Feb 28 21:09:39 EST 1999
+

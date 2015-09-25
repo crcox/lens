@@ -1,0 +1,53 @@
+
+  NNAAMMEE
+
+  close - Close an open channel.
+
+  SSYYNNOOPPSSIISS
+
+  cclloosseechannelId
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Closes the channel given by channelId. ChannelId must be a channel
+  identifier such as the return value from a previous _oo_pp_ee_nn or _ss_oo_cc_kk_ee_tt command.
+  All buffered output is flushed to the channel's output device, any buffered
+  input is discarded, the underlying file or device is closed, and channelId
+  becomes unavailable for use.
+
+  If the channel is blocking, the command does not return until all output is
+  flushed. If the channel is nonblocking and there is unflushed output, the
+  channel remains open and the command returns immediately; output will be
+  flushed in the background and the channel will be closed when all the
+  flushing is complete.
+
+  If channelId is a blocking channel for a command pipeline then cclloossee waits
+  for the child processes to complete.
+
+  If the channel is shared between interpreters, then cclloossee makes channelId
+  unavailable in the invoking interpreter but has no other effect until all
+  of the sharing interpreters have closed the channel. When the last
+  interpreter in which the channel is registered invokes cclloossee, the cleanup
+  actions described above occur. See the _ii_nn_tt_ee_rr_pp command for a description of
+  channel sharing.
+
+  Channels are automatically closed when an interpreter is destroyed and when
+  the process exits. Channels are switched to blocking mode, to ensure that
+  all output is correctly flushed before the process exits.
+
+  The command returns an empty string, and may generate an error if an error
+  occurs while flushing output.
+
+  SSEEEE AALLSSOO
+
+  _ff_ii_ll_ee, _oo_pp_ee_nn, _ss_oo_cc_kk_ee_tt, _ee_oo_ff
+
+  KKEEYYWWOORRDDSS
+
+  _b_l_o_c_k_i_n_g, _c_h_a_n_n_e_l, _c_l_o_s_e, _n_o_n_b_l_o_c_k_i_n_g
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

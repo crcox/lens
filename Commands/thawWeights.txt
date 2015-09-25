@@ -1,0 +1,33 @@
+
+  tthhaawwWWeeiigghhttss -- ssttooppss wweeiigghhtt uuppddaatteess oonn ssppeecciiffiieedd lliinnkkss
+
+  UUSSAAGGEE
+
+        thawWeights [-group <group-list> | -unit <unit-list> | -type <link-
+    type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This resumes weight changes on frozen links of the specified type during
+  training. If no type is specified, all link types are affected.
+
+  If a group list or unit list is given, only links into those groups or
+  units are affected. Otherwise, all links of the appropriate type are
+  affected.
+
+  Selective freezing or thawing can be used to load weights into specific
+  parts of the network using the _l_o_a_d_W_e_i_g_h_t_s command.
+
+  EEXXAAMMPPLLEESS
+
+  To stop updates to bias links to the output layer:
+
+        lens> thawWeights -g output -t bias
+
+  SSEEEE AALLSSOO
+
+  _t_h_a_w_W_e_i_g_h_t_s, _l_o_a_d_W_e_i_g_h_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Nov 14 15:27:24 EST 2000
+

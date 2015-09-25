@@ -1,0 +1,77 @@
+
+  NNAAMMEE
+
+  foreach - Iterate over all elements in one or more lists
+
+  SSYYNNOOPPSSIISS
+
+  ffoorreeaacchhvarname list body
+  ffoorreeaacchhvarlist1 list1 ?varlist2 list2 ...? body
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  The ffoorreeaacchh command implements a loop where the loop variable(s) take on
+  values from one or more lists. In the simplest case there is one loop
+  variable, varname, and one list, list, that is a list of values to assign
+  to varname. The body argument is a Tcl script. For each element of list (in
+  order from first to last), ffoorreeaacchh assigns the contents of the element to
+  varname as if the _ll_ii_nn_dd_ee_xx command had been used to extract the element, then
+  calls the Tcl interpreter to execute body.
+
+  In the general case there can be more than one value list (e.g., list1 and
+  list2), and each value list can be associated with a list of loop variables
+  (e.g., varlist1 and varlist2). During each iteration of the loop the
+  variables of each varlist are assigned consecutive values from the
+  corresponding list. Values in each list are used in order from first to
+  last, and each value is used exactly once. The total number of loop
+  iterations is large enough to use up all the values from all the value
+  lists. If a value list does not contain enough elements for each of its
+  loop variables in each iteration, empty values are used for the missing
+  elements.
+
+  The _bb_rr_ee_aa_kk and _cc_oo_nn_tt_ii_nn_uu_ee statements may be invoked inside body, with the same
+  effect as in the _ff_oo_rr command. FFoorreeaacchh returns an empty string.
+
+  EEXXAAMMPPLLEESS
+
+  The following loop uses i and j as loop variables to iterate over pairs of
+  elements of a single list.
+
+    set x {}
+    foreach {i j} {a b c d e f} {
+        lappend x $j $i
+    }
+    # The value of x is "b a d c f e"
+    # There are 3 iterations of the loop.
+
+  The next loop uses i and j to iterate over two lists in parallel.
+
+    set x {}
+    foreach i {a b c} j {d e f g} {
+        lappend x $i $j
+    }
+    # The value of x is "a d b e c f {} g"
+    # There are 4 iterations of the loop.
+
+  The two forms are combined in the following example.
+
+    set x {}
+    foreach i {a b c} {j k} {d e f g} {
+        lappend x $i $j $k
+    }
+    # The value of x is "a d e b f g c {} {}"
+    # There are 3 iterations of the loop.
+
+  SSEEEE AALLSSOO
+
+  _ff_oo_rr, _ww_hh_ii_ll_ee, _bb_rr_ee_aa_kk, _cc_oo_nn_tt_ii_nn_uu_ee
+
+  KKEEYYWWOORRDDSS
+
+  _f_o_r_e_a_c_h, _i_t_e_r_a_t_i_o_n, _l_i_s_t, _l_o_o_p_i_n_g
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

@@ -1,0 +1,20 @@
+# This is the "T-C" problem introduced on page 348 of 
+# Parallel Distributed Processing, Explorations in the Microstructure of 
+# Cognition, Vol. 1, edited by David Rumelhart and James McClelland.
+#
+# The network must learn to recognize a T or a C at whatever orientation or
+# location they appear in the input.
+# You may be able to learn the training examples, but will it generalize to
+# the held-out testing examples?
+
+addNet T-C 81 60 1
+setObj input.numColumns  9
+setObj numUpdates 1000
+setObj batchSize  50
+
+if [catch {path -s train}] {
+  loadExamples t-c.ex -s train -e PERMUTED
+  moveExamples train test 0.026
+}
+autoPlot
+viewUnits

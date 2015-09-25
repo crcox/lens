@@ -1,0 +1,35 @@
+
+  aalliiaass -- ccrreeaatteess oorr pprriinnttss aa ccoommmmaanndd aalliiaass
+
+  UUSSAAGGEE
+
+        alias [<command> [<value>]]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no arguments, this will display all aliases and their values. Given
+  just a command, it will report the value of the command if it is currently
+  aliased. If value is a null string, the command will be _u_n_a_l_i_a_s_e_d.
+  Otherwise, this will make command an alias for value.
+
+  Aliases cannot override valid commands. If an alias and a command have the
+  same name, the command will have preference. It may be possible to rename a
+  valid command to a new name and then create an alias in its place if that
+  is desired.
+
+  EEXXAAMMPPLLEESS
+
+  To make "hello" print "hi there":
+
+        lens> alias hello {puts "hi there"}
+        puts "hi there"
+        lens> hello
+        hi there
+
+  SSEEEE AALLSSOO
+
+  _u_n_a_l_i_a_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 15 15:12:52 EDT 1998
+

@@ -1,0 +1,40 @@
+
+  iinnddeexx -- ccrreeaatteess aa ..ttccllIInnddeexx ffiillee rreeccoorrddiinngg tthhee llooccaattiioonnss ooff ccoommmmaannddss
+
+  UUSSAAGGEE
+
+        index [<directory> [<glob-filter>]*]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is a slightly modified version of the auto_mkindex command. It reads
+  through all files that match at least one filter in the specified directory
+  and creates a .tclIndex file which lists the procedures defined in each
+  source file. The default directory is the current one and the default
+  filters are "*.tcl" and "*.in".
+
+  Subsequently, if an undefined procedure is invoked, Lens will look for it
+  in all index files in the auto_path. If found, the correct file will be
+  _s_o_u_r_c_e_d and the command executed. This is called autoloading. The auto_path
+  is a normal Tcl list and can be customized in the _._l_e_n_s_r_c file.
+
+  You don't need to call this function every time you start Lens. Only do it
+  when you add a new procedure to one of your ".tcl" files.
+
+  EEXXAAMMPPLLEESS
+
+  To make an index of all "*.tcl" and "*.in" files in the current directory:
+
+        lens> index
+
+  To make an index of all "*.in" and "net*" files in the directory "Scripts":
+
+        lens> index Scripts *.in net*
+
+  SSEEEE AALLSSOO
+
+  _s_o_u_r_c_e, _a_l_i_a_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Feb 22 16:02:26 EST 2000
+

@@ -1,0 +1,19 @@
+
+  ccdd -- cchhaannggeess tthhee ccuurrrreenntt ddiirreeccttoorryy
+
+  UUSSAAGGEE
+
+        cd [<directory>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This changes the current working directory to directory or to the HOME
+  directory is there is no argument.
+
+  SSEEEE AALLSSOO
+
+  _p_w_d, _l_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:38:29 EDT 1998
+

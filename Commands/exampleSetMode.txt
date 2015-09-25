@@ -1,0 +1,61 @@
+
+  eexxaammpplleeSSeettMMooddee -- sseettss oorr rreettuurrnnss tthhee eexxaammppllee sseett''ss eexxaammppllee sseelleeccttiioonn mmooddee
+
+  UUSSAAGGEE
+
+        exampleSetMode <example-set-list> [<mode>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  The example set mode determines how it chooses the next example during
+  training. There are six modes: ORDERED, PERMUTED, RANDOMIZED,
+  PROBABILISTIC, PIPE, and CUSTOM. When no mode is specified, the names of
+  the sets in the list along with their current modes will be returned. Given
+  an example selection mode, it will change the modes and reset the example
+  sets (see _r_e_s_e_t_E_x_a_m_p_l_e_S_e_t_s).
+
+  In ORDERED mode, which is the default, examples will be presented in the
+  order in which they were found in the example file.
+
+  In RANDOMIZED mode, examples will be selected at random with replacement,
+  each having the same probability of selection. Note that this differs from
+  PERMUTED because it uses replacement. It differs from PROBABILISTIC because
+  it ignores the example frequency.
+
+  In PERMUTED mode, examples will be selected at random without replacement,
+  each having the same probability of selection. A different order will be
+  computed for each pass through the set.
+
+  In PROBABILISTIC mode, examples are selected based on their given
+  frequency. Specified frequency values will be normalized over all examples
+  and this distribution used for selection. If example sets are concatenated,
+  the distribution will be recalculated based on the specified frequencies.
+  An example with no frequency specified is given a value of 1.0.
+
+  PIPE mode is used for example sets that are reading from a pipe. The next
+  example will be read from the pipe and stored temporarily in the example
+  set's pipeExample field. This mode can only be used with example sets for
+  which a pipe was opened with "loadExamples ... -m PIPE". If the pipe is
+  exhausted and the example set's pipeLoop flag is set to TRUE, which is the
+  default, the pipe will be re-opened automatically. If an example set
+  contains both stored examples and an open pipe, you can switch between them
+  by changing from PIPE mode to another mode.
+
+  CUSTOM mode allows you to write a procedure that generates the index of the
+  next example. When it's time to choose the next example, the example set's
+  chooseExample procedure will be called. This should return an integer
+  between 0 and one less than the number of examples, inclusive.
+
+  EEXXAAMMPPLLEESS
+
+  To change the mode of set "set1" to RANDOMIZED:
+
+        lens> exampleSetMode set1 RAND
+
+  SSEEEE AALLSSOO
+
+  _r_e_s_e_t_E_x_a_m_p_l_e_S_e_t_s, _l_o_a_d_E_x_a_m_p_l_e_s, _d_o_E_x_a_m_p_l_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Apr 11 22:31:24 EDT 2000
+

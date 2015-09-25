@@ -1,0 +1,33 @@
+
+  vviieewwUUnniittss -- ooppeennss tthhee uunniitt vviieewweerr
+
+  UUSSAAGGEE
+
+        viewUnits [-size <unitCellSize> | -gap <unitCellSpacing> | -updates
+    <updateRate>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This opens the unit viewer if it is closed or deiconifies it and brings it
+  to the front if it is open.
+
+  If unitCellSize is given, it sets the network's unitCellSize field, which
+  determines the size of the unit rectangles in the display. The initial
+  default is 14.
+
+  If unitCellSpacing is given, it sets the network's unitCellSpacing field,
+  which determines the gap between rectangles in the display. The initial
+  default is 2.
+
+  If updateRate is given, it sets the frequency with which the Unit Viewer is
+  updated. A value of 0 means never, 3 is after each example, 4 is after
+  weight updates, 5 is after progress reports, and 6 is after training or
+  testing. The default is 5, after progress reports.
+
+  SSEEEE AALLSSOO
+
+  _d_r_a_w_U_n_i_t_s, _v_i_e_w, _v_i_e_w_L_i_n_k_s, _v_i_e_w_O_b_j_e_c_t, _g_r_a_p_h_O_b_j_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:17:07 EST 2000
+

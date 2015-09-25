@@ -1,0 +1,43 @@
+
+  NNAAMMEE
+
+  set - Read and write variables
+
+  SSYYNNOOPPSSIISS
+
+  sseettvarName?value?
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Returns the value of variable varName. If value is specified, then set the
+  value of varName to value, creating a new variable if one doesn't already
+  exist, and return its value. If varName contains an open parenthesis and
+  ends with a close parenthesis, then it refers to an array element: the
+  characters before the first open parenthesis are the name of the array, and
+  the characters between the parentheses are the index within the array.
+  Otherwise varName refers to a scalar variable. Normally, varName is
+  unqualified (does not include the names of any containing namespaces), and
+  the variable of that name in the current namespace is read or written. If
+  varName includes namespace qualifiers (in the array name if it refers to an
+  array element), the variable in the specified namespace is read or written.
+
+  If no procedure is active, then varName refers to a namespace variable
+  (global variable if the current namespace is the global namespace). If a
+  procedure is active, then varName refers to a parameter or local variable
+  of the procedure unless the _gg_ll_oo_bb_aa_ll command was invoked to declare varName
+  to be global, or unless a _vv_aa_rr_ii_aa_bb_ll_ee command was invoked to declare varName
+  to be a namespace variable.
+
+  SSEEEE AALLSSOO
+
+  _ee_xx_pp_rr, _pp_rr_oo_cc, _tt_rr_aa_cc_ee, _uu_nn_ss_ee_tt
+
+  KKEEYYWWOORRDDSS
+
+  _r_e_a_d, _w_r_i_t_e, _v_a_r_i_a_b_l_e
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

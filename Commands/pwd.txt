@@ -1,0 +1,18 @@
+
+  ppwwdd -- rreettuurrnnss tthhee ccuurrrreenntt ddiirreeccttoorryy
+
+  UUSSAAGGEE
+
+        pwd
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This returns the name of the current working directory.
+
+  SSEEEE AALLSSOO
+
+  _c_d, _l_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:38:42 EDT 1998
+

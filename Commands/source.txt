@@ -1,0 +1,33 @@
+
+  ssoouurrccee -- rruunnss aa ssccrriipptt ffiillee
+
+  UUSSAAGGEE
+
+        source <file>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command interprets the contents of the specified file as a text
+  script. If an error occurs while the script is running, source will return
+  immediately with an error code. Otherwise the return value is the return
+  value of the last command in the file.
+
+  The current working directory will be changed to the directory containing
+  the script file while the script is executing. This allows script files to
+  contain relative references to other files.
+
+  You can learn more about using scripts in the "_S_c_r_i_p_t_ _F_i_l_e_s" manual page.
+
+  EEXXAAMMPPLLEESS
+
+  To run the script file "init.in":
+
+        lens> source init.in
+
+  SSEEEE AALLSSOO
+
+  _r_e_t_u_r_n, _e_v_a_l
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.34:25:46 EDT 1998
+

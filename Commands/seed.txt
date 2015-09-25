@@ -1,0 +1,36 @@
+
+  sseeeedd -- sseeeeddss tthhee rraannddoomm nnuummbbeerr ggeenneerraattoorr
+
+  UUSSAAGGEE
+
+        seed [<seed-value>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command seeds the random number generators used for randomizing
+  weights, injecting noise, lesioning, created sparse connectivity, selecting
+  examples, and other processes. It returns the seed value used.
+
+  If a seed-value is specified, it is used as the seed. Otherwise, the seed
+  is generated based on the current time and the process ID. It is extremely
+  unlikely that this will result in identical seeds on multiple runs.
+
+  The simulator is automatically time-seeded when it starts. It is a good
+  idea to seed the generator (and store the seed value) immediately before
+  doing anything, such as sparsely connecting groups or lesioning the
+  network, that you may want to exactly repeat later.
+
+  EEXXAAMMPPLLEESS
+
+  To seed with time and store the seed value for later use:
+
+        lens> set seedVal [seed]
+        2399818.36
+
+  SSEEEE AALLSSOO
+
+  _g_e_t_S_e_e_d, _p_i_d
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:41:38 EDT 1998
+

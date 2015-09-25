@@ -1,0 +1,182 @@
+
+        _N_A_M_E
+
+              glob - Return names of files that match patterns
+
+        _S_Y_N_O_P_S_I_S
+
+              gglloobb?switches? pattern?pattern ...?
+
+        _D_E_S_C_R_I_P_T_I_O_N
+
+              _--_dd_ii_rr_ee_cc_tt_oo_rr_yy_ _d_i_r_e_c_t_o_r_y
+              _--_jj_oo_ii_nn
+              _--_nn_oo_cc_oo_mm_pp_ll_aa_ii_nn
+              _--_pp_aa_tt_hh_ _p_a_t_h_P_r_e_f_i_x
+              _--_tt_yy_pp_ee_ss_ _t_y_p_e_L_i_s_t
+              _--_ _--
+
+
+              _??
+              _**
+              _[[_c_h_a_r_s_]]
+              _\\_x
+              _{{_a_,,_b_,,_._._._}
+
+        _P_O_R_T_A_B_I_L_I_T_Y_ _I_S_S_U_E_S
+
+              _WW_ii_nn_dd_oo_ww_ss
+              _MM_aa_cc_ii_nn_tt_oo_ss_hh
+
+        _S_E_E_ _A_L_S_O
+        _K_E_Y_W_O_R_D_S
+
+  ---------------------------------------------------------------------------
+
+  NNAAMMEE
+
+  glob - Return names of files that match patterns
+
+  SSYYNNOOPPSSIISS
+
+  gglloobb?switches? pattern?pattern ...?
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command performs file name ``globbing'' in a fashion similar to the
+  csh shell. It returns a list of the files whose names match any of the
+  pattern arguments.
+
+  If the initial arguments to gglloobb start with -- then they are treated as
+  switches. The following switches are currently supported:
+
+
+
+    --ddiirreeccttoorryy directory
+        Search for files which match the given patterns starting in the given
+        directory. This allows searching of directories whose name contains
+        glob-sensitive characters without the need to quote such characters
+        explicitly. This option may not be used in conjunction with --ppaatthh.
+
+    --jjooiinn
+        The remaining pattern arguments are treated as a single pattern
+        obtained by joining the arguments with directory separators.
+
+    --nnooccoommppllaaiinn
+        Allows an empty list to be returned without error; without this
+        switch an error is returned if the result list would be empty.
+
+    --ppaatthh pathPrefix
+        Search for files with the given pathPrefix where the rest of the name
+        matches the given patterns. This allows searching for files with
+        names similar to a given file even when the names contain glob-
+        sensitive characters. This option may not be used in conjunction with
+        --ddiirreeccttoorryy.
+
+    --ttyyppeess typeList
+        Only list files or directories which match typeList, where the items
+        in the list have two forms. The first form is like the -type option
+        of the Unix find command: b (block special file), c (character
+        special file), d (directory), f (plain file), l (symbolic link), p
+        (named pipe), or s (socket), where multiple types may be specified in
+        the list. GGlloobb will return all files which match at least one of the
+        types given.
+
+        The second form specifies types where all the types given must match.
+        These are r, w, x as file permissions, and readonly, hidden as
+        special permission cases. On the Macintosh, MacOS types and creators
+        are also supported, where any item which is four characters long is
+        assumed to be a MacOS type (e.g. _TT_EE_XX_TT). Items which are of the form
+        {macintosh type XXXX} or {macintosh creator XXXX} will match types or
+        creators respectively. Unrecognised types, or specifications of
+        multiple MacOS types/creators will signal an error.
+
+        The two forms may be mixed, so --ttyyppeess {{dd ff rr ww}} will find all regular
+        files OR directories that have both read AND write permissions. The
+        following are equivalent:
+
+          gglloobb --ttyyppee dd **
+          gglloobb **//
+        except that the first case doesn't return the trailing ``/'' and is
+        more platform independent.
+
+    -- --
+        Marks the end of switches. The argument following this one will be
+        treated as a pattern even if it starts with a --.
+
+
+  The pattern arguments may contain any of the following special characters:
+
+
+
+    ??
+        Matches any single character.
+
+    **
+        Matches any sequence of zero or more characters.
+
+    [[chars]]
+        Matches any single character in chars. If chars contains a sequence
+        of the form a--b then any character between a and b (inclusive) will
+        match.
+
+    \\x
+        Matches the character x.
+
+    {{a,,b,,...}
+        Matches any of the strings a, b, etc.
+
+
+  As with csh, a ``.'' at the beginning of a file's name or just after a ``/
+  '' must be matched explicitly or with a {} construct. In addition, all ``/
+  '' characters must be matched explicitly.
+
+  If the first character in a pattern is ``~'' then it refers to the home
+  directory for the user whose name follows the ``~''. If the ``~'' is
+  followed immediately by ``/'' then the value of the HOME environment
+  variable is used.
+
+  The gglloobb command differs from csh globbing in two ways. First, it does not
+  sort its result list (use the _ll_ss_oo_rr_tt command if you want the list sorted).
+  Second, gglloobb only returns the names of files that actually exist; in csh no
+  check for existence is made unless a pattern contains a ?, *, or []
+  construct.
+
+  PPOORRTTAABBIILLIITTYY IISSSSUUEESS
+
+  Unlike other Tcl commands that will accept both network and native style
+  names (see the _ff_ii_ll_ee_nn_aa_mm_ee manual entry for details on how native and network
+  names are specified), the gglloobb command only accepts native names.
+
+
+
+    WWiinnddoowwss
+        For Windows UNC names, the servername and sharename components of the
+        path may not contain ?, *, or [] constructs. On Windows NT, if
+        pattern is of the form ``~~username@@domain'' it refers to the home
+        directory of the user whose account information resides on the
+        specified NT domain server. Otherwise, user account information is
+        obtained from the local computer. On Windows 95 and 98, gglloobb accepts
+        patterns like ``.../'' and ``..../'' for successively higher up
+        parent directories.
+
+    MMaacciinnttoosshh
+        When using the options, --ddiirr, --jjooiinn or --ppaatthh, glob assumes the
+        directory separator for the entire pattern is the standard ``:''.
+        When not using these options, glob examines each pattern argument and
+        uses ``/'' unless the pattern contains a ``:''.
+
+
+  SSEEEE AALLSSOO
+
+  _ff_ii_ll_ee
+
+  KKEEYYWWOORRDDSS
+
+  _e_x_i_s_t, _f_i_l_e, _g_l_o_b, _p_a_t_t_e_r_n
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

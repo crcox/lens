@@ -1,0 +1,35 @@
+# Here is the classic XOR.  The parameters may not be the best
+
+addNet xor 2 2 1
+loadExamples xor.ex
+
+setObj learningRate 0.5
+setObj numUpdates   200
+setObj unitCellSize 20
+setObj linkCellSize 20
+autoPlot 3
+viewUnits
+graphObj
+
+proc trainIt {{n 100}} {
+  verbosity 0
+  set success 0
+  repeat $n {
+    resetNet
+    train 200
+    test
+    if {[getObj error] < 0.1} {incr success}
+  }
+  verbosity 1
+  return $success
+}
+
+proc useSelectedExamples {} {
+  useTestingSet xor
+  set channel [open |Examples/xor.chooseEx RDWR]
+  openNetOutputFile -$channel
+  loadExamples -$channel -s special -m PIPE
+  useTrainingSet special
+  setObj pseudoExampleFreq 1
+  setObj batchSize 4
+}

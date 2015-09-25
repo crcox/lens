@@ -1,0 +1,27 @@
+
+  ssttooppSSeerrvveerr -- ddiisseennggaaggeess aallll cclliieennttss aanndd ssttooppss rruunnnniinngg aass aa sseerrvveerr
+
+  UUSSAAGGEE
+
+        stopServer
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This closes the connections to all clients and stops listening for new
+  client connections. It will return an error if the current process is not
+  acting as a server.
+
+  EEXXAAMMPPLLEESS
+
+  To make sure the current process is not acting as a server (and to avoid
+  causing an error):
+
+        lens> catch stopServer
+
+  SSEEEE AALLSSOO
+
+  _s_t_a_r_t_S_e_r_v_e_r
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:19:54 EDT 1998
+

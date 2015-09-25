@@ -1,0 +1,59 @@
+
+  NNAAMMEE
+
+  puts - Write to a channel
+
+  SSYYNNOOPPSSIISS
+
+  ppuuttss?--nnoonneewwlliinnee? ?channelId? string
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Writes the characters given by string to the channel given by channelId.
+  ChannelId must be a channel identifier such as returned from a previous
+  invocation of _oo_pp_ee_nn or _ss_oo_cc_kk_ee_tt. It must have been opened for output. If no
+  channelId is specified then it defaults to ssttddoouutt. PPuuttss normally outputs a
+  newline character after string, but this feature may be suppressed by
+  specifying the --nnoonneewwlliinnee switch.
+
+  Newline characters in the output are translated by ppuuttss to platform-
+  specific end-of-line sequences according to the current value of the --
+  ttrraannssllaattiioonn option for the channel (for example, on PCs newlines are
+  normally replaced with carriage-return-linefeed sequences; on Macintoshes
+  newlines are normally replaced with carriage-returns). See the _ff_cc_oo_nn_ff_ii_gg_uu_rr_ee
+  manual entry for a discussion on ways in which _ff_cc_oo_nn_ff_ii_gg_uu_rr_ee will alter
+  output.
+
+  Tcl buffers output internally, so characters written with ppuuttss may not
+  appear immediately on the output file or device; Tcl will normally delay
+  output until the buffer is full or the channel is closed. You can force
+  output to appear immediately with the _ff_ll_uu_ss_hh command.
+
+  When the output buffer fills up, the ppuuttss command will normally block until
+  all the buffered data has been accepted for output by the operating system.
+  If channelId is in nonblocking mode then the ppuuttss command will not block
+  even if the operating system cannot accept the data. Instead, Tcl continues
+  to buffer the data and writes it in the background as fast as the
+  underlying file or device can accept it. The application must use the Tcl
+  event loop for nonblocking output to work; otherwise Tcl never finds out
+  that the file or device is ready for more output data. It is possible for
+  an arbitrarily large amount of data to be buffered for a channel in
+  nonblocking mode, which could consume a large amount of memory. To avoid
+  wasting memory, nonblocking I/O should normally be used in an event-driven
+  fashion with the _ff_ii_ll_ee_ee_vv_ee_nn_tt command (don't invoke ppuuttss unless you have
+  recently been notified via a file event that the channel is ready for more
+  output data).
+
+  SSEEEE AALLSSOO
+
+  _ff_ii_ll_ee, _ff_ii_ll_ee_ee_vv_ee_nn_tt
+
+  KKEEYYWWOORRDDSS
+
+  _c_h_a_n_n_e_l, _n_e_w_l_i_n_e, _o_u_t_p_u_t, _w_r_i_t_e
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

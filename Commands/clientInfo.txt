@@ -1,0 +1,41 @@
+
+  cclliieennttIInnffoo -- rreettuurrnnss iinnffoorrmmaattiioonn aabboouutt oonnee oorr aallll cclliieennttss
+
+  UUSSAAGGEE
+
+        clientInfo [<client>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command can only be run in the server. It returns information about
+  the clients. With no client number specified it will report the number of
+  clients connected and how many are currently training, testing, halted, or
+  idle. It will then print information about each client.
+
+  If a client number is given, just information about that client will be
+  returned. The client information consists of its number, the IP address of
+  the client, the name of the Tcl channel used to communicate with the
+  client, the file descriptor of the connection, the port used for the
+  connection, and the state of the client.
+
+  EEXXAAMMPPLLEESS
+
+  To get the overall client information:
+
+        lens> clientInfo
+        2 clients  1 training  1 testing  0 halted  0 idle
+        1  128.2.181.181 sock6 6 1687 testing
+        2  128.2.181.181 sock7 7 1691 training
+
+  To find out about just one client:
+
+        lens> clientInfo 2
+        2  128.2.181.181 sock7 7 1691 training
+
+  SSEEEE AALLSSOO
+
+  _s_t_a_r_t_S_e_r_v_e_r, _s_t_a_r_t_C_l_i_e_n_t, _t_r_a_i_n_P_a_r_a_l_l_e_l
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:25:33 EDT 1998
+

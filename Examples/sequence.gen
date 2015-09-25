@@ -1,0 +1,23 @@
+#!/usr/bin/gawk -f
+
+BEGIN {
+  srand();
+  for (a = 0; a < 5; a++) 
+    for (b = 0; b < 5; b++) {
+      if (b == a) continue;
+      for (c = 0; c < 5; c++) {
+	if (c == a || c == b) continue;
+	print "name: {" a " " b " " c " " a " " b " " c " " a " " b " " c "} 9";
+	print "i:" a " t:5";
+	print "i:" b " t:5";
+	print "i:" c " t:" a;
+	print "i:" a " t:" b;
+	print "i:" b " t:" c;
+	print "i:" c " t:" a;
+	print "i:" a " t:" b;
+	print "i:" b " t:" c;
+	print "i:" c " t:" a";";
+      }
+    }
+  exit;
+}

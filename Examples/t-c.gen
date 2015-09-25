@@ -1,0 +1,78 @@
+#!/bin/gawk -f
+
+BEGIN {
+   for (i = 0; i < 7; i++)
+     for (j = 0; j < 7; j++) {
+       print "name:{T " i " " j " up}";
+       printf("i:");
+       printf(" %d", (i + 0) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 0) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 0) % 9 * 9 + (j + 2) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 1) % 9);
+       print " T:1;"
+
+       print "name:{T " i " " j" right}";
+       printf("i:");
+       printf(" %d", (i + 0) % 9 * 9 + (j + 2) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 2) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 2) % 9);
+       print " T:1;"
+
+       print "name:{T " i " " j" down}";
+       printf("i:");
+       printf(" %d", (i + 0) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 2) % 9);
+       print " T:1;"
+
+       print "name:{T " i " " j" left}";
+       printf("i:");
+       printf(" %d", (i + 0) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 2) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 0) % 9);
+       print " T:1;"
+
+       print "name:{C " i " " j" up}";
+       printf("i:");
+       printf(" %d", (i + 0) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 0) % 9 * 9 + (j + 2) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 2) % 9);
+       print " T:0;"
+
+       print "name:{C " i " " j" right}";
+       printf("i:");
+       printf(" %d", (i + 1) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 2) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 2) % 9);
+       print " T:0;"
+
+       print "name:{C " i " " j" down}";
+       printf("i:");
+       printf(" %d", (i + 0) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 0) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 2) % 9 * 9 + (j + 1) % 9);
+       print " T:0;"
+
+       print "name:{C " i " " j" left}";
+       printf("i:");
+       printf(" %d", (i + 0) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 0) % 9 * 9 + (j + 2) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 0) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 1) % 9);
+       printf(" %d", (i + 1) % 9 * 9 + (j + 2) % 9);
+       print " T:0;"
+     }
+}

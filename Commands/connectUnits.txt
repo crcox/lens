@@ -1,0 +1,47 @@
+
+  ccoonnnneeccttUUnniittss -- ccrreeaatteess aa lliinnkk ffrroomm oonnee uunniitt ttoo aannootthheerr
+
+  UUSSAAGGEE
+
+        connectUnits <unit-list1> (<unit-list>)* [-mean <mean>
+            | -range <range> | -type <link-type> | -bidirectional]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Creates a link between each unit in the first list and each unit in the
+  second list. If a third unit list is specified, then all units in the
+  second list will be connected to all units in the third list, and so on.
+
+  This can be used to create a special pattern of connectivity using a
+  script, rather than by altering the source code. By default the new
+  connection will have a type with the same name as the sending unit's group,
+  but this can be overridden.
+
+  If mean and/or range are given, they will determine the values used for
+  randomizing the link's weight. If left unspecified, the network defaults
+  will be used for these links.
+
+  If the receiving unit already has an input with the same type from a
+  neighbor of the sending unit, the links will become part of the same link
+  block. In that case, the mean and range specified here will override the
+  previous values for the block.
+
+  The bidirectional flag causes links to created in both directions between
+  each pair of units.
+
+  EEXXAAMMPPLLEESS
+
+  To connect the first two units of group "input" to the third unit of group
+  "hidden" with a connection of type "my type" and default randomization
+  values:
+
+        lens> connectUnits "input:0 input:1" hidden:2 -type "my type"
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p, _c_o_n_n_e_c_t_G_r_o_u_p_s, _c_o_n_n_e_c_t_G_r_o_u_p_T_o_U_n_i_t_s, _e_l_m_a_n_C_o_n_n_e_c_t, _a_d_d_L_i_n_k_T_y_p_e,
+  _d_i_s_c_o_n_n_e_c_t_U_n_i_t_s, _s_e_t_U_n_i_t_B_l_o_c_k_V_a_l_u_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Sun Feb 28 21:03:26 EST 1999
+

@@ -1,0 +1,7 @@
+addNet recoder -i 6 SRBPTT 16 12 ELMAN 2 12 ELMAN 16
+connectGroups hidden2 hidden
+loadExamples recoder.ex
+setObj output.numColumns 4
+setObj input.numColumns  4
+setObj hidden.numColumns 12
+autoPlot

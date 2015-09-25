@@ -1,0 +1,18 @@
+
+  llss -- lliissttss tthhee ccoonntteennttss ooff aa ddiirreeccttoorryy
+
+  UUSSAAGGEE
+
+        ls [<options>]* [<directory>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This just calls the ls shell command.
+
+  SSEEEE AALLSSOO
+
+  _p_w_d, _c_d
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 18:22:32 EST 1999
+

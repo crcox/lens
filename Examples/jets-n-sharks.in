@@ -1,0 +1,95 @@
+# This is a version of the Jets and Sharks model from page 25 of Parallel
+# Distributed Processing, Explorations in the Microstructure of Cognition,
+# Vol. 1, edited by David Rumelhart and James McClelland.
+
+set INHIB_WEIGHT -1.0
+set EXCIT_WEIGHT  1.0
+
+set Data {
+    {Art	Jets	40's	J.H.	Sing.	Pusher}
+    {Al		Jets	30's	J.H.	Mar.	Burglar}
+    {Sam	Jets	20's	COL.	Sing.	Bookie}
+    {Clyde	Jets	40's	J.H.	Sing.	Bookie}
+    {Mike	Jets	30's	J.H.	Sing.	Bookie}
+    {Jim	Jets	20's	J.H.	Div.	Burglar}
+    {Greg	Jets	20's	H.S.	Mar.	Pusher}
+    {John	Jets	20's	J.H.	Mar.	Burglar}
+    {Doug	Jets	30's	H.S.	Sing.	Bookie}
+    {Lance	Jets	20's	J.H.	Mar.	Burglar}
+    {George	Jets	20's	J.H.	Div.	Burglar}
+    {Pete	Jets	20's	H.S.	Sing.	Bookie}
+    {Fred	Jets	20's	H.S.	Sing.	Pusher}
+    {Gene	Jets	20's	COL.	Sing.	Pusher}
+    {Ralph	Jets	30's	J.H.	Sing.	Pusher}
+    {Phil	Sharks	30's	COL.	Mar.	Pusher}
+    {Ike	Sharks	30's	J.H.	Sing.	Bookie}
+    {Nick	Sharks	30's	H.S.	Sing.	Pusher}
+    {Don	Sharks	30's	COL.	Mar.	Burglar}
+    {Ned	Sharks	30's	COL.	Mar.	Bookie}
+    {Karl	Sharks	40's	H.S.	Mar.	Bookie}
+    {Ken	Sharks	20's	H.S.	Sing.	Burglar}
+    {Earl	Sharks	40's	H.S.	Mar.	Burglar}
+    {Rick	Sharks	30's	H.S.	Div.	Burglar}
+    {Ol		Sharks	30's	COL.	Mar.	Pusher}	
+    {Neal	Sharks	30's	H.S.	Sing.	Bookie}
+    {Dave	Sharks	30's	H.S.	Div.	Pusher}}
+
+proc collectItems {type column} {
+  global $type Data
+  set $type {}
+  foreach person $Data {
+    set val [lindex $person $column]
+    if {[lsearch -exact [set $type] $val] == -1} {
+      lappend $type $val
+    }
+  }
+}
+
+proc createGroup {type ext} {
+  global $type INHIB_WEIGHT
+# The number of items in this set
+  set items [llength [set $type]]
+# Create a group with one unit for each item
+  addGroup $type $items INPUT DOT_PRODUCT INCR_CLAMP INTERACT_INTEGR
+  setObj $type.maxOutput   1.0
+  setObj $type.initOutput  0.0
+  setObj $type.minOutput  -0.2
+  setObj $type.clampStrength 4
+
+# Create inhibitory connections between all units
+  connectGroups $type $type -m $INHIB_WEIGHT -r 0 -t inhib
+  repeat u $items {
+#   Remove self-inhibitory connections
+    disconnectUnits $type:$u $type:$u
+#   Set the name of the unit
+    setObj $type:$u.name "[lindex [set $type] $u]$ext"
+  }
+}
+
+# Create the network
+addNet Jets-n-Sharks -i 6 -t 10 CONTINUOUS
+loadExamples jets-n-sharks.ex
+
+# We don't need a bias
+deleteGroups bias
+
+# Create the Instance group
+collectItems Instance 0
+createGroup Instance "-in"
+
+set i 0
+foreach type {Name Gang Age Education Marital Job} {
+# Create a list of all different items of that type
+  collectItems $type $i
+# Create a group with a unit for each item
+  createGroup $type ""
+  foreach person $Data {
+# Connect the type units to the instance units, both ways
+    connectUnits [lindex $person 0]-in [lindex $person $i] \
+      -m $EXCIT_WEIGHT -r 0 -t excit
+    connectUnits [lindex $person $i] [lindex $person 0]-in \
+      -m $EXCIT_WEIGHT -r 0 -t excit
+  }
+  incr i
+}
+resetNet

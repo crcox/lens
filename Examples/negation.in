@@ -1,0 +1,34 @@
+# This is the "negation" problem introduced on page 346 of 
+# Parallel Distributed Processing, Explorations in the Microstructure of 
+# Cognition, Vol. 1, edited by David Rumelhart and James McClelland.
+#
+# If the first bit of the input is off, the output should be the same as the
+# last three bits of the input.  But if the first bit is on, the output should
+# be the complement of the first three bits.
+
+addNet negation 4 3 3
+connectGroups input output
+
+if [catch {path -s all}] {
+  loadExamples negation.ex -s all
+  moveExamples all train -copy
+  moveExamples train test 0.15
+}
+
+useTrainingSet all
+useTestingSet test
+
+addNet negation2
+addGroup in1 1 INPUT
+addGroup in2 3 INPUT
+addGroup hidden 3
+addGroup output 3 OUTPUT
+connectGroups in1 {hidden output}
+connectGroups in2 {hidden output} -p ONE_TO_ONE
+connectGroups hidden output -p ONE_TO_ONE
+thawWeights
+useTrainingSet train
+useTestingSet test
+
+useNet negation
+

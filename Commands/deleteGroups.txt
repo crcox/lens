@@ -1,0 +1,20 @@
+
+  ddeelleetteeGGrroouuppss -- ddeelleetteess aa lliisstt ooff ggrroouuppss ffrroomm tthhee aaccttiivvee nneettwwoorrkk
+
+  UUSSAAGGEE
+
+        deleteGroups <group-list>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Given a * this deletes all groups except the BIAS group from the active
+  network. Otherwise it deletes those groups listed. Any remaining groups
+  will be renumbered to reflect their new positions in the group array.
+
+  SSEEEE AALLSSOO
+
+  _d_e_l_e_t_e_N_e_t_s, _a_d_d_G_r_o_u_p
+
+  ---------------------------------------------------------------------------
+    Last modified: Thu Feb 25 19:25:39 EST 1999
+

@@ -1,0 +1,311 @@
+
+        _N_A_M_E
+
+              open - Open a file-based or command pipeline channel
+
+        _S_Y_N_O_P_S_I_S
+
+              ooppeennfileName
+              ooppeennfileName access
+              ooppeennfileName access permissions
+
+        _D_E_S_C_R_I_P_T_I_O_N
+
+              _rr
+              _rr_++
+              _ww
+              _ww_++
+              _aa
+              _aa_++
+
+
+              _RR_DD_OO_NN_LL_YY
+              _WW_RR_OO_NN_LL_YY
+              _RR_DD_WW_RR
+              _AA_PP_PP_EE_NN_DD
+              _CC_RR_EE_AA_TT
+              _EE_XX_CC_LL
+              _NN_OO_CC_TT_TT_YY
+              _NN_OO_NN_BB_LL_OO_CC_KK
+              _TT_RR_UU_NN_CC
+
+        _C_O_M_M_A_N_D_ _P_I_P_E_L_I_N_E_S
+        _S_E_R_I_A_L_ _C_O_M_M_U_N_I_C_A_T_I_O_N_S
+        _C_O_N_F_I_G_U_R_A_T_I_O_N_ _O_P_T_I_O_N_S
+
+              _--_mm_oo_dd_ee_b_a_u_d_,,_p_a_r_i_t_y_,,_d_a_t_a_,,_s_t_o_p
+              _--_pp_oo_ll_ll_ii_nn_tt_ee_rr_vv_aa_ll_m_s_e_c
+              _--_ll_aa_ss_tt_ee_rr_rr_oo_rr
+
+        _P_O_R_T_A_B_I_L_I_T_Y_ _I_S_S_U_E_S
+
+              _WW_ii_nn_dd_oo_ww_ss_(_a_l_l_ _v_e_r_s_i_o_n_s_)
+              _WW_ii_nn_dd_oo_ww_ss_ _NN_TT
+              _WW_ii_nn_dd_oo_ww_ss_ _99_55
+              _MM_aa_cc_ii_nn_tt_oo_ss_hh
+              _UU_nn_ii_xx
+
+        _S_E_E_ _A_L_S_O
+        _K_E_Y_W_O_R_D_S
+
+  ---------------------------------------------------------------------------
+
+  NNAAMMEE
+
+  open - Open a file-based or command pipeline channel
+
+  SSYYNNOOPPSSIISS
+
+  ooppeennfileName
+  ooppeennfileName access
+  ooppeennfileName access permissions
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command opens a file, serial port, or command pipeline and returns a
+  channel identifier that may be used in future invocations of commands like
+  _rr_ee_aa_dd, _pp_uu_tt_ss, and _cc_ll_oo_ss_ee. If the first character of fileName is not || then the
+  command opens a file: fileName gives the name of the file to open, and it
+  must conform to the conventions described in the _ff_ii_ll_ee_nn_aa_mm_ee manual entry.
+
+  The access argument, if present, indicates the way in which the file (or
+  command pipeline) is to be accessed. In the first form access may have any
+  of the following values:
+
+
+
+    rr
+        Open the file for reading only; the file must already exist. This is
+        the default value if access is not specified.
+
+    rr++
+        Open the file for both reading and writing; the file must already
+        exist.
+
+    ww
+        Open the file for writing only. Truncate it if it exists. If it
+        doesn't exist, create a new file.
+
+    ww++
+        Open the file for reading and writing. Truncate it if it exists. If
+        it doesn't exist, create a new file.
+
+    aa
+        Open the file for writing only. If the file doesn't exist, create a
+        new empty file. Set the initial access position to the end of the
+        file.
+
+    aa++
+        Open the file for reading and writing. If the file doesn't exist,
+        create a new empty file. Set the initial access position to the end
+        of the file.
+
+
+  In the second form, access consists of a list of any of the following
+  flags, all of which have the standard POSIX meanings. One of the flags must
+  be either RRDDOONNLLYY, WWRROONNLLYY or RRDDWWRR.
+
+
+
+    RRDDOONNLLYY
+        Open the file for reading only.
+
+    WWRROONNLLYY
+        Open the file for writing only.
+
+    RRDDWWRR
+        Open the file for both reading and writing.
+
+    AAPPPPEENNDD
+        Set the file pointer to the end of the file prior to each write.
+
+    CCRREEAATT
+        Create the file if it doesn't already exist (without this flag it is
+        an error for the file not to exist).
+
+    EEXXCCLL
+        If CCRREEAATT is also specified, an error is returned if the file already
+        exists.
+
+    NNOOCCTTTTYY
+        If the file is a terminal device, this flag prevents the file from
+        becoming the controlling terminal of the process.
+
+    NNOONNBBLLOOCCKK
+        Prevents the process from blocking while opening the file, and
+        possibly in subsequent I/O operations. The exact behavior of this
+        flag is system- and device-dependent; its use is discouraged (it is
+        better to use the _ff_cc_oo_nn_ff_ii_gg_uu_rr_ee command to put a file in nonblocking
+        mode). For details refer to your system documentation on the ooppeenn
+        system call's OO__NNOONNBBLLOOCCKK flag.
+
+    TTRRUUNNCC
+        If the file exists it is truncated to zero length.
+
+
+  If a new file is created as part of opening it, permissions (an integer) is
+  used to set the permissions for the new file in conjunction with the
+  process's file mode creation mask. Permissions defaults to 0666.
+
+  Note that if you are going to be reading or writing binary data from the
+  channel created by this command, you should use the _ff_cc_oo_nn_ff_ii_gg_uu_rr_ee command to
+  change the --ttrraannssllaattiioonn option of the channel to _bb_ii_nn_aa_rr_yy before transferring
+  any binary data. This is in contrast to the ``b'' character passed as part
+  of the equivalent of the access parameter to some versions of the C library
+  fopen() function.
+
+  CCOOMMMMAANNDD PPIIPPEELLIINNEESS
+
+  If the first character of fileName is ``|'' then the remaining characters
+  of fileName are treated as a list of arguments that describe a command
+  pipeline to invoke, in the same style as the arguments for _ee_xx_ee_cc. In this
+  case, the channel identifier returned by ooppeenn may be used to write to the
+  command's input pipe or read from its output pipe, depending on the value
+  of access. If write-only access is used (e.g. access is ww), then standard
+  output for the pipeline is directed to the current standard output unless
+  overridden by the command. If read-only access is used (e.g. access is rr),
+  standard input for the pipeline is taken from the current standard input
+  unless overridden by the command.
+
+  SSEERRIIAALL CCOOMMMMUUNNIICCAATTIIOONNSS
+
+  If fileName refers to a serial port, then the specified serial port is
+  opened and initialized in a platform-dependent manner. Acceptable values
+  for the fileName to use to open a serial port are described in the
+  PORTABILITY ISSUES section.
+
+  CCOONNFFIIGGUURRAATTIIOONN OOPPTTIIOONNSS
+
+  The _ff_cc_oo_nn_ff_ii_gg_uu_rr_ee command can be used to query and set the following
+  configuration option for open serial ports:
+
+
+
+    --mmooddeebaud,,parity,,data,,stop
+        This option is a set of 4 comma-separated values: the baud rate,
+        parity, number of data bits, and number of stop bits for this serial
+        port. The baud rate is a simple integer that specifies the connection
+        speed. Parity is one of the following letters: nn, oo, ee, mm, ss;
+        respectively signifying the parity options of ``none'', ``odd'',
+        ``even'', ``mark'', or ``space''. Data is the number of data bits and
+        should be an integer from 5 to 8, while stop is the number of stop
+        bits and should be the integer 1 or 2.
+
+    --ppoolllliinntteerrvvaallmsec
+        This option, available only on Windows for serial ports, is used to
+        set the maximum time between polling for fileevents. This affects the
+        time interval between checking for events throughout the Tcl
+        interpreter (the smallest value always wins). Use this option only if
+        you want to poll the serial port more often than 10 msec (the
+        default).
+
+    --llaasstteerrrroorr
+        This option is available only on Windows for serial ports, and is
+        query only (will only be reported when directly requested). In case
+        of a serial communication error, _rr_ee_aa_dd or _pp_uu_tt_ss returns a general Tcl
+        file I/O error. ffccoonnffiigguurree --llaasstteerrrroorr can be called to get a list of
+        error details (e.g. FRAME RXOVER).
+
+
+  PPOORRTTAABBIILLIITTYY IISSSSUUEESS
+
+
+
+    WWiinnddoowwss(all versions)
+        Valid values for fileName to open a serial port are of the form
+        ccoommX::, where X is a number, generally from 1 to 4. This notation only
+        works for serial ports from 1 to 9, if the system happens to have
+        more than four. An attempt to open a serial port that does not exist
+        or has a number greater than 9 will fail. An alternate form of
+        opening serial ports is to use the filename \\\\..\\ccoommXX, where X is any
+        number that corresponds to a serial port; please note that this
+        method is considerably slower on Windows 95 and Windows 98.
+
+    WWiinnddoowwss NNTT
+        When running Tcl interactively, there may be some strange
+        interactions between the real console, if one is present, and a
+        command pipeline that uses standard input or output. If a command
+        pipeline is opened for reading, some of the lines entered at the
+        console will be sent to the command pipeline and some will be sent to
+        the Tcl evaluator. If a command pipeline is opened for writing,
+        keystrokes entered into the console are not visible until the the
+        pipe is closed. This behavior occurs whether the command pipeline is
+        executing 16-bit or 32-bit applications. These problems only occur
+        because both Tcl and the child application are competing for the
+        console at the same time. If the command pipeline is started from a
+        script, so that Tcl is not accessing the console, or if the command
+        pipeline does not use standard input or output, but is redirected
+        from or to a file, then the above problems do not occur.
+
+    WWiinnddoowwss 9955
+        A command pipeline that executes a 16-bit DOS application cannot be
+        opened for both reading and writing, since 16-bit DOS applications
+        that receive standard input from a pipe and send standard output to a
+        pipe run synchronously. Command pipelines that do not execute 16-bit
+        DOS applications run asynchronously and can be opened for both
+        reading and writing.
+
+        When running Tcl interactively, there may be some strange
+        interactions between the real console, if one is present, and a
+        command pipeline that uses standard input or output. If a command
+        pipeline is opened for reading from a 32-bit application, some of the
+        keystrokes entered at the console will be sent to the command
+        pipeline and some will be sent to the Tcl evaluator. If a command
+        pipeline is opened for writing to a 32-bit application, no output is
+        visible on the console until the the pipe is closed. These problems
+        only occur because both Tcl and the child application are competing
+        for the console at the same time. If the command pipeline is started
+        from a script, so that Tcl is not accessing the console, or if the
+        command pipeline does not use standard input or output, but is
+        redirected from or to a file, then the above problems do not occur.
+
+        Whether or not Tcl is running interactively, if a command pipeline is
+        opened for reading from a 16-bit DOS application, the call to ooppeenn
+        will not return until end-of-file has been received from the command
+        pipeline's standard output. If a command pipeline is opened for
+        writing to a 16-bit DOS application, no data will be sent to the
+        command pipeline's standard output until the pipe is actually closed.
+        This problem occurs because 16-bit DOS applications are run
+        synchronously, as described above.
+
+    MMaacciinnttoosshh
+        Opening a serial port is not currently implemented under Macintosh.
+
+        Opening a command pipeline is not supported under Macintosh, since
+        applications do not support the concept of standard input or output.
+
+    UUnniixx
+        Valid values for fileName to open a serial port are generally of the
+        form //ddeevv//ttttyyX, where X is aa or bb, but the name of any pseudo-file
+        that maps to a serial port may be used.
+
+        When running Tcl interactively, there may be some strange
+        interactions between the console, if one is present, and a command
+        pipeline that uses standard input. If a command pipeline is opened
+        for reading, some of the lines entered at the console will be sent to
+        the command pipeline and some will be sent to the Tcl evaluator. This
+        problem only occurs because both Tcl and the child application are
+        competing for the console at the same time. If the command pipeline
+        is started from a script, so that Tcl is not accessing the console,
+        or if the command pipeline does not use standard input, but is
+        redirected from a file, then the above problem does not occur.
+
+
+  See the PORTABILITY ISSUES section of the _ee_xx_ee_cc command for additional
+  information not specific to command pipelines about executing applications
+  on the various platforms
+
+  SSEEEE AALLSSOO
+
+  _ff_ii_ll_ee, _cc_ll_oo_ss_ee, _ff_ii_ll_ee_nn_aa_mm_ee, _ff_cc_oo_nn_ff_ii_gg_uu_rr_ee, _gg_ee_tt_ss, _rr_ee_aa_dd, _pp_uu_tt_ss, _ee_xx_ee_cc, ffooppeenn
+
+  KKEEYYWWOORRDDSS
+
+  _a_c_c_e_s_s_ _m_o_d_e, _a_p_p_e_n_d, _c_r_e_a_t_e, _f_i_l_e, _n_o_n_-_b_l_o_c_k_i_n_g, _o_p_e_n, _p_e_r_m_i_s_s_i_o_n_s,
+  _p_i_p_e_l_i_n_e, _p_r_o_c_e_s_s, _s_e_r_i_a_l
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

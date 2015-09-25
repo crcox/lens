@@ -1,0 +1,56 @@
+
+  ccooppyyCCoonnnneecctt -- ccoonnnneeccttss aa ggrroouupp ttoo aann IINN__,, OOUUTT__,, oorr TTAARRGGEETT__CCOOPPYY ggrroouupp
+
+  UUSSAAGGEE
+
+        copyConnect <source-group> <copy-group> <field>
+            [-reset <reset-on-example> | -initOutput <init-output>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  When a group is given the type IN_COPY, OUT_COPY, or TARGET_COPY, it will
+  copy its inputs, outputs, or targets from the units of another, source,
+  group. However, the values needn't be copied from the same field in the
+  units of the source group. For example, inputs to the copy group needn't be
+  copied from the source group's inputs. You could copy the inputs from the
+  outputs or targets or externalInputs of the source group.
+
+  Once a group has been given an IN_COPY, OUT_COPY, or TARGET_COPY type,
+  copyConnect must be called to tell it which is its source group and which
+  field of the source group's units the values are to be copied from.
+
+  The source and copy groups must have the same number of units.
+
+  Valid source group fields are inputs, externalInputs, outputs, targets,
+  inputDerivs, and outputDerivs.
+
+  Copying from outputs to outputs is similar to what would happen if you used
+  an ELMAN type rather than OUT_COPY and called _e_l_m_a_n_C_o_n_n_e_c_t, rather than
+  copyConnect. However, these differ in a few important ways. Error is
+  backpropagated across an Elman connection, but not across a copy
+  connection. The Elman connection adds the source values to the outputs, but
+  the copy connection sets the outputs to the source values. Typically, the
+  context group precedes the source group in the group ordering in an Elman
+  connection. But in a copy connection, the copy group will typically follow
+  the source group.
+
+  If the copy group has more than one IN_COPY, OUT_COPY, or TARGET_COPY type
+  specified, the copyConnect command applies to the first one that doesn't
+  yet have a source group. Not that you'd ever actually want more than one.
+
+  EEXXAAMMPPLLEESS
+
+  To make group "foo" copy its outputs from the inputs of group "bar" and
+  copy its targets from the outputs of group "baz", do:
+
+        lens> addGroup foo 10 OUT_COPY TARGET_COPY
+        lens> copyConnect bar foo inputs
+        lens> copyConnect baz foo outputs
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p, _g_r_o_u_p_T_y_p_e, _e_l_m_a_n_C_o_n_n_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Dec 11 12:03:48 EST 2000
+

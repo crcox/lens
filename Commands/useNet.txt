@@ -1,0 +1,25 @@
+
+  uusseeNNeett -- aaccttiivvaatteess aa nneettwwoorrkk oorr pprriinnttss aa lliisstt ooff aallll nneettwwoorrkkss
+
+  UUSSAAGGEE
+
+        useNet [<network>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no argument, this returns a list of all loaded networks. Given the
+  name of a network, it makes that the active, or current network.
+
+  EEXXAAMMPPLLEESS
+
+        lens> useNet
+        "bar" "foo"
+        lens> useNet foo
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_N_e_t, _d_e_l_e_t_e_N_e_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Nov 14 14:06:32 EST 2000
+

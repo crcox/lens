@@ -1,0 +1,25 @@
+
+  rreesseettNNeett -- rraannddoommiizzeess aallll wweeiigghhttss aanndd cclleeaarrss ddiirreeccttiioonn iinnffoorrmmaattiioonn
+
+  UUSSAAGGEE
+
+        resetNet
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This randomizes all non-frozen weights in the network, clears weight update
+  direction information, resets unit outputs and other values, and sets the
+  network's totalUpdates, error, and several other values to zero. This is
+  typically used to begin training the network from scratch.
+
+  Weight randomization is based on the randMean and randRange of the link's
+  block. If one of these is NaN, it defaults to the parameters of the
+  receiving group and then the network.
+
+  SSEEEE AALLSSOO
+
+  _r_a_n_d_W_e_i_g_h_t_s, _t_r_a_i_n
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:10:34 EST 2000
+

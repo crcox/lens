@@ -1,0 +1,44 @@
+# This trains a kohonen net on the digits data.  Try turning on the
+# periodicBoundary flag in the map group.
+
+set cols 8
+set rows 8
+addNet kohonen
+deleteGroups bias
+addGroup input 64 INPUT
+addGroup map [expr $rows * $cols] DISTANCE KOHONEN
+connectGroups input map
+
+# This junk group is necessary because the example set has targets.  It isn't
+# functional, otherwise.
+addGroup junk 10 OUTPUT -CROSS_ENTROPY
+
+setObj map.numColumns   $cols
+setObj randMean         0.5
+setObj randRange        0.5
+setObj input.numColumns 8
+setObj batchSize        100
+setObj numUpdates       2000
+setObj momentum         0.0
+resetNet
+
+loadExamples hand-digits.trn.bex -s train -e PERMUTED
+loadExamples hand-digits.tst.bex -s test
+
+proc setNeighborhood {} {
+  set updates [getObj totalUpdates]
+  if {$updates % 50} return
+  if {$updates == 0} {
+    setObj map.neighborhood 6
+  } else {
+    setObj map.neighborhood [expr 0.9 * [getObj map.neighborhood] + 0.1]
+  }	
+  puts "Neighborhood = [getObj map.neighborhood]"
+}
+setObj preEpochProc setNeighborhood
+
+resetPlot $cols
+plotAll map
+plotRow 1
+plotAll input
+drawUnits

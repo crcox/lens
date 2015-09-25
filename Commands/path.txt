@@ -1,0 +1,43 @@
+
+  ppaatthh -- rreettuurrnnss tthhee ffuullll oobbjjeecctt ppaatthh nnaammee ooff aa mmaajjoorr oobbjjeecctt
+
+  UUSSAAGGEE
+
+        path (-network <network> | -group <group> | -unit <unit> |
+    	-set <example-set>)
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command takes the given name of a network, group, unit, or example set
+  and returns the path that can be used to more efficiently reference that
+  object.
+
+  For a network, the path will be in the form "root.net(i)".
+
+  For a group, which must be in the current network, the path will be of the
+  form "group(i)".
+
+  For a unit, which must be in the current network, the path will be of the
+  form "group(i).unit(j)".
+
+  For an example set, the path will be in the form "root.set(i)".
+
+  EEXXAAMMPPLLEESS
+
+  To get the path for the network named "my net":
+
+        lens> path "my net"
+        root.net(3)
+
+  To get the path of unit "output:3":
+
+        lens> path output:3
+        group(4).unit(3)
+
+  SSEEEE AALLSSOO
+
+  _s_e_t_O_b_j_e_c_t, _g_e_t_O_b_j_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Nov 14 18:02:30 EST 2000
+

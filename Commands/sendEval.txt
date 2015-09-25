@@ -1,0 +1,53 @@
+
+  sseennddEEvvaall -- eexxeeccuutteess aa ccoommmmaanndd oonn tthhee sseerrvveerr oorr oonn oonnee oorr aallll cclliieennttss
+
+  UUSSAAGGEE
+
+        sendEval <command> [<client>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is used to cause either the server or the clients to execute a
+  command. This is a general form of communication between clients and the
+  server.
+
+  If invoked on a client, the specified command will be executed on the
+  server. If invoked on the server, the command will be executed on each
+  client, unless a client number is specified in which case it will be
+  executed only on that client. Client numbers can be found by using the
+  _c_l_i_e_n_t_I_n_f_o command.
+
+  sendEval does not wait for the remote command to finish executing and does
+  not return anything. If you would like the server to request information
+  from a client, the server should use sendEval to tell the client to use
+  sendEval again to send the information back to the server.
+
+  EEXXAAMMPPLLEESS
+
+  If invoked in the server, this will cause all clients to run the script
+  "buildNetwork.in":
+
+        lens> sendEval {source buildNetwork.in}
+
+  If invoked in the server, this will cause every client to print their own
+  process id:
+
+        lens> sendEval {puts [pid]}
+
+  If invoked in the server, this will cause every client to print the
+  server's process id:
+
+        lens> sendEval "puts [pid]"
+
+  If invoked in a client, this will cause all clients, including the sender,
+  to exit:
+
+        lens> sendEval {sendEval exit}
+
+  SSEEEE AALLSSOO
+
+  _s_e_n_d_O_b_j_e_c_t, _c_l_i_e_n_t_I_n_f_o, _s_t_a_r_t_S_e_r_v_e_r, _s_t_a_r_t_C_l_i_e_n_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:23:51 EDT 1998
+

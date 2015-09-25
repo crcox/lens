@@ -1,0 +1,31 @@
+# This is used for benchmarking the speed of the simulator.  The numLinks
+# parameter to bench or quick is the approximate number of links that will be
+# in the network.
+
+loadExamples bench.ex -s train
+set z 4
+
+proc bench {numWeights file} {
+  global z
+  set x [expr round(sqrt($z * $z + $z + 1 + $numWeights) - ($z + 1))]
+  set y [expr round(($numWeights - $z - $x - $x * $z) / ($x + $z + 1))]
+  catch {deleteNet bench}
+  addNet bench $z $x $y $z SUM_SQUARED
+
+  useTrainingSet train
+  set weights [getObj numLinks]
+  set updates [expr int(1e+7 / $numWeights)]
+  puts "Hidden: $x $y  Weights: $weights  Updates: $updates"
+  setObj reportInterval [expr int($updates / 4)]
+  momentum [expr int($updates / 10)]
+  resetNet
+  setObj numUpdates $updates
+  set time [lindex [time momentum] 0]
+  echo "Millions of weight traversals per second with $numWeights links: [format "%.1f" [expr 810 / $time]]" >> $file
+}
+
+proc benchAll file {
+  foreach i {100 1000 10000 100000 300000 1000000} {
+    bench $i $file
+  }
+}

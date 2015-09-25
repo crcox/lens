@@ -1,0 +1,29 @@
+# This is a random-mapping task, but a CONTINUOUS network has been thrown at
+# it here.
+
+set hiddenSize 50
+
+addNet rand10x40-$hiddenSize -i 4.0 -t 5 CONTINUOUS
+addGroup Input  10          INPUT
+addGroup Hidden $hiddenSize IN_INTEGR
+addGroup Output 10          OUTPUT
+connectGroups   {Input Output} Hidden Output
+autoPlot
+
+loadExamples rand10x40.ex -s set1
+setObj set1.graceTime  1.0
+setObj set1.minTime    1.0
+setObj set1.maxTime    4.0
+loadExamples rand10x40b.ex -s set2
+setObj set2.graceTime  1.0
+setObj set2.minTime    1.0
+setObj set2.maxTime    2.0
+
+setObj  momentum           0.95
+setObj  randRange          0.5
+setObj  targetRadius       0.1
+setObj  numUpdates         300
+setObj  outputCostStrength 0.1
+setObj  testGroupCrit      0.2
+
+resetNet

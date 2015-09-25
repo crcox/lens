@@ -1,0 +1,32 @@
+
+  NNAAMMEE
+
+  pid - Retrieve process id(s)
+
+  SSYYNNOOPPSSIISS
+
+  ppiidd?fileId?
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  If the fileId argument is given then it should normally refer to a process
+  pipeline created with the _oo_pp_ee_nn command. In this case the ppiidd command will
+  return a list whose elements are the process identifiers of all the
+  processes in the pipeline, in order. The list will be empty if fileId
+  refers to an open file that isn't a process pipeline. If no fileId argument
+  is given then ppiidd returns the process identifier of the current process.
+  All process identifiers are returned as decimal strings.
+
+  SSEEEE AALLSSOO
+
+  _ee_xx_ee_cc, _oo_pp_ee_nn
+
+  KKEEYYWWOORRDDSS
+
+  _f_i_l_e, _p_i_p_e_l_i_n_e, _p_r_o_c_e_s_s_ _i_d_e_n_t_i_f_i_e_r
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1996 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

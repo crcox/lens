@@ -1,0 +1,23 @@
+# This is a simple little network designed to test the behavior of integrating
+# units.  Try clicking on each of the four examples and watch the graph of the
+# outputs of the two types of integrator.  You should see that
+# OUT_INTEGR moves more slowly away from 0 but more quickly towards 0.
+
+# Try experimenting with changing the link weights and varying dt and gain.
+
+addNet int -i 4 -t 10 CONTINUOUS
+deleteGroups bias
+addGroup input 1 INPUT
+addGroup outInt 1 OUT_INTEGR
+addGroup inInt  1 IN_INTEGR
+connectGroups input {inInt outInt} -p ONE_TO_ONE
+setObj input.initOutput 0
+setObj input.minOutput  -1
+setObj outInt:0.incoming(0).weight 8
+setObj inInt:0.incoming(0).weight  8
+
+set data "max:2; 2 I:1 I:0; 2 I:-1 I:0; 2 I:1 I:-1; 2 I:-1 I: 1;"
+loadExamples "| echo \"$data\"" -s set
+
+viewUnits -s 20
+graphObj {outInt:0.output inInt:0.output} -u TICKS

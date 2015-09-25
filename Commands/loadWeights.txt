@@ -1,0 +1,49 @@
+
+  llooaaddWWeeiigghhttss -- llooaaddss tthhee lliinnkk wweeiigghhttss aanndd ootthheerr vvaalluueess ffrroomm aa ffiillee
+
+  UUSSAAGGEE
+
+        loadWeights <file-name> [-noFrozen | -onlyFrozen]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This reads weights (and possibly other values) for every link in the
+  network from a special file written with _s_a_v_e_W_e_i_g_h_t_s. The file will not be
+  loaded if it doesn't contain the same number of links as the current
+  network. However, subtle differences in architecture will not be detected
+  by this check. When using networks with randomized structures, it is
+  important to have recorded the random seed used when building the network
+  so the same architecture can be reconstructed later. Otherwise, previously
+  stored weight files might be useless.
+
+  This command will detect if the file contains link weight deltas or
+  lastValues as well as weights and will load all of the values in the file.
+
+  If -noFrozen is specified, values will only be loaded into non-frozen
+  links. If -onlyFrozen is specified, values will only be loaded into frozen
+  links. The number of links into which weights are being loaded must match
+  the number of links stored in the file. This check will be made before
+  anything is loaded.
+
+  If the file name has the extension .gz, .bz, .bz2, or .Z, it will
+  automatically be decompressed. This extension may be omitted when
+  specifying the file name.
+
+  Unless weights are only loaded to frozen links, the network's totalUpdates
+  counter will be set to the value stored in the weight file, as this should
+  indicate the number of updates that have been performed on the non-frozen
+  weights.
+
+  EEXXAAMMPPLLEESS
+
+  To load the weights from the compressed file greatNet.wt.gz:
+
+        lens> loadWeights greatNet.wt
+
+  SSEEEE AALLSSOO
+
+  _s_a_v_e_W_e_i_g_h_t_s, _l_o_a_d_X_e_r_i_o_n_W_e_i_g_h_t_s, _c_o_n_n_e_c_t_G_r_o_u_p_s, _g_e_t_S_e_e_d
+
+  ---------------------------------------------------------------------------
+    Last modified: Sun Mar 21 01:29:34 EST 1999
+

@@ -1,0 +1,46 @@
+
+  rraannddWWeeiigghhttss -- rraannddoommiizzeess aallll ooff tthhee wweeiigghhttss ooff aa sseelleecctteedd ttyyppee
+
+  UUSSAAGGEE
+
+        randWeights [-group <group-list> | -unit <unit-list> |
+            -mean <mean> | -range <range> | -type <link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This randomizes link weights. If a link type is specified, only links of
+  that type will be changed. Otherwise links of all types will be changed. If
+  a group list is given, only links into that group will be affected. If a
+  unit list is given, only links into those units will be affected.
+  Otherwise, all links (of the given type) in the network will be randomized.
+
+  Unlike the _r_e_s_e_t_N_e_t command, this will randomize frozen weights.
+
+  Weights are selected from a flat distribution over mean+/-range. If mean or
+  both values are not specified, the values for the block containing each
+  link will be used. If the values aren't specified for the block, those for
+  the network will be used. The range must be positive, but the mean may be
+  negative.
+
+  This command will not change the default mean and range values for link
+  blocks or for the network.
+
+  EEXXAAMMPPLLEESS
+
+  Randomizes all links to the group or network default ranges:
+
+        lens> randWeights
+
+  Randomizes only links of type "bias" into the "hidden" and "output" groups.
+  The distribution range will be +/- 0.3. The mean is still determined by the
+  block or network.
+
+        lens> randWeights -g {hidden output} -r 0.3 -t bias
+
+  SSEEEE AALLSSOO
+
+  _s_e_t_L_i_n_k_V_a_l_u_e_s, _r_e_s_e_t_N_e_t, _a_d_d_L_i_n_k_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Nov 14 15:19:38 EST 2000
+

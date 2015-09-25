@@ -1,0 +1,76 @@
+
+  sseettOObbjjeecctt -- sseettss tthhee vvaalluuee ooff aann oobbjjeecctt ffiieelldd
+
+  UUSSAAGGEE
+
+        setObject <object> [<value>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Lens makes many of the network's and example sets' underlying C structures
+  accessible to the user's Tcl shell interface. While normal Tcl variables
+  are changed using the _s_e_t command and dereferenced using $, fields of
+  internal Lens objects are set using the setObject command and retrieved
+  using _g_e_t_O_b_j_e_c_t.
+
+  Objects, sub-objects, and their fields are referenced using a notation
+  similar to C. The fields of the current network are referred to directly.
+  For example "learningRate" is the network's learning rate. Fields of child
+  objects are referenced with the name of the child object, followed by a
+  period and the name of the field. For example, the number of examples in
+  the current training set (which is a child object of the current network),
+  is referred to with "trainingSet.exampleNum".
+
+  As in Tcl, elements of arrays are referenced using the array name followed
+  by the element number in parentheses, e.g. "group(3).unit(99).outputHistory
+  (2)". It is also possible to use square brackets instead of parentheses,
+  more in keeping with C. However, this is less convenient because Tcl
+  interprets anything in square brackets as a command to be executed. The
+  brackets must be "escaped" to prevent this. References such as:
+
+        group\[$i\].unit\[[expr $j - 2]\].output
+
+  are more easily written as:
+
+        group($i).unit([expr $j - 2]).output
+
+  Elements in two dimensional arrays should be accessed using "(i,j)" format
+  rather than "[i][j]", although "(i)(j)" is acceptable.
+
+  The setObject command takes an object name and an optional value. With no
+  value, setObject simply calls _g_e_t_O_b_j_e_c_t, returning the current value of the
+  field or object. If a value is given, the field will be set to the
+  specified value and the value returned.
+
+  Only simple fields, such as integers, reals, flags (booleans), masks
+  (integers treated as bitmasks), strings, and Tcl commands, may be set.
+  Container objects may not be set, nor may certain fields, such as the
+  number of groups in the network, that are write-protected.
+
+  As a shortcut, you can access networks, groups, units, and example sets
+  directly by name. If the name contains a ".", it will be interpreted as a
+  field separator and this will not work. Therefore, it is recommended that
+  networks, groups, units, and example sets don't use ".".
+
+  EEXXAAMMPPLLEESS
+
+  To set the weight of one of the links to 1.0:
+
+        lens> setObject group(2).unit(9).incoming(3).weight 1.2340
+        1.234
+  Or if group(2) were named "hidden", you could probably do:
+
+        lens> setObject hidden:9.incoming(3).weight 1.2340
+        1.234
+  To retrieve that value:
+
+        lens> setObj hidden:9.incoming(3).weight
+        1.234
+
+  SSEEEE AALLSSOO
+
+  _g_e_t_O_b_j_e_c_t, _p_a_t_h, _v_i_e_w_O_b_j_e_c_t, _g_r_a_p_h_O_b_j_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:14:41 EST 2000
+

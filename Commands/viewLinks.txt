@@ -1,0 +1,40 @@
+
+  vviieewwLLiinnkkss -- ooppeennss tthhee lliinnkk vviieewweerr
+
+  UUSSAAGGEE
+
+        viewLinks [-out <group-list> | -in <group-list> | -size
+    <unitCellSize> |
+            -gap <linkCellSpacing> | -updates <updateRate>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This opens the link viewer if it is closed or deiconifies it and brings it
+  to the front if it is open.
+
+  The -out flag is used to specify the group or groups whose outputs will be
+  displayed. These are the "Sending Groups".
+
+  The -in flag is used to specify the group or groups whose inputs will be
+  displayed. These are the "Receiving Groups".
+
+  If linkCellSize is given, it sets the network's linkCellSize field, which
+  determines the size of the rectangles in the display. The initial default
+  is 8.
+
+  If linkCellSpacing is given, it sets the network's linkCellSpacing field,
+  which determines the gap between rectangles in the display. The initial
+  default is 0.
+
+  If updateRate is given, it sets the frequency with which the Link Viewer is
+  updated. A value of 0 means never, 3 is after each example, 4 is after
+  weight updates, 5 is after progress reports, and 6 is after training or
+  testing. The default is 5, after progress reports.
+
+  SSEEEE AALLSSOO
+
+  _v_i_e_w, _v_i_e_w_U_n_i_t_s, _v_i_e_w_O_b_j_e_c_t, _g_r_a_p_h_O_b_j_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Thu Jul 15 21:00:13 EDT 1999
+

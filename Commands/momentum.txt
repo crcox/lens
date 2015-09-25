@@ -1,0 +1,35 @@
+
+  mmoommeennttuumm -- ttrraaiinnss tthhee nneettwwoorrkk uussiinngg mmoommeennttuumm ddeesscceenntt
+
+  UUSSAAGGEE
+
+        momentum [<num-updates>] [-report <report-interval> | -setOnly]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is a shortcut for training the network using momentum descent. The
+  arguments are similar to those for _t_r_a_i_n. The momentum term is taken from
+  the network's momentum parameter.
+
+  Momentum descent incorporates a percentage (determined by the network's
+  momentum parameter) of the previous step in each weight change. This can
+  cause the effective learning rate to grow as high as 1 / (1 - momentum).
+
+  If the -setOnly flag is used, no training will occur. However, the
+  network's numUpdates, reportInterval, and default algorithm will be set.
+  This can be used to set the default training behavior in an initialization
+  script prior to actually training.
+
+  EEXXAAMMPPLLEESS
+
+  To train for 1000 epochs, printing reports every 100:
+
+        lens> momentum 1000 -r 100
+
+  SSEEEE AALLSSOO
+
+  _t_r_a_i_n, _s_t_e_e_p_e_s_t, _d_o_u_g_s_M_o_m_e_n_t_u_m, _d_e_l_t_a_B_a_r_D_e_l_t_a
+
+  ---------------------------------------------------------------------------
+    Last modified: Fri Nov 17 12:36:39 EST 2000
+

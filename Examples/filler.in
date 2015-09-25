@@ -1,0 +1,38 @@
+# This is a simple recurrent network that learns to fill in slots when
+# presented one filler at a time.
+# This is a rather difficult task to learn as the network must remember the
+# previous items and learn the correspondence between items and slots.
+
+set CHARS   4
+set SLOTS   5
+set HIDDEN  20
+set OUTPUTS [expr $CHARS * $SLOTS]
+
+addNet filler -i 5
+addGroup input   $CHARS   INPUT
+addGroup hidden  $HIDDEN
+addGroup context $HIDDEN  ELMAN
+addGroup output  $OUTPUTS OUTPUT
+
+connectGroups   {input context} hidden output
+elmanConnect    hidden context
+
+orderGroups bias input context hidden output
+
+if [catch {path -s train}] {
+  loadExamples filler.ex -s train -e PERMUTED
+  moveExamples train test 0.05
+}
+useTrainingSet train
+useTestingSet  test
+
+setObj learningRate    0.05
+setObj momentum        0.9
+setObj batchSize       10
+setObj numUpdates      5000
+setObj reportInterval  100
+resetNet
+
+setObj output.numColumns $CHARS
+autoPlot
+drawUnits

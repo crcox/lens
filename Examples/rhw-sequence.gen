@@ -1,0 +1,25 @@
+#!/usr/bin/tclsh
+
+set name(0) A
+set name(1) B
+set name(2) C
+set name(3) D
+set name(4) E
+set sequ(0) "1 2"
+set sequ(1) "2 3"
+set sequ(2) "3 1"
+set sequ(3) "2 1"
+set sequ(4) "1 3"
+
+foreach i {0 1 2 3 4} {
+  foreach j {0 1 2 3 4} {
+    puts "name:{$name($i) $name($j) $sequ($i) $sequ($j)}\n6"
+    puts "i:$i t:{-} *"
+    puts "i:$j t:{-} *"
+    puts "i: t:[expr [lindex $sequ($i) 0] - 1]"
+    puts "i: t:[expr [lindex $sequ($i) 1] - 1]"
+    puts "i: t:[expr [lindex $sequ($j) 0] - 1]"
+    puts "i: t:[expr [lindex $sequ($j) 1] - 1]"
+    puts ";"
+  }
+}

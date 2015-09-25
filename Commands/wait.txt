@@ -1,0 +1,58 @@
+
+  wwaaiitt -- ssttooppss tthhee iinntteerraaccttiivvee sshheellll ffoorr bbaattcchh jjoobbss
+
+  UUSSAAGGEE
+
+        wait [<max-time>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Ordinarily Lens cannot be run in the background if it is idle. It may be
+  run in the background if it is just going to process a script and then
+  exit, which is the normal case when training on a single processor.
+  However, because it attempts to read from standard input when it is idle,
+  Lens will suspend itself if it is simply put in the background where it
+  cannot access standard input.
+
+  There are cases, which primarily arise during parallel training, when a
+  Lens process must sit idle while it waits for network communications. We
+  would often like such processes to run in the background. To do this, the
+  wait command must be used. This causes Lens to enter a loop in which it
+  will process GUI and network events but will not attempt to read from
+  standard input. Typically, a parallel training client would load a network,
+  connect to the server, and then call wait, never to return until the server
+  tells it to exit.
+
+  The default behavior of the command is to wait indefinitely. Given a max-
+  time in seconds, wait will return at that point and, if it was called in
+  the shell, the shell will once more be active. A wait can be terminated by
+  an interrupt signal (Ctrl-C) or by pressing the button at the bottom of the
+  _M_a_i_n_ _W_i_n_d_o_w when it reads "Stop Waiting".
+
+  If "wait 0" is executed during a wait, the wait will end. If several waits
+  are occurring simultaneously, the top one on the stack will be terminated.
+  Telling the client to execute "wait 0" is one way a parallel training
+  server could tell a client to stop waiting without actually killing the
+  client.
+
+  EEXXAAMMPPLLEESS
+
+  To wait indefinitely:
+
+        lens> wait
+  To make a "perpetual client" that repeatedly tries to connect to a server
+  at a particular machine and port:
+
+        while 1 {catch {startClient spock.starfleet.edu 9999}; wait 60}
+  In this way, server processes could come and go and the client would
+  automatically connect into whatever server was listening at port 9999 at
+  the time. Once a connection to a server was established, it would not be
+  affected by attempts to reconnect.
+
+  SSEEEE AALLSSOO
+
+  _w_a_i_t_F_o_r_C_l_i_e_n_t_s, _s_e_n_d_E_v_a_l, _s_t_a_r_t_C_l_i_e_n_t, _t_r_a_i_n_P_a_r_a_l_l_e_l
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 21:04:17 EST 1999
+

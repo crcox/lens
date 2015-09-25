@@ -1,0 +1,36 @@
+
+  aauuttooPPlloott -- pplloottss tthhee eennttiirree nneettwwoorrkk iinn aa cchhaarrmmiinngg ffoorrmmaatt
+
+  UUSSAAGGEE
+
+        autoPlot [<plot-columns>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command lays out the entire network in the Unit Viewer. It plots each
+  group from last to first as if the group were plotted using _p_l_o_t_A_l_l.
+  Normally, a blank row is left between groups. However, Elman context groups
+  are plotted immediately below the previously plotted group and shifted to
+  the right. This arrangement assumes that Elman layers will immediately
+  precede their source groups in the group order.
+
+  If plot-columns is specified, it will set the number of columns used in the
+  layout. Otherwise, the number of columns is automatically determined based
+  on the maximum number of units in any group.
+
+  If the numColumns field for a group is set to something greater than 0, it
+  will override the plot-columns in determining how many columns are used in
+  plotting the group. This can be used to customize the layout short of
+  specifying it entirely by hand.
+
+  Once autoPlot called, it will be reinvoked whenever the structure of the
+  network changes. If any other plotting command is given, automatic plotting
+  will stop. New networks are by default in "autoPlot mode".
+
+  SSEEEE AALLSSOO
+
+  _p_l_o_t_R_o_w, _r_e_s_e_t_P_l_o_t, _p_l_o_t_A_l_l, _d_r_a_w_U_n_i_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:15:20 EST 2000
+

@@ -1,0 +1,28 @@
+
+  vveerrbboossiittyy -- cchheecckk oorr sseett hhooww vveerrbboossee LLeennss iiss ((mmoossttllyy dduurriinngg ttrraaiinniinngg))
+
+  UUSSAAGGEE
+
+        verbosity [<level>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This sets how verbose Lens is. 1 is the default level. A level of 0 will
+  prevent status messages from being printed while training and at certain
+  other times. This can be useful when _t_r_a_i_n is called repeatedly.
+
+  With no argument, this just returns the current level.
+
+  EEXXAAMMPPLLEESS
+
+  To prevent most messages from printing:
+
+        lens> verbosity 0
+
+  SSEEEE AALLSSOO
+
+  _t_r_a_i_n
+
+  ---------------------------------------------------------------------------
+    Last modified: Fri Aug 27 14:35:33 EDT 1999
+

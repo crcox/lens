@@ -1,0 +1,95 @@
+
+  aaddddNNeett -- ccrreeaatteess aa nneeww nneettwwoorrkk aanndd mmaakkeess iitt tthhee aaccttiivvee nneettwwoorrkk
+
+  UUSSAAGGEE
+
+        addNet <network> [-intervals <timeIntervals> |
+            -ticks <ticksPerInterval>] [<net-type>]*
+            [<num-units> [[+|-]<group-type>]*]*
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  addNet creates a network with the specified name and makes it the active
+  network. Multiple networks may be loaded at the same time but only one may
+  be active and most commands will only operate on the active network. _u_s_e_N_e_t
+  can be used to list all networks or change the active network.
+
+  If another network with the same name exists, the user will have the option
+  of replacing the other network or aborting. The network is created with a
+  bias layer, called "bias", which contains a single unit.
+
+  timeIntervals is an integer specifying the maximum "real" time for which
+  each example will be run. For non-continuous networks, this is the same as
+  the number of events or ticks. For continuous networks, these are in
+  abstract time units. The default is 1.
+
+  ticksPerInterval is specific to continuous networks and sets the number of
+  ticks or activation updates per time interval. dt will default to the
+  inverse of this value.
+
+  Networks default to standard type. Currently, the valid additional types
+  are SRBPTT (simple recurrent backprop-through-time), CONTINUOUS (fully
+  recurrent), and BOLTZMANN. To get recurrent backprop-through-time (which
+  isn't really continuous), leave the ticksPerInterval 1 and use the
+  CONTINUOUS type.
+
+  addNet can also be used like the old autoNet to create and connect groups
+  in the network with a single command. If group information is listed after
+  the network type, they will automatically be added to the network.
+
+  Each group is created by specifying the number of units in the group
+  followed by a series of types. Groups will be given names automatically,
+  although these could be altered later using:
+
+        lens> setObject group(<i>).name <new-name>
+
+  The group types should be specified exactly as they would be when using
+  _a_d_d_G_r_o_u_p or _g_r_o_u_p_T_y_p_e, with the following differences:
+
+  If a fixed type is not specified for the first group, it will default to an
+  INPUT group. Likewise, the last group will default to OUTPUT. All other
+  groups will default to no fixed type (hidden), although they could be set
+  to other fixed types by specifying a type.
+
+  In order to create an Elman context layer, it is not necessary to define it
+  as a separate group. Giving any group the type ELMAN will cause a context
+  group, having the same number of units, to be created as well. The original
+  group will be Elman-connected (a special one-to-one identity mapping) to
+  the context group and the context group will have a full projection back to
+  the original.
+
+  The first input group will be named "input", with subsequent input groups
+  labeled "input2", "input3", etc. Likewise for output and hidden layers. A
+  context group will be given the same number as the corresponding main
+  group. The context of the first hidden layer would be called "context".
+  That of the first output layer would be called "outContext".
+
+  EEXXAAMMPPLLEESS
+
+  To create a new standard network with the name "My Network":
+
+        lens> addNet "My Network"
+
+  To create a new continuous network with 3 time intervals and 5 ticks per
+  interval:
+
+        lens> addNet myNet -i 3 -t 5 CONTINUOUS
+
+  The command below creates a simple recurrent network named "myNet" with a
+  maximum of 5 time intervals (each with one tick) per example, 10 inputs, 20
+  hidden units, 20 context units, and 3 output units. The input layer
+  projects to the hidden layer. The hidden layer has an Elman-projection to
+  the context layer which has a full projection back to the hidden layer. The
+  hidden layer then projects to the output layer. The bias group projects to
+  the hidden and output layers, but not the input and context. The output
+  group is of type SOFT_MAX.
+
+        lens> addNet myNet -i 5 10 20 ELMAN 3 SOFT_MAX
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p, _c_o_n_n_e_c_t_G_r_o_u_p_s, _e_l_m_a_n_C_o_n_n_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Sat Aug 28.39:29:41 EDT 1999
+

@@ -1,0 +1,44 @@
+
+  eellmmaannCCoonnnneecctt -- ccoonnnneeccttss aa ssoouurrccee ggrroouupp ttoo aann EEllmmaann ccoonntteexxtt ggrroouupp
+
+  UUSSAAGGEE
+
+        elmanConnect <source-group> <context-group>
+            [-reset <reset-on-example> | -initOutput <init-output>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This sets up the first group as the source for the second, context, group.
+  The two groups must have the same number of units and the second must have
+  an ELMAN_CLAMP output function that has not already been assigned a source
+  group. Once this command is invoked, when the context group is updated, the
+  output of each unit in the source group will be added to the output of the
+  corresponding unit in the context group.
+
+  The -reset option will set the resetOnExample parameter of the source
+  group. This defaults to 1 or TRUE, which means that the outputs of the
+  source group will be reset to the group's initOutput at the start of each
+  example.
+
+  The -initOutput option sets the source group's initOutput value. The
+  default depends on the output type of the group, but is typically 0.5 for
+  [0,1]-bounded groups.
+
+  The resetOnExample and initOutput values could also be set directly with
+  the _s_e_t_O_b_j_e_c_t command.
+
+  EEXXAAMMPPLLEESS
+
+  To make group "context1" the context layer for group "hidden1" and have the
+  unit outputs of the context layer reset to 0.1 at the start of each
+  example:
+
+        lens> elmanConnect hidden1 context1 -r 1 -i 0.1
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p, _g_r_o_u_p_T_y_p_e, _c_o_p_y_C_o_n_n_e_c_t
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Apr 12 19:23:40 EDT 2000
+

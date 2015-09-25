@@ -1,0 +1,56 @@
+
+  sseettLLiinnkkVVaalluueess -- sseettss ppaarraammeetteerrss ffoorr aallll lliinnkkss ooff aa ggiivveenn ttyyppee
+
+  UUSSAAGGEE
+
+        setLinkValues <parameter> <value> [-group <group-list> |
+            -unit <unit-list> | -type <link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This command sets the value of a parameter in the link block structures for
+  all links of the specified type. If no type is specified, all links will be
+  affected.
+
+  If a group list or unit list is given, only links into those groups or
+  units are affected. Otherwise, all links of the appropriate type are
+  affected.
+
+  The parameter field should be the name of a real-valued parameter within
+  the block structure. These include learningRate, momentum, weightDecay,
+  randMean, randRange, min, and max. value is the value for that parameter.
+
+  Using a dash ("-") rather than a real value will indicate that the group's
+  value for that parameter should be used. If the group's value is also NaN
+  then the network-wide value will be used. Otherwise, the values specified
+  here will override the group and network defaults.
+
+  This command does not change the network or group default values. To do
+  that, just do something like "setObj learningRate <value>" or "setObj group
+  (3).learningRate <value>".
+
+  EEXXAAMMPPLLEESS
+
+  To give all bias links to groups "hidden" and "output" a learning rate of
+  0.01:
+
+        lens> setLinkValues learningRate 0.01 -g {hidden output} -type bias
+
+  To more or less permanently shut off all links of type "dead links":
+
+        lens> setLinkValues randMean  0 -t "dead links"
+        lens> setLinkValues randRange 0 -t "dead links"
+        lens> randWeights -t "dead links"
+        lens> freezeWeights -t "dead links"
+
+  To make the entire network use the group or network default momentum:
+
+        lens> setLinkValues momentum -
+
+  SSEEEE AALLSSOO
+
+  _r_a_n_d_W_e_i_g_h_t_s, _f_r_e_e_z_e_W_e_i_g_h_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Tue Nov 14 15:34:12 EST 2000
+

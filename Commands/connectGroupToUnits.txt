@@ -1,0 +1,37 @@
+
+  ccoonnnneeccttGGrroouuppTTooUUnniittss -- ccrreeaatteess lliinnkkss ffrroomm aallll uunniittss iinn aa ggrroouupp ttoo ggiivveenn
+  uunniittss
+
+  UUSSAAGGEE
+
+        connectGroupToUnits <group-list> <unit-list> [-mean <mean> |
+            -range <range> | -type -<link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  For each group in the group list, this connects all units in the group to
+  the specified receiving units. Groups and units should be identified with
+  their given names rather than number or path. By default the new
+  connections will have a type with the same name as the sending group, but
+  this can be overridden.
+
+  If mean and/or range are given, they will determine the values used for
+  randomizing weights in this projection. If left unspecified, the network
+  defaults will be used for these links.
+
+  EEXXAAMMPPLLEE
+
+  To connect each unit in the "in1" and "in2" groups to the fourth and fifth
+  units in the "hid" group with weight randomizations in the range [-1.5,
+  0.5):
+
+        lens> connectGroupToUnit {in1 in2} {hid:3 hid:4} -mean 0.5 -r 1.0
+
+  SSEEEE AALLSSOO
+
+  _a_d_d_G_r_o_u_p, _c_o_n_n_e_c_t_G_r_o_u_p_s, _c_o_n_n_e_c_t_U_n_i_t_s, _e_l_m_a_n_C_o_n_n_e_c_t, _a_d_d_L_i_n_k_T_y_p_e,
+  _d_i_s_c_o_n_n_e_c_t_G_r_o_u_p_U_n_i_t, _s_e_t_L_i_n_k_V_a_l_u_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:12:51 EST 2000
+

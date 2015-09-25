@@ -1,0 +1,41 @@
+
+  rreesseettUUnniittVVaalluueess -- rreesseettss iinnppuuttss,, oouuttppuuttss,, oorr ootthheerr ffiieellddss ffoorr aa ggrroouupp
+
+  UUSSAAGGEE
+
+        resetUnitValues <group-list> [-<field> [<value>]]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This resets the values for all units in the groups listed to some constant.
+  field can be one of -inputs, -outputs, -targets, -inputDerivs, -
+  outputDerivs, or -externalInputs. The first three may be shortened to a
+  single character. The default field is the outputs.
+
+  If value is specified, the values will be set to that. Otherwise, if the
+  inputs are being set, the default is the group's initInput. If outputs, the
+  default is the initOutput. The default for targets is NaN. The default for
+  other fields is 0.0. Values can be set to NaN by using a - for the value.
+
+  EEXXAAMMPPLLEESS
+
+  To reset outputs of the units in group hidden to the group's or network's
+  (if the group's is NaN) initOutput:
+
+        lens> resetUnitValues hidden
+
+  To reset the targets of three groups to NaN:
+
+        lens> resetUnitValues {out1 out2 out3} -t
+
+  To reset the inputs of all groups to 0.5:
+
+        lens> resetUnitValues * -i 0.5
+
+  SSEEEE AALLSSOO
+
+  _c_o_p_y_U_n_i_t_V_a_l_u_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Thu Feb 25 19:27:46 EST 1999
+

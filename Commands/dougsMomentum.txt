@@ -1,0 +1,38 @@
+
+  ddoouuggssMMoommeennttuumm -- ttrraaiinnss tthhee nneettwwoorrkk uussiinngg bboouunnddeedd mmoommeennttuumm ddeesscceenntt
+
+  UUSSAAGGEE
+
+        dougsMomentum [<num-updates>] [-report <report-interval> | -setOnly]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This is a shortcut for training the network using "Doug's momentum
+  descent". The arguments are similar to those for _t_r_a_i_n. The momentum term
+  is taken from the network's momentum parameter.
+
+  Doug's momentum descent is similar to standard momentum descent with the
+  exception that the pre-momentum weight step vector is bounded so that its
+  length cannot exceed 1.0. After the momentum is added, the length of the
+  resulting weight change vector can grow as high as 1 / (1 - momentum). This
+  change allows stable behavior with much higher initial learning rates,
+  resulting in less need to adjust the learning rate as training progresses.
+
+  If the -setOnly flag is used, no training will occur. However, the
+  network's numUpdates, reportInterval, and default algorithm will be set.
+  This can be used to set the default training behavior in an initialization
+  script prior to actually training.
+
+  EEXXAAMMPPLLEESS
+
+  To train for 1000 epochs, printing reports every 100:
+
+        lens> dougsMomentum 1000 -r 100
+
+  SSEEEE AALLSSOO
+
+  _t_r_a_i_n, _s_t_e_e_p_e_s_t, _m_o_m_e_n_t_u_m, _d_e_l_t_a_B_a_r_D_e_l_t_a
+
+  ---------------------------------------------------------------------------
+    Last modified: Fri Nov 17 12:37:06 EST 2000
+

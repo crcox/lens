@@ -1,0 +1,50 @@
+
+  NNAAMMEE
+
+  for - ``For'' loop
+
+  SSYYNNOOPPSSIISS
+
+  ffoorrstart test next body
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  FFoorr is a looping command, similar in structure to the C ffoorr statement. The
+  start, next, and body arguments must be Tcl command strings, and test is an
+  expression string. The ffoorr command first invokes the Tcl interpreter to
+  execute start. Then it repeatedly evaluates test as an expression; if the
+  result is non-zero it invokes the Tcl interpreter on body, then invokes the
+  Tcl interpreter on next, then repeats the loop. The command terminates when
+  test evaluates to 0. If a _cc_oo_nn_tt_ii_nn_uu_ee command is invoked within body then any
+  remaining commands in the current execution of body are skipped; processing
+  continues by invoking the Tcl interpreter on next, then evaluating test,
+  and so on. If a _bb_rr_ee_aa_kk command is invoked within body or next, then the ffoorr
+  command will return immediately. The operation of _bb_rr_ee_aa_kk and _cc_oo_nn_tt_ii_nn_uu_ee are
+  similar to the corresponding statements in C. FFoorr returns an empty string.
+
+  Note: test should almost always be enclosed in braces. If not, variable
+  substitutions will be made before the ffoorr command starts executing, which
+  means that variable changes made by the loop body will not be considered in
+  the expression. This is likely to result in an infinite loop. If test is
+  enclosed in braces, variable substitutions are delayed until the expression
+  is evaluated (before each loop iteration), so changes in the variables will
+  be visible. For an example, try the following script with and without the
+  braces around $$xx<<1100:
+
+    for {set x 0} {$x<10} {incr x} {
+    	puts "x is $x"
+    }
+
+  SSEEEE AALLSSOO
+
+  _bb_rr_ee_aa_kk, _cc_oo_nn_tt_ii_nn_uu_ee, _ff_oo_rr_ee_aa_cc_hh, _ww_hh_ii_ll_ee
+
+  KKEEYYWWOORRDDSS
+
+  _f_o_r, _i_t_e_r_a_t_i_o_n, _l_o_o_p_i_n_g
+  ---------------------------------------------------------------------------
+
+    _C_o_p_y_r_i_g_h_t © 1993 The Regents of the University of California.
+    _C_o_p_y_r_i_g_h_t © 1994-1997 Sun Microsystems, Inc.
+    _C_o_p_y_r_i_g_h_t © 1995-1997 Roger E. Critchlow Jr.
+

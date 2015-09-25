@@ -1,0 +1,16 @@
+#!/usr/bin/gawk -f
+
+BEGIN {
+  printf("max:10;\n");
+  for (a = 0; a < 4; a++) {
+    for (b = 0; b < 4; b++) {
+      for (c = 0; c < 4; c++) {
+        for (d = 0; d < 4; d++) {
+	  printf("name:{%d %d %d %d} ", a, b, c, d);
+	  printf("b:%d %d %d %d;\n", a, b + 4, c + 8, d + 12);
+	}
+      }
+    }
+  }
+  exit;
+}

@@ -1,0 +1,71 @@
+
+  ppoollaarriittyy -- ccoommppuuttee tthhee aavvgg ppoollaarriizzaattiioonn ooff uunniitt oouuttppuuttss iinn aa ggrroouupp
+
+  UUSSAAGGEE
+
+        polarity [reset | update | report]  <group-list>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  Polarity is a measure of the degree to which the units in a group are
+  adopting outputs close to the minimum or maximum possible output value. In
+  a logistic group, the minimum output is 0 and the maximum is 1, but other
+  types of units may have a different range. In order to compute the polarity
+  of a unit, its output is first normalized to the range [0,1]. The polarity
+  of a unit whose normalized output is x is given by the following formula:
+
+        polarity = x log2(x) + (1-x) log2(1-x) + 1
+  This is a U-shaped function. If the normalized output is 0.5, the polarity
+  is 0. As the output increases towards 1 or decreases towards 0, the
+  polarity grows towards 1.
+
+  The average polarity of the units in a group, across several training or
+  testing examples, is a useful measure. A high polarity, close to 1,
+  indicates that the units are adopting binary states. A low polarity can
+  indicate that there are too few units to solve the given task and the
+  network is forced to make use of intermediate activation values. In the
+  absence of noise, it is also possible for a network to find a low-polariity
+  solution when it has too many units.
+
+  Various techniques can be used to encourage a network to adopt more
+  polarized output values. Indirectly this can be done by adding noise to the
+  unit inputs. Units with non-polarized values will be more susceptible to
+  this kind of noise and the network will be more successful with a solution
+  that uses binary activations. An output cost function, such as
+  LOGISTIC_COST, can also be used to directly encourage polarized output
+  values. In fact, the LOGISTIC_COST function uses a cost function that is
+  simply the inverse of polarity.
+
+  The polarity command takes an action and a list of groups on which to
+  perform that action. If the first argument is reset, the groups will erase
+  all of the stored polarity information. If the first argument is update,
+  the current polarity of each of the units in the group will be computed and
+  these observations are recorded in the group structure using the
+  polaritySum and polarityNum fields. It is common to add a call to "polarity
+  update" to the postEventProc or postExampleProc so that the polarity is
+  tracked following each event or example. Finally, if the first argument is
+  report, the command will return the average polarity, since the last reset,
+  of each of the listed groups (along with the group name).
+
+  EEXXAAMMPPLLEE
+
+  Here is one way to compute the polarity of all of the groups during a
+  testing session. First we reset the polarity and set the postExampleProc to
+  update the polarity after each example. Then we test and check the average
+  polarities. Finally, the postExampleProc is cleared to speed things up
+  during further training.
+
+        lens> polarity reset *
+        lens> setObject postExampleProc {polarity update *}
+        lens> test
+        lens> polarity report *
+        {"bias" 1} {"input" 1} {"hidden" 0.670024} {"output" 0.797647}
+        lens> setObject postExampleProc {}
+
+  SSEEEE AALLSSOO
+
+  _g_r_o_u_p_T_y_p_e
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Jun 8.33:59:51 EDT 1998
+

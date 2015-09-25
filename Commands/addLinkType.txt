@@ -1,0 +1,50 @@
+
+  aaddddLLiinnkkTTyyppee -- ccrreeaatteess aa nneeww lliinnkk ttyyppee
+
+  UUSSAAGGEE
+
+        addLinkType [<link-type>]
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  With no argument, this returns a list of currently defined link types.
+  Otherwise, this creates a new link type of the given name. Link types serve
+  as handles to particular sets of links. Using types, one can selectively
+  randomize, freeze, or delete certain links without affecting others. Types
+  also allow the creation of multiple links between two units. Only one link
+  of a particular type may exist from one unit to another. However, there
+  could be multiple links provided they have distinct types.
+
+  A link can only have one type. It is not possible to logically "or" types
+  together when specifying a set of links. A link is given a type when it is
+  created. Most commands that operate on links will accept a type name that
+  will limit its effect to only links of that type. If no type is specified
+  for such a function it will operate on every link, regardless of type.
+
+  The only predefined link type is "bias". Bias links that are automatically
+  created when a group is added are of this type. If no type is specified
+  when a connection is formed using _c_o_n_n_e_c_t_G_r_o_u_p_s, _c_o_n_n_e_c_t_G_r_o_u_p_T_o_U_n_i_t_s, or
+  _c_o_n_n_e_c_t_U_n_i_t_s, the default behavior is to give the links a type with the
+  same name as the sending group. This type will be created if necessary. If
+  a different type name is specified when a connection is formed, it too will
+  be created if necessary. Therefore, there is no real reason for this
+  command to exist except for printing out the list of link types.
+
+  There can be up to 256 types defined concurrently. It would not be
+  reasonable to give every link in the network its own type. If the type is
+  already registered, addLinkType does not report an error.
+
+  EEXXAAMMPPLLEESS
+
+  To create a new type called "my links":
+
+        lens> addLinkType "my links"
+
+  SSEEEE AALLSSOO
+
+  _d_e_l_e_t_e_L_i_n_k_T_y_p_e, _c_o_n_n_e_c_t_G_r_o_u_p_s, _c_o_n_n_e_c_t_G_r_o_u_p_T_o_U_n_i_t_s, _c_o_n_n_e_c_t_U_n_i_t_s,
+  _r_a_n_d_W_e_i_g_h_t_s, _f_r_e_e_z_e_W_e_i_g_h_t_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Wed Nov 15 11:11:43 EST 2000
+

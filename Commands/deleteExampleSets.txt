@@ -1,0 +1,30 @@
+
+  ddeelleetteeEExxaammpplleeSSeettss -- ddeelleetteess aa lliisstt ooff eexxaammppllee sseettss
+
+  UUSSAAGGEE
+
+        deleteExampleSets <example-set-list>
+
+  DDEESSCCRRIIPPTTIIOONN
+
+  This deletes the listed example sets. If a set is reading from a pipe, the
+  pipe will be closed.
+
+  EEXXAAMMPPLLEESS
+
+  To delete all sets:
+
+        lens> deleteExampleSets *
+
+  To delete just the training and testing sets:
+
+        lens> deleteExampleSets "[getObj trainingSet.name] [getObj
+    testingSet.name]"
+
+  SSEEEE AALLSSOO
+
+  _l_o_a_d_E_x_a_m_p_l_e_s
+
+  ---------------------------------------------------------------------------
+    Last modified: Mon Mar 1 12:28:02 EST 1999
+

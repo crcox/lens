@@ -1,0 +1,25 @@
+# In the "on-off" example set, the network must learn to produce the correct
+# output and then shut off the output units once they are correct.  The "on"
+# task just requires the outputs to be turned on.  Notice the use of soft
+# clamping of the input group.
+
+addNet on-off -i 4 -t 10 CONTINUOUS
+
+addGroup input  6  INPUT DOT_PRODUCT SOFT_CLAMP BIASED IN_INTEGR
+addGroup hidden 10 IN_INTEGR
+addGroup output 6  OUTPUT IN_INTEGR
+
+connectGroups input  hidden -bi
+connectGroups hidden hidden
+connectGroups hidden output -bi
+connectGroups output output
+
+loadExamples on-off2.ex -s on
+loadExamples on-off.ex -s on-off
+
+setObj clampStrength     0.9
+setObj trainGroupCrit    0.05
+setObj testGroupCrit     0.1
+setObj groupCritRequired 1
+setObj minCritBatches    5
+setObj numUpdates        500
