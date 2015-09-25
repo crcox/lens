@@ -4,6 +4,39 @@ The Light Efficient Network Simulator (LENS) was originally written by Douglas R
 The source code in this repo has been updated to build against Tcl/Tk 8.6.4. It has been tested on:
 - Ubuntu 14.04 (trusty) 64-bit.
 
+## Install
+The build process is laid out in compile.sh.
+
+First, create a directory to install this local build of Tcl/Tk into:
+```{bash}
+mkdir -p usr/local
+TOP=$(pwd)
+```
+
+Then, build Tcl:
+```{bash}
+# Compile Tcl
+cd "TclTk/tcl8.6.4/unix"
+./configure --enable-shared --prefix=${TOP}/usr/local
+make
+make install
+```
+Then, build Tk:
+```{bash}
+# Compile Tk
+cd "../../tk8.6.4/unix"
+./configure --enable-shared --prefix=${TOP}/usr/local --with-tcl=../../tcl8.6.4/unix/
+make
+make install
+```
+
+Finally, build Lens:
+```{bash}
+# Compile Lens
+cd ${TOP}
+make
+```
+
 ## Why LENS?
 LENS is a neural network simulator written specifically for cognitive science, and so has many features that more generic packages do not have. It is also lightweight, and can be run in batch mode without ever loading a GUI. This is useful when scaling up or when running many iterations of a simulation in a distributed computing environment. It is written to be extensible. The LENS is (Tcl) script driven, and so you have a great deal of flexibility without needing to write a new C extension.
 
