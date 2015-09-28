@@ -29,69 +29,69 @@ int initError(char *fmt, ...) {
   return TCL_ERROR;
 }
 
-//int Tcl_AppInit(Tcl_Interp *interp) {
-//
-//  if (Tcl_Init(interp) == TCL_ERROR)
-//    return initError("Tcl_Init failed:\n%s\n"
-//	     "Have you set the LENSDIR environment variable properly?\n"
-//	     "If not, see Running Lens in the online manual.",
-//	     Tcl_GetStringResult(interp));
-//
-//  if (!Batch) {
-//    if (Tk_Init(interp) == TCL_ERROR)
-//      return initError("Tk_Init failed: %s", Tcl_GetStringResult(interp));
-//  }
-//
-//  Tcl_LinkVar(interp, ".GUI", (char *) &Gui, TCL_LINK_INT);
-//  Tcl_LinkVar(interp, ".BATCH", (char *) &Batch, TCL_LINK_INT);
-//  Tcl_LinkVar(interp, ".CONSOLE", (char *) &Console, TCL_LINK_INT);
-//#ifdef MACHINE_WINDOWS
-//  eval("set .WINDOWS 1");
-//#else
-//  eval("set .WINDOWS 0");
-//#endif /* MACHINE_WINDOWS */
-//
-//  Tcl_SetVar(interp, ".RootDir", RootDir, TCL_GLOBAL_ONLY);
-//
-//#ifdef ADVANCED
-//  Tcl_Eval(interp, "set .ADVANCED 1");
-//  sprintf(Version, "%s%sa", VERSION, VersionExt);
-//#else
-//  Tcl_Eval(interp, "set .ADVANCED 0");
-//  sprintf(Version, "%s%s", VERSION, VersionExt);
-//#endif /* ADVANCED */
-//
-//#ifdef DOUBLE_REAL
-//  strcat(Version, " dbl");
-//#endif
-//
-//  Tcl_SetVar(interp, ".Version", Version, TCL_GLOBAL_ONLY);
-//
-//  sprintf(Buffer, "%s/Src/shell.tcl", RootDir);
-//  if (Tcl_EvalFile(interp, Buffer) != TCL_OK)
-//    return initError("%s\nwhile reading %s/Src/shell.tcl",
-//		 Tcl_GetStringResult(interp), RootDir);
-//
-//  registerCommands();
-//  registerAlgorithms();
-//  createObjects();
-//  if (!Batch) createCanvRectType();
-//  if (userInit()) return initError("user initialization failed");
-//  initObjects();
-//
-//  if (!Batch) {
-//    if (Tcl_Eval(Interp, "wm withdraw ."))
-//      return initError("error withdrawing main window");
-//  }
-//
-//  if (Console) createConsole(TRUE);
-//
-//  eval("set _script(path) [pwd]; set _script(file) {}");
-//
-//  Tcl_Eval(Interp, "update");
-//
-//  return TCL_OK;
-//}
+int Tcl_AppInit(Tcl_Interp *interp) {
+
+  if (Tcl_Init(interp) == TCL_ERROR)
+    return initError("Tcl_Init failed:\n%s\n"
+	     "Have you set the LENSDIR environment variable properly?\n"
+	     "If not, see Running Lens in the online manual.",
+	     Tcl_GetStringResult(interp));
+
+  if (!Batch) {
+    if (Tk_Init(interp) == TCL_ERROR)
+      return initError("Tk_Init failed: %s", Tcl_GetStringResult(interp));
+  }
+
+  Tcl_LinkVar(interp, ".GUI", (char *) &Gui, TCL_LINK_INT);
+  Tcl_LinkVar(interp, ".BATCH", (char *) &Batch, TCL_LINK_INT);
+  Tcl_LinkVar(interp, ".CONSOLE", (char *) &Console, TCL_LINK_INT);
+#ifdef MACHINE_WINDOWS
+  eval("set .WINDOWS 1");
+#else
+  eval("set .WINDOWS 0");
+#endif /* MACHINE_WINDOWS */
+
+  Tcl_SetVar(interp, ".RootDir", RootDir, TCL_GLOBAL_ONLY);
+
+#ifdef ADVANCED
+  Tcl_Eval(interp, "set .ADVANCED 1");
+  sprintf(Version, "%s%sa", VERSION, VersionExt);
+#else
+  Tcl_Eval(interp, "set .ADVANCED 0");
+  sprintf(Version, "%s%s", VERSION, VersionExt);
+#endif /* ADVANCED */
+
+#ifdef DOUBLE_REAL
+  strcat(Version, " dbl");
+#endif
+
+  Tcl_SetVar(interp, ".Version", Version, TCL_GLOBAL_ONLY);
+
+  sprintf(Buffer, "%s/Src/shell.tcl", RootDir);
+  if (Tcl_EvalFile(interp, Buffer) != TCL_OK)
+    return initError("%s\nwhile reading %s/Src/shell.tcl",
+		 Tcl_GetStringResult(interp), RootDir);
+
+  registerCommands();
+  registerAlgorithms();
+  createObjects();
+  if (!Batch) createCanvRectType();
+  if (userInit()) return initError("user initialization failed");
+  initObjects();
+
+  if (!Batch) {
+    if (Tcl_Eval(Interp, "wm withdraw ."))
+      return initError("error withdrawing main window");
+  }
+
+  if (Console) createConsole(TRUE);
+
+  eval("set _script(path) [pwd]; set _script(file) {}");
+
+  Tcl_Eval(Interp, "update");
+
+  return TCL_OK;
+}
 
 /* Returns 1 on failure, 0 on success. */
 flag startLens(char *progName, flag batchMode) {
