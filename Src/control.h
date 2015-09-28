@@ -1,7 +1,7 @@
 #ifndef CONTROL_H
 #define CONTROL_H
 
-#include <tcl.h>
+#include "tcl.h"
 
 extern flag queryUser(char *fmt, ...);
 extern flag createCommand(Tcl_ObjCmdProc *proc, char *name);

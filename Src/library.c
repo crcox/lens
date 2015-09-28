@@ -9,7 +9,7 @@
 #include "canvRect.h"
 #include "train.h"
 #include "lens.h"
-#include <tk.h>
+#include "tk.h"
 #ifdef MACHINE_WINDOWS
 #  include <windows.h>
 #endif /* MACHINE_WINDOWS */

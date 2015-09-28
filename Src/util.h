@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "system.h"
-#include <tcl.h>
+#include "tcl.h"
 
 typedef struct string {
   int maxChars;

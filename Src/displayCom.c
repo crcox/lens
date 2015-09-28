@@ -9,7 +9,7 @@
 #include "control.h"
 #include "display.h"
 #include "graph.h"
-#include <tk.h>
+#include "tk.h"
 
 int C_resetPlot(TCL_CMDARGS) {
   int width;
