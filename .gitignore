@@ -1,4 +1,6 @@
 Bin/**
+Obj/**
 Lens*.tgz
 log/**
 usr/**
+lens
