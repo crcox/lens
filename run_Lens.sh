@@ -1,8 +1,8 @@
 #!/bin/bash
 cleanup() {
   # Remove the Lens distribution
-  if [ -f "LensCRC.tgz" ]; then
-    rm -v "LensCRC.tgz"
+  if [ -f "Lens.tgz" ]; then
+    rm -v "Lens.tgz"
   fi
   # Remove the Tcl add-ons distribution
   if [ -f "tcl_procs.tgz" ]; then
@@ -20,19 +20,19 @@ cleanup() {
   # Package the weights for transfer and clean up
   # First, check if any weight files exist.
   nwt=$(ls -1 *.wt 2>/dev/null | wc -l)
-  if [ $nwt -ne 0 ]; then
+  if [ $nwt -gt 0 ]; then
     tar czf wt.tgz *.wt && rm *.wt
   fi
   nin=$(ls -1 *.in 2>/dev/null | wc -l)
-  if [ $nin -ne 0 ]; then
-    tar czf wt.tgz *.wt && rm *.wt
+  if [ $nin -gt 0 ]; then
+    rm *.in
   fi
   ntcl=$(ls -1 *.tcl 2>/dev/null | wc -l)
-  if [ $ntcl -ne 0 ]; then
+  if [ $ntcl -gt 0 ]; then
     rm *.tcl
   fi
   if [ -d "Lens" ]; then
-    rm -rf Lens
+    rm -rf Lens/
   fi
   if [ -d "ex" ]; then
     rm -rf ex/
@@ -73,13 +73,13 @@ set -e
 root=$( pwd )
 trainscript="trainscript_phase01.tcl"
 export LENSDIR=$root/Lens
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$root/Lens/usr/local/lib
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$LENSDIR/Bin
 
 ## Install Lens
-if [ ! -f LensCRC.tgz ]; then
-  wget -q "http://proxy.chtc.wisc.edu/SQUID/crcox/Lens/LensCRC.tgz"
+if [ ! -f Lens.tgz ]; then
+  wget -q "http://proxy.chtc.wisc.edu/SQUID/crcox/Lens/Lens.tgz"
 fi
-tar xzf "LensCRC.tgz"
+tar xzf "Lens.tgz"
 
 if [ ! -f tcl_procs.tgz ]; then
   wget -q "http://proxy.chtc.wisc.edu/SQUID/crcox/Lens/tcl_procs.tgz"
@@ -91,11 +91,11 @@ chmod u+x $LENSDIR/Bin/lens-2.63
 
 # Run Lens
 >&2 echo "STARTING LENS"
-$LENSDIR/Bin/lens-2.63 -b "$trainscript"
+$LENSDIR/Bin/lens-2.63 -batch "$trainscript"
 >&2 echo "LENS ENDED"
 
 # Directory state after running lens and cleaning up
 ls -ltr
 
-# Close connection to execute node and return remaining files.
-exit
+# Exit successfully. Hooray!
+trap success EXIT SIGTERM
