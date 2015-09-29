@@ -8,30 +8,69 @@ set -e
 # Note that Tcl/Tk libraries will be installed into ${TOP}/usr/local, where
 # $TOP is the directory from which you called this script.
 
-mkdir -p usr/local
+while [[ $# > 1 ]]
+do
+  key="$1"
+  case $key in
+      -f)
+      TARFILE="$2"
+      shift
+      ;;
+      -t|--tcl-prefix)
+      TCLPREFIX="$2"
+      shift
+      ;;
+      -l|--lens-prefix)
+      LENSPREFIX="$2"
+      shift
+      ;;
+      -V|--tcltk-version)
+      TCLVERSION="$2"
+      shift
+      ;;
+      *)
+      echo "Unknown option $1. Exiting..."
+      exit 1
+      ;;
+  esac
+  shift
+done
+
 TOP=$(pwd)
 
-if [ $# -eq 1]
+if [ -z ${TCLVERSION} ]
 then
-  tar xzvf $1
+  # Current default version
+  TCLVERSION=8.6.4
 fi
 
-if [ $# -gt 1]
+if [ ! -z ${TARFILE} ]
 then
-  echo "Too many arguments. Exiting..."
-  echo "Usage: compile.sh [sourcedist.tar.gz]"
-  exit 1
+  tar xzvf ${TARFILE}
+fi
+
+if [ ! -z ${TCLPREFIX} ]
+then
+  if [ ! "${TCLPREFIX:0:1}" = "/" ]
+  then
+    TCLPREFIX="${TOP}/${TCLPREFIX}"
+  fi
+
+  mkdir -p "${TCLPREFIX}"
+  TCLPREFIXSTATEMENT="--prefix=${TCLPREFIX}"
+else
+  TCLPREFIXSTATEMENT=""
 fi
 
 # Compile Tcl
-cd "TclTk/tcl8.6.4/unix"
-./configure --enable-shared --prefix=${TOP}/usr/local
+cd "TclTk/tcl${TCLVERSION}/unix"
+./configure --enable-shared $TCLPREFIXSTATEMENT
 make
 make install
 
 # Compile Tk
-cd "../../tk8.6.4/unix"
-./configure --enable-shared --prefix=${TOP}/usr/local --with-tcl=../../tcl8.6.4/unix/
+cd "../../tk${TCLVERSION}/unix"
+./configure --enable-shared --with-tcl=../../tcl${TCLVERSION}/unix/ $TCLPREFIXSTATEMENT
 make
 make install
 
