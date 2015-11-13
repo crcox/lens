@@ -8,6 +8,7 @@ TCLVER= 8.6.4
 TCLDIR= ../TclTk
 BINDIR= $(TOP)/Bin/$(HOSTTYPE)
 LIBDIR= $(TOP)/usr/local/lib
+LDOPTS= -Wl,-rpath,$(LIBDIR)
 INCL=   -I$(TCLDIR)/tcl$(TCLVER)/generic -I$(TCLDIR)/tk$(TCLVER)/generic \
         -I$(TCLDIR)/tcl$(TCLVER)/unix    -I$(TCLDIR)/tk$(TCLVER)/unix
 LIBS=   -L$(LIBDIR) -ltk8.6 -ltcl8.6 -lm -lX11 $(SYSLIB)
@@ -21,7 +22,7 @@ default:
 
 $(EXEC)$(EXT): ../$(EXEC)$(EXT)
 ../$(EXEC)$(EXT): $(EXEC_OBJS) Makefile
-	$(CC) -o $(BINDIR)/$(EXEC)-$(VERSION)$(EXT) $(EXEC_OBJS) $(LIBS)
+	$(CC) $(LDOPTS) -o $(BINDIR)/$(EXEC)-$(VERSION)$(EXT) $(EXEC_OBJS) $(LIBS)
 	ln -s -f $(BINDIR)/$(EXEC)-$(VERSION)$(EXT) $(BINDIR)/$(EXEC)$(EXT)
 	ln -s -f $(BINDIR)/$(EXEC)-$(VERSION)$(EXT) ../$(EXEC)$(EXT)
 

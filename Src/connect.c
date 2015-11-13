@@ -1115,10 +1115,6 @@ flag standardLoadWeights(Tcl_Obj *fileNameObj, flag thawed, flag frozen) {
     readLinkData = readTextLinkData;
   }
 
-  print(1, "standardReadWeights: numLinks  = %d\n", numLinks);
-  print(1, "standardReadWeights: numvalues = %d\n", numValues);
-  print(1, "standardReadWeights: numupdate = %d\n", totalUpdates);
-  print(1, "standardReadWeights: link num  =     ");
   int jjj = 0;
   if (frozen || !(Net->type & FROZEN)) {
     FOR_EACH_GROUP({
