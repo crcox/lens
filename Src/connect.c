@@ -918,8 +918,8 @@ flag standardSaveWeights(Tcl_Obj *fileNameObj, flag binary, int numValues,
   if (frozen) numLinks += Net->numLinks - thawedLinks;
   if (thawed) numLinks += thawedLinks;
 
-  print(1, "standardSaveWeights: numLinks  = %d\n", numLinks);
-  print(1, "standardSaveWeights: numvalues = %d\n", numValues);
+  //print(1, "standardSaveWeights: numLinks  = %d\n", numLinks);
+  //print(1, "standardSaveWeights: numvalues = %d\n", numValues);
   if (binary) {
     binaryEncoding(channel);
     writeBinInt(channel, BINARY_WEIGHT_COOKIE);
@@ -950,7 +950,7 @@ flag standardSaveWeights(Tcl_Obj *fileNameObj, flag binary, int numValues,
             nCallsToPrintLinkData++;
             }
 	})})})}
-  print(1, "standardSaveWeights: nCallsPLD = %d\n", nCallsToPrintLinkData);
+  //print(1, "standardSaveWeights: nCallsPLD = %d\n", nCallsToPrintLinkData);
 
   closeChannel(channel);
   return TCL_OK;
@@ -1129,7 +1129,7 @@ flag standardLoadWeights(Tcl_Obj *fileNameObj, flag thawed, flag frozen) {
           else for (si = i + B->numUnits; i < si; i++) {
             readLinkData(channel, U->incoming + i, U->incoming2 + i,
              numValues, R);
-            print(1, "\b\b\b\b% 4d", jjj++);
+            //print(1, "\b\b\b\b% 4d", jjj++);
           };
 
 	})})})}

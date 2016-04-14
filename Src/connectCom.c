@@ -1052,8 +1052,8 @@ int C_freezeWeights(TCL_CMDARGS) {
       if (!(linkType = lookupLinkType(Tcl_GetStringFromObj(objv[arg], NULL)))) {
         return warning("%s: link type %s doesn't exist",
             commandName, Tcl_GetStringFromObj(objv[arg], NULL));
-            break;
       }
+      break;
     default: return usageError(commandName, usage);
     }
   }
