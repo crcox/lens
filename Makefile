@@ -1,6 +1,6 @@
 # Defaults flags:
 CC        = gcc
-CFLAGS    = -Wall
+CFLAGS    = -g -Wall
 MACHINE   = LINUX
 MAKE      = /usr/bin/make
 SYSLIB    = -export-dynamic -ldl
@@ -47,4 +47,4 @@ endif
 
 sdist:
 	-rm send.tgz
-	tar czhf send.tgz Src TclTk Commands Examples Makefile 
+	tar czhf send.tgz Src TclTk Commands Examples Makefile
