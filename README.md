@@ -3,6 +3,7 @@ The Light Efficient Network Simulator (LENS) was originally written by Douglas R
 
 The source code in this repo has been updated to build against Tcl/Tk 8.6.4. It has been tested on:
 - Ubuntu 14.04 (trusty) 64-bit.
+-	Ubuntu 15.10 (Wily) 64-bit.
 - Scientific Linux 6 64-bit.
 
 ## Install
