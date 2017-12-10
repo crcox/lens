@@ -39,10 +39,10 @@ else
 dirs:: Obj/$(HOSTTYPE) Bin/$(HOSTTYPE)
 Obj/$(HOSTTYPE)::
 	if test ! -d Obj/$(HOSTTYPE); \
-	then mkdir Obj/$(HOSTTYPE); fi
+	then mkdir -p Obj/$(HOSTTYPE); fi
 Bin/$(HOSTTYPE)::
 	if test ! -d Bin/$(HOSTTYPE); \
-	then mkdir Bin/$(HOSTTYPE); fi
+	then mkdir -p Bin/$(HOSTTYPE); fi
 endif
 
 sdist:
