@@ -24,6 +24,7 @@ mkdir csf-build-lens-logfiles # first build only
 qsub csf-build-lens.sh
 ```
 
+### Manual install/build
 First, decide on where you want Tcl/Tk to be installed. To be
 super-safe, the following instructions demonstrate making a completely
 new (and isolated) installation location. If you want other software to
@@ -61,7 +62,7 @@ export LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/lib/tcl8.6 -L${PREFIX}/lib/tk8.6"
 make
 ```
 
-## Running Lens
+## Running Lens (everyone needs to do this in one way or another)
 For Lens to run, some environment variables need to be set. If you are running Lens on a distributed cluster, `run_Lens.sh` will handle setting up the environment on the remote machine.
 
 The spirit of the instructions at http://web.stanford.edu/group/mbc/LENSManual/Manual/running.html still apply to setting up your environment to run Lens, with slight differences. The following instructions will work with bash or zsh.
