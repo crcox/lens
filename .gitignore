@@ -24,3 +24,4 @@ TclTk/tk8.6.4/unix/libtkstub8.6.a
 TclTk/tk8.6.4/unix/tk.pc
 TclTk/tk8.6.4/unix/tkConfig.sh
 TclTk/tk8.6.4/unix/wish
+csf-build-lens-logfiles/*

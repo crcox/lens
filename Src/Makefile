@@ -11,7 +11,7 @@ LIBDIR= $(TOP)/usr/local/lib
 LDOPTS= -Wl,-rpath,$(LIBDIR)
 INCL=   -I$(TCLDIR)/tcl$(TCLVER)/generic -I$(TCLDIR)/tk$(TCLVER)/generic \
         -I$(TCLDIR)/tcl$(TCLVER)/unix    -I$(TCLDIR)/tk$(TCLVER)/unix
-LIBS=   -L$(LIBDIR) -ltk8.6 -ltcl8.6 -lm -lX11 $(SYSLIB)
+LIBS=   $(LDFLAGS) -ltk8.6 -ltcl8.6 -lm -lX11 $(SYSLIB)
 
 EXEC_OBJS= $(O)/main.o $(patsubst %,$(O)/%.o,$(SRCS))
 LIB_OBJS= $(O)/library.o $(patsubst %,$(O)/%.o,$(SRCS))
