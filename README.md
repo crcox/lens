@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/42116879.svg)](https://zenodo.org/badge/latestdoi/42116879)
+
 # LENS
 The Light Efficient Network Simulator (LENS) was originally written by Douglas Rhode, copyright 1998-2004. Prior to this repo, the last "stable" release was version 2.64-cnbc.1, hosted at Stanford University at http://web.stanford.edu/group/mbc/LENSManual/. This release was still being built against Tcl/Tk 8.3, and was a challenge to build on modern systems.
 
